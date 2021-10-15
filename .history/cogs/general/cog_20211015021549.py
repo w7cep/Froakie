@@ -138,10 +138,10 @@ class GeneralCog(commands.Cog, name="General"):
 
 
     @commands.command(
-         name="pick",
+         name="choose",
         description='For when you wanna settle the score some other way'
     )
-    async def pick(ctx, *choices: str):
+    async def choose(ctx, *choices: str):
             await ctx.send(random.choice(choices))
 
     @commands.command(

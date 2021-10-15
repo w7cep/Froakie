@@ -186,6 +186,10 @@ class AdminCog(commands.Cog, name="Admin"):
 		profanity.load_censor_words_from_file("./data/profanity.txt")
 		await ctx.send("Action complete.")
 
+	@commands.Cog.listener()
+	async def on_ready(self):
+		if not self.bot.ready:
+			self.log_channel = self.bot.get_channel(892274423854432256)
 
 	@commands.Cog.listener()
 	async def on_message(self, message):

@@ -38,10 +38,9 @@ class BannedUser(Converter):
 				return user
 			else:
 				raise BadArgument
-class AdminCog(commands.Cog, name="Admin"):
-	"""Admin commands"""
-
-	def __init__(self, bot: commands.Bot):
+class Admin(commands.Cog):
+	'''Admin commands module.'''
+	def __init__(self, bot):
 		self.bot = bot
 		
 		self.url_regex = r"(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'\".,<>?«»“”‘’]))"
@@ -186,6 +185,10 @@ class AdminCog(commands.Cog, name="Admin"):
 		profanity.load_censor_words_from_file("./data/profanity.txt")
 		await ctx.send("Action complete.")
 
+	@commands.Cog.listener()
+	async def on_ready(self):
+		if not self.bot.ready:
+			self.log_channel = self.bot.get_channel(892274423854432256)
 
 	@commands.Cog.listener()
 	async def on_message(self, message):
@@ -371,7 +374,134 @@ class AdminCog(commands.Cog, name="Admin"):
 		await channel.delete(reason=reason)
 		await ctx.send(f"Hey man! I deleted {channel.name} for ya!")  
 
+	@commands.command(name="help")
+	@commands.has_permissions(administrator=True)
+	# @commands.bot_has_permissions(add_reactions=True,embed_links=True)
+	async def help(self, ctx, *input):
+		"""Shows all modules of the bot"""
 
+		# SET THOSE VARIABLES TO MAKE THE COG FUNCTIONAL
+		prefix = "$$"
+		version = "v1.0.0"
+
+ 		# setting owner name - if you don't wanna be mentioned remove line 49-60 and adjust help text (line 88)
+		owner = "741118153299591240"
+		owner_name = "W7CEP#0001"
+
+		# checks if cog parameter was given
+		# if not: sending all modules and commands not associated with a cog
+		if not input:
+			# checks if owner is on this server - used to 'tag' owner
+			try:
+				owner = ctx.guild.get_member(owner).mention
+
+			except AttributeError as e:
+				owner = owner
+
+			# starting to build embed
+			emb = nextcord.Embed(title='Commands and modules', color=nextcord.Color.blue(),
+								description=f'Use `{prefix}help <module>` to gain more information about that module '
+											f':smiley:\n')
+
+			# iterating trough cogs, gathering descriptions
+			cogs_desc = ''
+			for cog in self.bot.cogs:
+				cogs_desc += f'`{cog}` {self.bot.cogs[cog].__doc__}\n'
+
+			# adding 'list' of cogs to embed
+			#emb.add_field(name='Modules', value=cogs_desc, inline=False)
+			emb.add_field(name='Modules', value=f"`Admin` Admin Commands Module.\n"
+				 		  						f"`General` General Commands Module.", inline=False)
+
+			# integrating trough uncategorized commands
+			commands_desc = ''
+			for command in self.bot.walk_commands():
+				# if cog not in a cog
+				# listing command if cog name is None and command isn't hidden
+				if not command.cog_name and not command.hidden:
+					commands_desc += f'{command.name} - {command.help}\n'
+
+			# adding those commands to embed
+			if commands_desc:
+				emb.add_field(name='Not belonging to a module',
+							  value=commands_desc, inline=False)
+
+			# setting information about author
+			emb.add_field(name="About", value=f"Maintained by W7CEP#0001.")
+			emb.set_footer(text=f"Bot is running {version}")
+
+		# block called when one cog-name is given
+		# trying to find matching cog and it's commands
+		elif len(input) == 1:
+
+			# iterating trough cogs
+			for cog in self.bot.cogs:
+				# check if cog is the matching one
+				if cog.lower() == input[0].lower():
+
+					# making title - getting description from doc-string below class
+					emb = nextcord.Embed(title=f'{cog} - Commands', description=self.bot.cogs[cog].__doc__,
+										color=nextcord.Color.green())
+
+					# getting commands from cog
+					for command in self.bot.get_cog(cog).get_commands():
+						# if cog is not hidden
+						if not command.hidden:
+							emb.add_field(
+								name=f"`{prefix}{command.name}`", value=command.help, inline=False)
+					# found cog - breaking loop
+					break
+
+			# if input not found
+			# yes, for-loops have an else statement, it's called when no 'break' was issued
+			else:
+				emb = nextcord.Embed(title="What's that?!",
+									description=f"I've never heard from a module called `{input[0]}` before :scream:",
+									color=nextcord.Color.orange())
+
+		# too many cogs requested - only one at a time allowed
+		elif len(input) > 1:
+			emb = nextcord.Embed(title="That's too much.",
+								description="Please request only one module at once :sweat_smile:",
+								color=nextcord.Color.orange())
+
+		else:
+			emb = nextcord.Embed(title="It's a magical place.",
+								description="I don't know how you got here. But I didn't see this coming at all.\n"
+											"Would you please be so kind to report that issue to me on github?\n"
+											"https://github.com/nonchris/discord-fury/issues\n"
+											"Thank you! ~Chris",
+								color=nextcord.Color.red())
+
+		# sending reply embed using our own function defined above
+		await ctx.send(embed=emb)
+
+	@commands.Cog.listener()
+	async def on_command_error(self, ctx, error):
+		# Ignore these errors
+		ignored = (commands.CommandNotFound, commands.UserInputError)
+		if isinstance(error, ignored):
+			return
+
+		if isinstance(error, commands.CommandOnCooldown):
+			# If the command is currently on cooldown trip this
+			m, s = divmod(error.retry_after, 60)
+			h, m = divmod(m, 60)
+			if int(h) == 0 and int(m) == 0:
+				await ctx.send(f" You must wait {int(s)} seconds to use this command!")
+			elif int(h) == 0 and int(m) != 0:
+				await ctx.send(
+					f" You must wait {int(m)} minutes and {int(s)} seconds to use this command!"
+				)
+			else:
+				await ctx.send(
+					f" You must wait {int(h)} hours, {int(m)} minutes and {int(s)} seconds to use this command!"
+				)
+		elif isinstance(error, commands.CheckFailure):
+			# If the command has failed a check, trip this
+			await ctx.send("Hey! You lack permission to use this command.")
+		# Implement further custom checks for errors here...
+		raise error
 
 	@commands.command(name="type")
 	async def type(self, ctx):
@@ -379,6 +509,5 @@ class AdminCog(commands.Cog, name="Admin"):
 		await ctx.channel.trigger_typing()
 		await ctx.send(file=nextcord.File("assets/imgs/info/weakness.jpg"))
 		
-def setup(bot: commands.Bot):
-    bot.add_cog(AdminCog(bot))
-
+def setup(bot):
+	bot.add_cog(Admin(bot))
