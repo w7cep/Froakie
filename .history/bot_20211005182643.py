@@ -5,7 +5,6 @@ import nextcord
 from nextcord.ext import commands
 
 import config
-import settings
 
 
 def main():
@@ -36,7 +35,7 @@ def main():
     bot.loop.create_task(startup())
 
     # run the bot
-    bot.run(settings.BOT_TOKEN)
+    bot.run(config.BOT_TOKEN)
 
 if __name__ == "__main__":
     main()

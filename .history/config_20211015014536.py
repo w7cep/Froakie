@@ -25,6 +25,6 @@ UNASSIGNED_ROLE_ID = settings.UNASSIGNED_ROLE_ID
 
 
 # Discord Message IDs
-RULES_MESSAGE_ID = settings.RULES_MESSAGE_ID
+RULES_MESSAGE_ID = settings.RULES_MESSAGE_ID", ""))
 
 
