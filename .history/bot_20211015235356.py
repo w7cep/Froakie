@@ -2,7 +2,7 @@ import os
 
 import aiohttp
 import nextcord
-import nextcord.ext
+from nextcord import nextcord
 from nextcord.ext import commands
 
 import config

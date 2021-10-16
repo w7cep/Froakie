@@ -127,7 +127,7 @@ class GeneralCog(commands.Cog, name="General"):
         embed.add_field(name="Total Users:", value=memberCount)
         embed.add_field(name="Bot Developers:", value=developer)
 
-        embed.set_footer(text=f"{ctx.author.name}")
+        embed.set_footer(text=f"{nextcord.user.name}")
         embed.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar.url)
 
         await ctx.send(embed=embed)
@@ -135,6 +135,14 @@ class GeneralCog(commands.Cog, name="General"):
     @commands.command(name="add", descripton="Adds two numbers together.")
     async def add(ctx, left: int, right: int):
             await ctx.send(left + right)
+
+
+    @commands.command(
+         name="pick",
+        description='For when you wanna settle the score some other way'
+    )
+    async def pick(ctx, *choices: str):
+            await ctx.send(random.choice(choices))
 
     @commands.command(
          name="repeat",
@@ -165,7 +173,7 @@ class GeneralCog(commands.Cog, name="General"):
     @commands.guild_only()
     async def wiki(self, ctx, msg):
         """Get info from wikipedia."""
-        url: str = f"https://wikipedia.org/wiki/{msg}"
+        url: str = f"https://.wikipedia.org/wiki/{msg}"
         await ctx.send(f"Here : {url}")
 
     @commands.command(name="length")

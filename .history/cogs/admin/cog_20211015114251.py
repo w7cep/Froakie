@@ -95,9 +95,8 @@ class AdminCog(commands.Cog, name="Admin"):
 	@commands.guild_only()
 	@commands.has_permissions(administrator=True)
 	@commands.bot_has_guild_permissions(manage_channels=True)
-	async def lockdown(self, ctx, channel: nextcord.TextChannel=None):
-		if channel is None:
-			channel = ctx.channel
+	async def lockdown(self, ctx, channel: nextcord.TextChannel):
+		channel = channel or ctx.channel
 
 		if ctx.guild.default_role not in channel.overwrites:
 			overwrites = {
@@ -265,7 +264,7 @@ class AdminCog(commands.Cog, name="Admin"):
 		**- Name:** {emoji.name}
 		**- Id:** {emoji.id}
 		**- URL:** [Link To Emoji]({emoji.url})
-		**- Author:** {emoji.user.name}
+		**- Author:** {emoji.user.mention}
 		**- Time Created:** {creation_time}
 		**- Usable by:** {can_use_emoji}
 		

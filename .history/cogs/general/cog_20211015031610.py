@@ -102,7 +102,7 @@ class GeneralCog(commands.Cog, name="General"):
             await ctx.send("No facts are available for that animal.")
 
     @commands.command(
-        name="stats", 
+        name="botstats", 
           description="A useful command that displays bot statistics."
     )
     async def stats(self, ctx):
@@ -115,26 +115,34 @@ class GeneralCog(commands.Cog, name="General"):
   
         embed = nextcord.Embed(
             title=f"{self.bot.user.name} Stats",
-            description="Useful stats.",
+            description="||Bot Stats||",
             colour=ctx.author.colour,
             timestamp=ctx.message.created_at,
         )
 
         embed.add_field(name="Bot Version:", value=version)
         embed.add_field(name="Python Version:", value=pythonVersion)
-        embed.add_field(name="nextcord Version", value=dpyVersion)
+        embed.add_field(name="nextcord.Py Version", value=dpyVersion)
         embed.add_field(name="Total Guilds:", value=serverCount)
         embed.add_field(name="Total Users:", value=memberCount)
         embed.add_field(name="Bot Developers:", value=developer)
 
-        embed.set_footer(text=f"{ctx.author.name}")
-        embed.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar.url)
+        embed.set_footer(text=f"Carpe Noctem | {self.bot.user.name}")
+        embed.set_author(name=self.bot.user.name, icon_url=self.nextcord.user.avatar.url)
 
         await ctx.send(embed=embed)
 
     @commands.command(name="add", descripton="Adds two numbers together.")
     async def add(ctx, left: int, right: int):
             await ctx.send(left + right)
+
+
+    @commands.command(
+         name="pick",
+        description='For when you wanna settle the score some other way'
+    )
+    async def pick(ctx, *choices: str):
+            await ctx.send(random.choice(choices))
 
     @commands.command(
          name="repeat",
@@ -165,7 +173,7 @@ class GeneralCog(commands.Cog, name="General"):
     @commands.guild_only()
     async def wiki(self, ctx, msg):
         """Get info from wikipedia."""
-        url: str = f"https://wikipedia.org/wiki/{msg}"
+        url: str = f"https://.wikipedia.org/wiki/{msg}"
         await ctx.send(f"Here : {url}")
 
     @commands.command(name="length")

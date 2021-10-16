@@ -20,7 +20,7 @@ class WelcomeCog(commands.Cog, name="Welcome"):
             return
         # send welcome message
         await intro_channel.send(
-            f"Welcome to **Greninja's Grotto**, {member.mention}!\n"
+            f"Welcome to the Dev Pro Tips Server, {member.mention}!\n"
             f"Please read the rules in {rules_channel.mention} to gain access to the rest of the server!"
         )
         # give the "unassigned" role

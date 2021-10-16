@@ -136,6 +136,14 @@ class GeneralCog(commands.Cog, name="General"):
     async def add(ctx, left: int, right: int):
             await ctx.send(left + right)
 
+
+    @commands.command(
+         name="pick",
+        description='For when you wanna settle the score some other way'
+    )
+    async def pick(ctx, *choices: str):
+            await ctx.send(random.choice(choices))
+
     @commands.command(
          name="repeat",
         description="Repeat a message a number of times."

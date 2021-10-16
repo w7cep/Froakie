@@ -265,7 +265,7 @@ class AdminCog(commands.Cog, name="Admin"):
 		**- Name:** {emoji.name}
 		**- Id:** {emoji.id}
 		**- URL:** [Link To Emoji]({emoji.url})
-		**- Author:** {emoji.user.name}
+		**- Author:** {emoji.user.mention}
 		**- Time Created:** {creation_time}
 		**- Usable by:** {can_use_emoji}
 		

@@ -53,7 +53,7 @@ class AdminCog(commands.Cog, name="Admin"):
 	)
 	@commands.guild_only()
 	@commands.has_permissions(administrator=True)
-	async def purge(self, ctx, amount=5):
+	async def purge(self, ctx, amount=15):
 		await ctx.channel.purge(limit=amount + 1)
 		embed = nextcord.Embed(
 			title=f"{ctx.author.name} purged: {ctx.channel.name}",
@@ -96,8 +96,7 @@ class AdminCog(commands.Cog, name="Admin"):
 	@commands.has_permissions(administrator=True)
 	@commands.bot_has_guild_permissions(manage_channels=True)
 	async def lockdown(self, ctx, channel: nextcord.TextChannel=None):
-		if channel is None:
-			channel = ctx.channel
+		channel = channel or ctx.channel
 
 		if ctx.guild.default_role not in channel.overwrites:
 			overwrites = {
@@ -156,7 +155,7 @@ class AdminCog(commands.Cog, name="Admin"):
 			
 		)
 		embed.set_footer(text=f"ID: {user.id}")
-		embed.set_thumbnail(url=user.avatar.url(format="png"))
+		embed.set_thumbnail(url=user.avatar.url_as(format="png"))
 		embed.add_field(name="__**General information:**__", value=f"**Discord Name:** {user}\n"
 																   f"**Account created:** {user.created_at.__format__('%A %d %B %Y at %H:%M')}", inline=False)        
 		embed.add_field(name="__**Server-related information:**__", value=f"**Nickname:** {user.nick}\n"
@@ -265,7 +264,7 @@ class AdminCog(commands.Cog, name="Admin"):
 		**- Name:** {emoji.name}
 		**- Id:** {emoji.id}
 		**- URL:** [Link To Emoji]({emoji.url})
-		**- Author:** {emoji.user.name}
+		**- Author:** {emoji.user.mention}
 		**- Time Created:** {creation_time}
 		**- Usable by:** {can_use_emoji}
 		

@@ -136,6 +136,14 @@ class GeneralCog(commands.Cog, name="General"):
     async def add(ctx, left: int, right: int):
             await ctx.send(left + right)
 
+
+    @commands.command(
+         name="pick",
+        description='For when you wanna settle the score some other way'
+    )
+    async def pick(ctx, *choices: str):
+            await ctx.send(random.choice(choices))
+
     @commands.command(
          name="repeat",
         description="Repeat a message a number of times."
@@ -165,7 +173,7 @@ class GeneralCog(commands.Cog, name="General"):
     @commands.guild_only()
     async def wiki(self, ctx, msg):
         """Get info from wikipedia."""
-        url: str = f"https://wikipedia.org/wiki/{msg}"
+        url: str = f"https://.wikipedia.org/wiki/{msg}"
         await ctx.send(f"Here : {url}")
 
     @commands.command(name="length")

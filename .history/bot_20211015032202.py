@@ -2,7 +2,6 @@ import os
 
 import aiohttp
 import nextcord
-import nextcord.ext
 from nextcord.ext import commands
 
 import config
@@ -11,8 +10,9 @@ from settings import DISCORD_TOKEN
 
 def main():
     # allows privledged intents for monitoring members joining, roles editing, and role assignments
-    intents = nextcord.Intents.all()
-
+    intents = nextcord.Intents.default()
+    intents.guilds = True
+    intents.members = True
 
     activity = nextcord.Activity(type=nextcord.ActivityType.listening, name=f"{config.PREFIX}help")
 
