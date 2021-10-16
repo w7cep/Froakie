@@ -136,34 +136,6 @@ class AdminCog(commands.Cog, name="Admin"):
 			await user.remove_roles(role) #removes the role if user already has
 			await ctx.send(f"{user.mention} has been un{role}")
 			
-	@commands.command(name="memberinfo", aliases=["mi"]) 
-	@commands.has_permissions(administrator=True)
-	@commands.guild_only()
-	async def memberinfo(self, ctx, *, user: nextcord.Member = None):
-		
-		"""
-		Get information about you, or a specified user.
-		`$$mi <user>`
-		`user`: The user who you want information about. Can be an ID, mention or name.
-		"""
-
-		if user is None:
-			user = ctx.author
-			
-		embed = nextcord.Embed(
-			
-			title=f"{user.name}'s Stats and Information.",
-			
-		)
-		embed.set_footer(text=f"ID: {user.id}")
-		embed.set_thumbnail(url=user.avatar.url(format="png"))
-		embed.add_field(name="__**General information:**__", value=f"**Discord Name:** {user}\n"
-																   f"**Account created:** {user.created_at.__format__('%A %d %B %Y at %H:%M')}", inline=False)        
-		embed.add_field(name="__**Server-related information:**__", value=f"**Nickname:** {user.nick}\n"
-																		  f"**Joined server:** {user.joined_at.__format__('%A %d %B %Y at %H:%M')}\n"
-																		  f"**Roles:** {' '.join([r.mention for r in user.roles[1:]])}")
-		return await ctx.send(embed=embed)
-
 	@commands.command(name="addprofanity", aliases=["addswears", "addcurses"])
 	@commands.has_permissions(administrator=True)
 	async def add_profanity(self, ctx, *words):
@@ -198,47 +170,6 @@ class AdminCog(commands.Cog, name="Admin"):
 		if profanity.contains_profanity(message.content):
 			await message.delete()
 			await message.channel.send("You can't use that word here.", delete_after=10)
-
-	@commands.command(name="cmd")
-	@commands.has_permissions(administrator=True)
-	@commands.guild_only()
-	async def cmd(self, ctx):
-
-		"""Test Embed."""
-		
-		version = "v1.0.0"
-		
-		embed = nextcord.Embed(
-			title="__**Server Commands**__",
-			description="List of all server commands.",
-			colour=nextcord.Colour.blue()
-		)
-		embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/891852099653083186/895902400416710666/greninja-frogadier.gif")
-		embed.set_author(name="Greninja Mod", icon_url="https://cdn.discordapp.com/avatars/866572422438060052/cb32b40409c7df4d147c400582f939ac.webp?size=4096")
-		embed.set_image(url="https://cdn.discordapp.com/attachments/859634488593743892/891612213654192168/greninja_banner.jpg")
-		###########################################################################################################################
-		embed.add_field(name="__**Admin Commands:**__", value=f"**$$clean** : Cleans the chat of bot messages.\n"
-												f"**$$role** : Give role to member.\n"
-												f"**$$memberinfo, $$mi** : Get information about a member.\n"
-												f"**$$addprofanity** : Add cuss word to file.\n" 
-												f"**$$delprofanity** : Delete cuss word from file.\n"
-												f"**$$cmd** : List all bot commands."
-												f"**$$emojiinfo** : Get info about an emoji.\n"
-												f"**$$channelstats, $$cs** : Get channel stats.\n" 
-												f"**$$new category <role> <name>** : Create a new category.\n"
-												f"**$$new channel <role> <name>** : Create a new channel.\n" 
-												f"**$$delete category <role> <name>** : Create a new category.\n"
-												f"**$$delete channel <role> <name>** : Create a new channel.\n" 
-												f"**$$lockdown** : Lock or Unlock a channel.\n", inline=False)
-		
-		embed.add_field(name="__**General Commands:**__", value=f"**$$hello** : Say hello to the bot.\n"
-												f"**$$bye** : Say bye to the bot.\n"
-												f"**$$slap** : Slap another member.\n"
-												f"**$$fact** : Get a fact about an animal.\n"
-												f"**$$stats** : Get bot stats.", inline=False)                                                    
-		embed.set_footer(text=f"Bot is running {version}")
-		await ctx.send(embed=embed)
-		
 	@commands.command(name="emojiinfo", aliases=["ei"])
 	@commands.has_permissions(administrator=True)
 	async def emoji_info(self, ctx, emoji: nextcord.Emoji = None):
@@ -372,14 +303,39 @@ class AdminCog(commands.Cog, name="Admin"):
 		await channel.delete(reason=reason)
 		await ctx.send(f"Hey man! I deleted {channel.name} for ya!")  
 
-
-
 	@commands.command(name="type")
 	async def type(self, ctx):
 		"""Type advantages."""
 		await ctx.channel.trigger_typing()
 		await ctx.send(file=nextcord.File("assets/imgs/info/weakness.jpg"))
-		
+   
+	@commands.command(
+		name="echo",
+		description="A simple command that repeats the users input back to them.",
+	)
+	async def echo(self, ctx):
+		await ctx.message.delete()
+		embed = nextcord.Embed(
+			title="Please tell me what you want me to repeat!",
+			description="This request will timeout after 1 minute.",
+		)
+		sent = await ctx.send(embed=embed)
+
+		try:
+			msg = await self.bot.wait_for(
+				"message",
+				timeout=60,
+				check=lambda message: message.author == ctx.author
+				and message.channel == ctx.channel,
+			)
+			if msg:
+				await sent.delete()
+				await msg.delete()
+				await ctx.send(msg.content)
+		except asyncio.TimeoutError:
+			await sent.delete()
+			await ctx.send("Cancelling", delete_after=10)
+					
 def setup(bot: commands.Bot):
-    bot.add_cog(AdminCog(bot))
+	bot.add_cog(AdminCog(bot))
 

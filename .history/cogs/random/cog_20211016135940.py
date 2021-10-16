@@ -122,7 +122,25 @@ class Random(commands.Cog, name="Random"):
 	@slap_member.error
 	async def slap_member_error(self, ctx, exc):
 		if isinstance(exc, BadArgument):
-			await ctx.send("I can't find that member.")                          
+			await ctx.send("I can't find that member.")                 
+
+	@commands.command(
+		 name="slap", 
+		aliases=["hit"])
+	async def slap_member(self, ctx, member: Member, *, reason: Optional[str] = "for no reason"):
+		await ctx.send(f"{ctx.author.display_name} slapped {member.mention} {reason}!")
+		await ctx.message.delete()
+
+	@slap_member.error
+	async def slap_member_error(self, ctx, exc):
+		if isinstance(exc, BadArgument):
+			await ctx.send("I can't find that member.")            
+
+	@commands.command(name="type")
+	async def type(self, ctx):
+		"""Type advantages."""
+		await ctx.channel.trigger_typing()
+		await ctx.send(file=nextcord.File("assets/imgs/info/weakness.jpg"))
   
 def setup(bot: commands.Bot):
 	bot.add_cog(Random(bot))
