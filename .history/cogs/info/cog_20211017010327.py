@@ -49,7 +49,7 @@ class Information(commands.Cog, name="Information"):
 	@commands.command(name="memberinfo", aliases=["mi"]) 
 	@commands.has_permissions(administrator=True)
 	@commands.guild_only()
-	async def memberinfo(self, ctx, *, user : Member = None):
+	async def memberinfo(self, ctx, *, user am : Member = None):
 		
 		"""
 		Get information about you, or a specified user.
