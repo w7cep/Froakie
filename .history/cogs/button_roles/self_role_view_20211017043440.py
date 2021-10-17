@@ -21,7 +21,7 @@ class SelfRoleView(RoleView):
         await self.handle_click(button, interaction)
 
     @nextcord.ui.button(
-        label="<:link>",
+        label="TradeCord",
         emoji="💻",
         style=nextcord.ButtonStyle.primary,
         custom_id=custom_id(VIEW_NAME, config.TRADECORD_ROLE_ID),

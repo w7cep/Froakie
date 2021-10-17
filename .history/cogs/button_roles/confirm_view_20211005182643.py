@@ -12,7 +12,7 @@ class ConfirmView(RoleView):
 
     @nextcord.ui.button(
         label="Confirm",
-        emoji="<:Froakie:899243283337855046>",
+        emoji="👍",
         style=nextcord.ButtonStyle.green,
         custom_id=custom_id(VIEW_NAME, config.MEMBER_ROLE_ID),
     )
