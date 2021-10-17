@@ -16,18 +16,18 @@ class SelfRoleView(RoleView):
 		style=nextcord.ButtonStyle.primary,
 		custom_id=custom_id(VIEW_NAME, config.TRADECORD_ROLE_ID),
 	)
-	async def tradecord_button(self, button, interaction):
+	async def developer_button(self, button, interaction):
 		await self.handle_click(button, interaction)
 		
-	@nextcord.ui.button(
-		label="Giveaway Ping",
-		emoji="<:tada:899298638570868776>",
+	'''@nextcord.ui.button(
+		label="Frogadier",
+		emoji="<:Frogadier:899243354980761610>",
 		style=nextcord.ButtonStyle.blurple,
 		# set custom id to be the bot name : the class name : the role id
-		custom_id=custom_id(VIEW_NAME, config.GIVEAWAY_PING_ROLE_ID),
+		custom_id=custom_id(VIEW_NAME, config.FROGADIER_ROLE_ID),
 	)
-	async def giveaway_ping_button(self, button, interaction):
-		await self.handle_click(button, interaction)
+	async def subscriber_button(self, button, interaction):
+		await self.handle_click(button, interaction)'''
 
 	'''@nextcord.ui.button(
 		label="Content Creator",
