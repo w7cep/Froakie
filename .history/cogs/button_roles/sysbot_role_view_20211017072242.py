@@ -30,3 +30,4 @@ class SysBotRuleView(RoleView):
         await self.handle_click(button, interaction)
 
 
+🔗
