@@ -12,7 +12,7 @@ class SelfRoleView(RoleView):
 
     @nextcord.ui.button(
         label="Frogadier",
-        emoji="<a:squirtlurk:856874172466200576>",
+        emoji="💖",
         style=nextcord.ButtonStyle.blurple,
         # set custom id to be the bot name : the class name : the role id
         custom_id=custom_id(VIEW_NAME, config.FROGADIER_ROLE_ID),
