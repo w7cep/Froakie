@@ -4,7 +4,7 @@ from nextcord.ext.commands import MissingPermissions
 from nextcord.ext import commands
 from .confirm_view import ConfirmView
 from .self_role_view import SelfRoleView
-from .sysbot_role_view import SysBotRoleView
+from .bot_role_view import SysBotRoleView
 
 class ButtonRolesCog(commands.Cog, name="Button Roles"):
 	"""Give and remove roles based on button presses"""
