@@ -3,7 +3,7 @@ from utils.utils import custom_id
 import nextcord
 import config
 
-VIEW_NAME = "SysBotRuleView"
+VIEW_NAME = "SysBotRoleView"
 
 
 class SysBotRoleView(RoleView):
