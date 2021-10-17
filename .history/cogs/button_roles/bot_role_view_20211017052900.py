@@ -3,10 +3,10 @@ from utils.utils import custom_id
 import nextcord
 import config
 
-VIEW_NAME = "SelfRoleView"
+VIEW_NAME = "BotRoleView"
 
 
-class SelfRoleView(RoleView):
+class BotRoleView(RoleView):
     def __init__(self):
         super().__init__(required_roles=[config.MEMBER_ROLE_ID])
 
@@ -29,20 +29,4 @@ class SelfRoleView(RoleView):
     async def developer_button(self, button, interaction):
         await self.handle_click(button, interaction)
 
-    '''@nextcord.ui.button(
-        label="Content Creator",
-        emoji="✍",
-        style=nextcord.ButtonStyle.primary,
-        custom_id=custom_id(VIEW_NAME, config.CONTENT_CREATOR_ROLE_ID),
-    )
-    async def content_creator_button(self, button, interaction):
-        await self.handle_click(button, interaction)
 
-    @nextcord.ui.button(
-        label="YouTube Ping",
-        emoji="🔔",
-        style=nextcord.ButtonStyle.primary,
-        custom_id=custom_id(VIEW_NAME, config.YOUTUBE_PING_ROLE_ID),
-    )
-    async def youtube_ping_button(self, button, interaction):
-        await self.handle_click(button, interaction)'''

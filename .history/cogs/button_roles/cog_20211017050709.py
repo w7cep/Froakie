@@ -4,7 +4,7 @@ from nextcord.ext.commands import MissingPermissions
 from nextcord.ext import commands
 from .confirm_view import ConfirmView
 from .self_role_view import SelfRoleView
-from .bot_role_view import BotRoleView
+
 
 class ButtonRolesCog(commands.Cog, name="Button Roles"):
 	"""Give and remove roles based on button presses"""
@@ -26,11 +26,10 @@ class ButtonRolesCog(commands.Cog, name="Button Roles"):
 
 	@commands.command()
 	@commands.is_owner()
-	async def bot_roles(self, ctx: commands.Context, message_id: str):
+	async def bot_roles(self, ctx: commands.Context):
 		"""Starts a bot role view"""
-		bot_rules_channel = await ctx.guild.fetch_channel(config.BOT_ROLE_CHANNEL_ID)
-		message = await bot_rules_channel.fetch_message(message_id)
-		await message.edit(view=BotRoleView())
+		await ctx.send(	f"**SysBot Channel Access**: Frogadier\n"
+                 		f"**TradeCord Channel Access**: TradeCord", view=SelfRoleView())
   
 	@commands.command()
 	@commands.is_owner()

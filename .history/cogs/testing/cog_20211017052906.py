@@ -24,5 +24,9 @@ class Testing(commands.Cog, name="Testing"):
 			for i in range(times):
 				await ctx.send(content)
 
+
+
+
+
 def setup(bot: commands.Bot):
 	bot.add_cog(Testing(bot))
