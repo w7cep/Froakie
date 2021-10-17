@@ -9,7 +9,7 @@ class Rules(commands.Cog, name="Rules"):
 	def __init__(self, bot: commands.Bot):
 		self.bot = bot
 
-	@commands.command(name="update_rules")
+	@commands.command(name="update_rules", )
 	@commands.has_guild_permissions(manage_roles=True)
 	async def update_rules(self, ctx: commands.Context, *, args=None):
 		"""Checks for a response from the bot"""

@@ -9,7 +9,7 @@ class Rules(commands.Cog, name="Rules"):
 	def __init__(self, bot: commands.Bot):
 		self.bot = bot
 
-	@commands.command(name="update_rules")
+	@commands.command(name="update_rules", hidden=True)
 	@commands.has_guild_permissions(manage_roles=True)
 	async def update_rules(self, ctx: commands.Context, *, args=None):
 		"""Checks for a response from the bot"""
@@ -49,7 +49,7 @@ class Rules(commands.Cog, name="Rules"):
 						f"11. No selling of any kind. (unless approved by an admin).\n"
 						f"12. Don't DM other members unless you have their permission to do so.\n\n"
 						f"This can be updated for future reference.\n\n"
-						f"Click :thumbsup:Confirm to gain access to the rest of the server!\n\n"
+						f"Click Confirm to gain access to the rest of the server!\n\n"
 						f"Then visit <#861616591199141908> to give yourself some roles and <#868914000572846120> for Sys-Bot access!\n\n"
 						f"https://discord.gg/dm7gSAT68d\n\n"
 						f"Server and Bot rules subject to change.\n\n"
