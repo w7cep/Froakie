@@ -93,7 +93,7 @@ class Mod(commands.Cog, name="Mod"):
 							  colour=0xDD2222,
 							  timestamp=datetime.utcnow())
 
-				embed.set_thumbnail(url=target.display_avatar.with_static_format("png").url)
+				embed.set_thumbnail(url=target.avatar.url)
 
 				fields = [("Member", f"{target.name} a.k.a. {target.display_name}", False),
 						  ("Actioned by", message.author.display_name, False),
@@ -135,7 +135,7 @@ class Mod(commands.Cog, name="Mod"):
 							  colour=0xDD2222,
 							  timestamp=datetime.utcnow())
 
-				embed.set_thumbnail(url=target.display_avatar.with_static_format("png").url)
+				embed.set_thumbnail(url=target.avatar.url)
 
 				fields = [("Member", target.name, False),
 						  ("Actioned by", ctx.author.display_name, False),
