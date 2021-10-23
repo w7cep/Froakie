@@ -73,7 +73,7 @@ class Mod(commands.Cog, name="Mod"):
 
 			for ban_entry in banned_users:
 					user = ban_entry.user
-			if (user.name, user.discriminator) == (member_name, member_discriminator):
+	 			if (user.name, user.discriminator) == (member_name, member_discriminator):
 					await ctx.guild.unban(user)
 					await ctx.send(f'Unbanned {user.mention}')
 					return
