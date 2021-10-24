@@ -48,13 +48,13 @@ class Mod(commands.Cog, name="Mod"):
 
 	@commands.command()
 	@commands.has_permissions(kick_members=True)
-	async def kick(ctx, member: nextcord.Member, *, reason = None):
+	async def kick(ctx, user: nextcord.Member, *, reason = None):
   		if not reason:
-					await member.kick()
-					await ctx.send(f"**{member}** has been kicked for **no reason**.")
+					await user.kick()
+					await ctx.send(f"**{user}** has been kicked for **no reason**.")
   		else:
-					await member.kick(reason=reason)
-					await ctx.send(f"**{member}** has been kicked for **{reason}**.")
+					await user.kick(reason=reason)
+					await ctx.send(f"**{user}** has been kicked for **{reason}**.")
 
 	@kick.error
 	async def kick_error(self, ctx, exc):
