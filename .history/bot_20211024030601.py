@@ -36,7 +36,7 @@ def main():
     bot.loop.create_task(startup())
 
     # run the bot
-    bot.run(DISCORD_TOKEN)
+    bot.run(os.getenv(DISCORD_TOKEN))
 
 if __name__ == "__main__":
     main()
