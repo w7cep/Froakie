@@ -36,9 +36,7 @@ class ErrorLogger:
 
     def __get_err_text(self, error: Exception, message: nextcord.Message = None):
         trace = traceback.format_exc()
-        description = "".join(
-        traceback.format_exception(error.__class__, error, error.__traceback__)
-        )
+        description = trace if trace != "NoneType: None\n" else str(error)
         if message is None:
             return description
         return self.__attach_context(description, message)
