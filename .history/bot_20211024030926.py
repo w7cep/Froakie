@@ -6,7 +6,7 @@ import nextcord.ext
 from nextcord.ext import commands
 
 import config
-from config import BOT_TOKEN
+from config import DISCORD_TOKEN
 
 
 def main():
