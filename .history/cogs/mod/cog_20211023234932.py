@@ -127,7 +127,7 @@ class Mod(commands.Cog, name="Mod"):
 		if not user: # checks if there is user
 			return await ctx.send("You must specify a user")
 								
-		await ctx.set.permissions(user, send_messages=False) # sets permissions for current channel
+		await ctx.set_permissions(user, send_messages=False) # sets permissions for current channel
 	
 	@commands.command()
 	async def unblock(self, ctx, user: Sinner=None):
@@ -136,7 +136,7 @@ class Mod(commands.Cog, name="Mod"):
 		if not user: # checks if there is user
 			return await ctx.send("You must specify a user")
 		
-		await ctx.set.permissions(user, send_messages=True) # gives back send messages permissions
+		await ctx.set_permissions(user, send_messages=True) # gives back send messages permissions
 								
 
 	@commands.command(name="addprofanity", aliases=["addswears", "addcurses"])
