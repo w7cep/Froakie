@@ -529,7 +529,7 @@ class Rtfm(commands.Cog):
             refer = ref.resolved.to_reference()
         await ctx.send(embed=e, reference=refer)
 
-    @commands.group(name="rtfm", aliases=["rtfd"], invoke_without_command=True, hidden=True)
+    @commands.group(name="rtfm", aliases=["rtfd"], invoke_without_command=True)
     async def rtfm_group(self, ctx: commands.Context, *, obj: str = None):
         """Retrieve documentation on Python libraries"""
         await self.do_rtfm(ctx, "nextcord", obj)
@@ -558,7 +558,7 @@ class Rtfm(commands.Cog):
     async def rtfm_disnake_cmd(self, ctx: commands.Context, *, obj: str = None):
         await self.do_rtfm(ctx, "disnake", obj)
 
-    @commands.command(help="delete cache of rtfm", aliases=["purge-rtfm", "delrtfm"], hidden=True)
+    @commands.command(help="delete cache of rtfm", aliases=["purge-rtfm", "delrtfm"])
     @commands.is_owner()
     async def rtfmcache(self, ctx: commands.Context):
         del self._rtfm_cache

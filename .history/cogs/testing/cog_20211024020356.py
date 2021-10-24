@@ -12,7 +12,7 @@ class Testing(commands.Cog, name="Testing"):
 	def __init__(self, bot: commands.Bot):
 		self.bot = bot
 
-	@commands.command(name="add", descripton="Adds two numbers together.", hidden=True)
+	@commands.command(name="add", descripton="Adds two numbers together.")
 	async def add(ctx, left: int, right: int):
 			await ctx.send(left + right)
 
