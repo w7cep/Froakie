@@ -40,5 +40,5 @@ class ErrorLogCog(commands.Cog, name="Error Logs"):
 # setup functions for bot
 def setup(bot: commands.Bot):
     cog = ErrorLogCog(bot)
-    bot.add_cog(cog)
+    bot.add_cog(cog(bot))
     setattr(bot, "on_error", cog.on_error)
