@@ -15,8 +15,8 @@ class TipFormatter:
             "spoiler": Tip("||spoiler|| (click to reveal)", "\||spoiler||"),
             "inline": Tip("`inline code`", "\`inline code`"),
             "codeblock": Tip(
-                '```js\nconsole.log("This is a code block");\n```',
-                "\```js\n// replace this with your code\n```",
+                '```py\nconsole.log("This is a code block");\n```',
+                "\```py\n// replace this with your code\n```",
             ),
         }
         # alternative ways to request formats (spaces and case is already ignored)
