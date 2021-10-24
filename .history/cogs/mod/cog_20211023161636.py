@@ -65,7 +65,7 @@ class Mod(commands.Cog, name="Mod"):
 				for name, value, inline in fields:
 					embed.add_field(name=name, value=value, inline=inline)
 
-				await self.message.send(embed=embed)
+				await self.log_channel.send(embed=embed)
 
 	@command(name="kick")
 	@bot_has_permissions(kick_members=True)
