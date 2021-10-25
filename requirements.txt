@@ -12,4 +12,4 @@ disputils
 psutil
 python-nmap
 asyncio
-aiohttp==3.7.3
+aiohttp==3.7.4
