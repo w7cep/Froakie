@@ -60,35 +60,42 @@ class Mod(commands.Cog, name="Mod"):
 		if isinstance(error, commands.BadArgument):
 				await ctx.send(error)
 	"""//TODO Refine Ban, Unban, softban, Kick commands"""		
-	@commands.command(aliases=["banish"])
-	@commands.has_permissions(ban_members=True)
-	async def ban(self, ctx, user: Sinner=None, reason=None):
-		"""Casts users out of heaven."""
-		
-		if not user: # checks if there is a user
-			return await ctx.send("You must specify a user")
-		
-		try: # Tries to ban user
-			await ctx.guild.ban(user)
-			await ctx.send(f"{user.mention} was cast out of heaven for {reason}.")
-		except nextcord.Forbidden:
-			return await ctx.send("Are you trying to ban someone higher than the bot")
+	@commands.command()
+	@commands.has_permissions(ban_members = True)
+	async def ban(self, ctx, id: int):
+		user = await self.bot.fetch_user(id)
+		await ctx.guild.ban(user)
+
+		ban= nextcord.Embed(title=f'A moderation action has been performed!', description='', color=0x90fd05)
+		ban.add_field(name='User Affected:', value=f'`{user.name}`', inline=True)
+		ban.add_field(name='User ID:', value=f'`{user.id}`', inline=True)
+		ban.add_field(name='Moderator Name:', value=f'`{ctx.author}`', inline=True)
+		ban.add_field(name='Moderator ID:', value=f'`{ctx.author.id}`', inline=True)
+		ban.add_field(name='Action Performed:', value='`Ban`', inline=True)
+		ban.set_author(name=f'{ctx.guild}', icon_url=ctx.guild.icon.url)
+		ban.set_thumbnail(url=user.avatar.url)
+		#unban.timestamp = datetime.datetime.utcnow()
+
+		await ctx.send(embed=ban)
 
 	@commands.command()
 	@commands.has_permissions(administrator=True) 
-	async def softban(self, ctx, user: Sinner=None, reason=None):
+	async def softban(self, ctx, id: int):
 		"""Temporarily restricts access to heaven."""
-		
-		if not user: # checks if there is a user
-			return await ctx.send("You must specify a user")
-		
-		try: # Tries to soft-ban user
-			await ctx.guild.ban(user)
-			await ctx.send(f"Temporarily banned.\n"
-		  					f"By {ctx.author} for {reason}" or f"By {ctx.author} for None Specified") 
-			await ctx.guild.unban(user)
-		except nextcord.Forbidden:
-			return await ctx.send("Are you trying to soft-ban someone higher than the bot?")
+		user = await self.bot.fetch_user(id)
+
+		softban= nextcord.Embed(title=f'A moderation action has been performed!', description='', color=0x90fd05)
+		softban.add_field(name='User Affected:', value=f'`{user.name}`', inline=True)
+		softban.add_field(name='User ID:', value=f'`{user.id}`', inline=True)
+		softban.add_field(name='Moderator Name:', value=f'`{ctx.author}`', inline=True)
+		softban.add_field(name='Moderator ID:', value=f'`{ctx.author.id}`', inline=True)
+		softban.add_field(name='Action Performed:', value='`Softban`', inline=True)
+		softban.set_author(name=f'{ctx.guild}', icon_url=ctx.guild.icon.url)
+		softban.set_thumbnail(url=user.avatar.url)
+		#unban.timestamp = datetime.datetime.utcnow()
+		await ctx.guild.ban(user)
+		await ctx.guild.unban(user)
+		await ctx.send(embed=softban)
 	
 	@commands.command()
 	@commands.has_permissions(ban_members = True)
@@ -97,13 +104,13 @@ class Mod(commands.Cog, name="Mod"):
 		await ctx.guild.unban(user)
 
 		unban= nextcord.Embed(title=f'A moderation action has been performed!', description='', color=0x90fd05)
-		#unban.add_field(name='User Affected:', value=f'`{member.name}`', inline=True)
-		#unban.add_field(name='User ID:', value=f'`{member.id}`', inline=True)
+		unban.add_field(name='User Affected:', value=f'`{user.name}`', inline=True)
+		unban.add_field(name='User ID:', value=f'`{user.id}`', inline=True)
 		unban.add_field(name='Moderator Name:', value=f'`{ctx.author}`', inline=True)
 		unban.add_field(name='Moderator ID:', value=f'`{ctx.author.id}`', inline=True)
-		unban.add_field(name='Action Performed:', value='`UnBan`', inline=True)
+		unban.add_field(name='Action Performed:', value='`Unban`', inline=True)
 		unban.set_author(name=f'{ctx.guild}', icon_url=ctx.guild.icon.url)
-		#unban.set_thumbnail(url=member.avatar_url)
+		unban.set_thumbnail(url=user.avatar.url)
 		#unban.timestamp = datetime.datetime.utcnow()
 
 		await ctx.send(embed=unban)
