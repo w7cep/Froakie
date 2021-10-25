@@ -116,7 +116,7 @@ class Channel(commands.Cog, name="Channel"):
 		if channel is None:
 			channel = ctx.channel
 
-			overwrites = channel.overwrites[ctx.guild.default_role]
+			overwrites = channel.overwrites(ctx.guild.default_role)
 			overwrites.send_messages = False
 			await channel.set_permissions(ctx.guild.default_role, overwrite=overwrites)
 			await ctx.send(f"I have put `{channel.name}` on lockdown.")
