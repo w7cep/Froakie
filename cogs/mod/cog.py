@@ -116,16 +116,22 @@ class Mod(commands.Cog, name="Mod"):
 		await ctx.send(embed=unban)
 
 	@commands.command()
-	@commands.has_permissions(administrator=True) 
-	async def kick(self, ctx, user: Sinner=None, reason=None):
-		if not user: # checks if there is a user 
-			return await ctx.send("You must specify a user")
-		
-		try: # tries to kick user
-			await ctx.guild.kick(user)
-			await ctx.send(f"By {ctx.author} for {reason}" or f"By {ctx.author} for None Specified") 
-		except nextcord.Forbidden:
-			return await ctx.send("Are you trying to kick someone higher than the bot?")
+	@commands.has_permissions(ban_members = True)
+	async def kick(self, ctx, id: int):
+		user = await self.bot.fetch_user(id)
+		await ctx.guild.kick(user)
+
+		kick= nextcord.Embed(title=f'A moderation action has been performed!', description='', color=0x90fd05)
+		kick.add_field(name='User Affected:', value=f'`{user.name}``{user.discriminator}`', inline=True)
+		kick.add_field(name='User ID:', value=f'`{user.id}`', inline=True)
+		kick.add_field(name='Moderator Name:', value=f'`{ctx.author}`', inline=True)
+		kick.add_field(name='Moderator ID:', value=f'`{ctx.author.id}`', inline=True)
+		kick.add_field(name='Action Performed:', value='`Kick`', inline=True)
+		kick.set_author(name=f'{ctx.guild}', icon_url=ctx.guild.icon.url)
+		kick.set_thumbnail(url=user.avatar.url)
+		#unban.timestamp = datetime.datetime.utcnow()
+
+		await ctx.send(embed=kick)
 
 	'''@commands.command()
 	async def purge(self, ctx, limit: int):
