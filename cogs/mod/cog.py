@@ -104,7 +104,7 @@ class Mod(commands.Cog, name="Mod"):
 		unban.add_field(name='Action Performed:', value='`UnBan`', inline=True)
 		unban.set_author(name=f'{ctx.guild}', icon_url=ctx.guild.icon.url)
 		#unban.set_thumbnail(url=member.avatar_url)
-		unban.timestamp = datetime.datetime.utcnow()
+		#unban.timestamp = datetime.datetime.utcnow()
 
 		await ctx.send(embed=unban)
 
