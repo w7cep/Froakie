@@ -65,7 +65,7 @@ class NewHelpCommand(commands.MinimalHelpCommand):
         embed_fields: List[EmbedField] = []
 
         for cog, commands in mapping.items():
-            name = "No Category" if cog is None else (f"`{cog.qualified_name}`")            
+            name = "No Category" if cog is None else (f"__**{cog.qualified_name}**__")            
             filtered = await self.filter_commands(commands, sort=True)
             if filtered:
                 # \u2002 = en space
