@@ -106,13 +106,14 @@ class Channel(commands.Cog, name="Channel"):
 	"""//FIXME fix lockdown command"""	
 	@commands.command()
 	@commands.has_permissions(manage_channels=True)
-	async def lock(ctx, channel : nextcord.TextChannel=None):
+	async def lock(ctx, *objects, channel : nextcord.TextChannel=None):
 		if channel is None:
 			channel = ctx.channel
-		overwrite = ctx.channel.overwrites_for(ctx.guild.default_role)
-		overwrite.send_messages = False
-		await ctx.channel.set_permissions(ctx.guild.default_role, overwrite=overwrite)
-		await ctx.send('Channel locked.')
+		overwrites = {
+		obj: nextcord.PermissionOverwrite(send_messages=False)
+		for obj in objects
+		}     
+		overwrites.setdefault(ctx.guild.default_role, nextcord.PermissionOverwrite(send_messages=False))
   
 	@lock.error
 	async def lock_error(ctx, error):
