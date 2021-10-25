@@ -104,24 +104,21 @@ class Channel(commands.Cog, name="Channel"):
 		await self.set_permissions(user, send_messages=True) # gives back send messages permissions
 	  
 	"""//FIXME fix lockdown command"""	
-	@commands.command(
-		name="lockdown",
-		description="A command to lock or unlock a channel.",
-		usage="[@channel]",
-	)
-	@commands.guild_only()
-	@commands.has_permissions(administrator=True)
-	@commands.bot_has_guild_permissions(manage_channels=True)
-	async def lockdown(self, ctx, channel: nextcord.TextChannel=None):
+	@commands.command()
+	@commands.has_permissions(manage_channels=True)
+	async def lock(ctx, channel : nextcord.TextChannel=None):
 		if channel is None:
 			channel = ctx.channel
-
-			overwrites = channel.overwrites(ctx.guild.default_role)
-			overwrites.send_messages = False
-			await channel.set_permissions(ctx.guild.default_role, overwrite=overwrites)
-			await ctx.send(f"I have put `{channel.name}` on lockdown.")
-
-
+		overwrite = ctx.channel.overwrites_for(ctx.guild.default_role)
+		overwrite.send_messages = False
+		await ctx.channel.set_permissions(ctx.guild.default_role, overwrite=overwrite)
+		await ctx.send('Channel locked.')
+  
+	@lock.error
+	async def lock_error(ctx, error):
+		if isinstance(error,commands.CheckFailure):
+			await ctx.send('You do not have permission to use this command!')
+		 
 	@commands.Cog.listener()
 	async def on_message(self, message):
 		def _check(m):
