@@ -30,7 +30,7 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 	@commands.command()
 	@commands.is_owner()
 	async def sysbot_roles(self, ctx: commands.Context, message_id: str):
-		"""Starts a bot role view"""
+		"""Starts a bot role view aka bot access role"""
 		bot_rules_channel = await ctx.guild.fetch_channel(config.BOT_RULES_CHANNEL_ID)
 		message = await bot_rules_channel.fetch_message(message_id)
 		await message.edit(view=SysBotRuleView())
@@ -38,7 +38,7 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 	@commands.command()
 	@commands.is_owner()
 	async def add_confirm(self, ctx: commands.Context, message_id: str):
-		"""Starts a confirm view"""
+		"""Starts a confirm view aka default role button"""
 		rules_channel = await ctx.guild.fetch_channel(config.RULES_CHANNEL_ID)
 		message = await rules_channel.fetch_message(message_id)
 		await message.edit(view=ConfirmView())
@@ -55,12 +55,12 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 		embed.set_author(name="Greninja Mod", icon_url="https://cdn.discordapp.com/avatars/892620195342987274/cb32b40409c7df4d147c400582f939ac.webp?size=128")
 		embed.set_footer(text="Bot is running v1.0.0")
 		embed.add_field(name="__**General Access**__", value=	f"**Giveaway Access**: 🎉\n"
-				 												f"**TradeCord Channel Access**: 🌀", inline=True)
+				 												f"**TradeCord Channel Access**: 🌀", inline=False)
 		embed.add_field(name="__**Misc Roles**__", value=	f"**Sword**: ⚔\n"
-				 											f"**Shield**: 🛡", inline=True)
+				 											f"**Shield**: 🛡", inline=False)
 		embed.add_field(name="__**Gender Roles**__", value=	f"**Female**: 🚺\n"
                   											f"**Male**: 🚹\n"
-                             								f"**Other**: 🚻", inline=True)
+                             								f"**Other**: 🚻", inline=False)
 		await ctx.send(embed=embed, view=SelfRoleView())
 
 	@commands.command(name="role")
