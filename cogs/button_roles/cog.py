@@ -40,9 +40,9 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 	async def roles(self, ctx: commands.Context):
 		"""Starts a role view"""
 		embed=nextcord.Embed(
-			title="__**Access Roles**__\n",
-			description="Click on a button to select a role"
+			title="Click on a button to select a role"
 		)
+		embed.add_thumbnail(file=nextcord.File("assets/imgs/greninja-frogadier.gif"))
 		embed.add_field(name="**General Access**", value=	f"**SysBot Channel Access**: Giveaway\n"
                  											f"**TradeCord Channel Access**: TradeCord")
 		await ctx.send(embed=embed, view=SelfRoleView())
