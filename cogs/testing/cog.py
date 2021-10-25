@@ -52,7 +52,7 @@ class Testing(commands.Cog, name="Testing"):
 				if member == None:
 					await ctx.send("Please specify a member")
 				else:
-					cur.execute("INSERT INTO warnings (name) VALUES(%s)", (f"{member}"))
+					cur.execute("INSERT INTO warnings (name) VALUES(%s)", (member))
 					await ctx.send(cur.fetchall())
 		conn.close() 
 	'''
