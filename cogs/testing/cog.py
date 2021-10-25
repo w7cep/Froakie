@@ -52,7 +52,7 @@ class Testing(commands.Cog, name="Testing"):
 				if member == None:
 					return await ctx.send("Please specify a member")
 				else:
-					cur.execute("INSERT INTO warnings (name) VALUES(%s)", ({member}))
+					cur.execute("INSERT INTO warnings (name) VALUES(%s)", ({member.name}))
 					await ctx.send(cur.fetchall())
 		conn.close() 
 
@@ -68,7 +68,7 @@ class Testing(commands.Cog, name="Testing"):
 	async def repeat(ctx, times: int, content='repeating...'):
 			for i in range(times):
 				await ctx.send(content)
-    '''
+	'''
 
 def setup(bot: commands.Bot):
 	bot.add_cog(Testing(bot))
