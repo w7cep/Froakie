@@ -1,3 +1,4 @@
+from cogs.button_roles.color_role_view import ColorRoleView
 import config
 import nextcord
 from nextcord.ext import commands
@@ -23,6 +24,7 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 		self.__bot.add_view(SelfRoleView())
 		self.__bot.add_view(ConfirmView())
 		self.__bot.add_view(SysBotRuleView())
+		self.__bot.add_view(ColorRoleView())
 		# set flag
 		self.__bot.persistent_views_added = True
 		print("Button views added")
@@ -62,6 +64,28 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
                   											f"**Male**: 🚹\n"
                              								f"**Other**: 🚻", inline=False)
 		await ctx.send(embed=embed, view=SelfRoleView())
+
+	@commands.command()
+	@commands.is_owner()
+	async def color_roles(self, ctx: commands.Context):
+		"""Starts a role view"""
+		embed=nextcord.Embed(
+			title="Click on a button to select a color"
+		)
+		embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/891852099653083186/895902400416710666/greninja-frogadier.gif")
+		embed.set_image(url="https://cdn.discordapp.com/attachments/859634488593743892/891612213654192168/greninja_banner.jpg")
+		embed.set_author(name="Greninja Mod", icon_url="https://cdn.discordapp.com/avatars/892620195342987274/cb32b40409c7df4d147c400582f939ac.webp?size=128")
+		embed.set_footer(text="Bot is running v1.0.0")
+		embed.add_field(name="__**Colors**__", value=	f"**Orange**: 🟠\n"
+				 										f"**Yellow**: 🟡\n"
+               											f"**Green**: 🟢\n"
+                          								f"**Blue**: 🔵\n"
+                                  						f"**Purple**: 🟣\n"
+                                        				f"**Brown**: 🟤\n"
+                                            			f"**White**: ⚪\n"
+                                               			f"**Maroon**: 🔴", inline=True)
+
+		await ctx.send(embed=embed, view=ColorRoleView())
 
 	@commands.command(name="role")
 	@commands.has_permissions(administrator=True) #permissions
