@@ -93,7 +93,7 @@ class Mod(commands.Cog, name="Mod"):
 	@commands.command()
 	@commands.has_permissions(ban_members = True)
 	async def unban(self, ctx, id: int):
-		user = await self.client.fetch_user(id)
+		user = await self.bot.fetch_user(id)
 		await ctx.guild.unban(user)
 
 		unban= nextcord.Embed(title=f'A moderation action has been performed!', description='', color=0x90fd05)
