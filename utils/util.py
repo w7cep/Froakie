@@ -2,7 +2,7 @@
 import asyncio
 
 import nextcord
-from nextcord.ext import Paginator
+from nextcord.ext.commands import Paginator
 
 class Pag(Paginator):
     async def teardown(self):
