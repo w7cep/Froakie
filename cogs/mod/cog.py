@@ -84,7 +84,7 @@ class Mod(commands.Cog, name="Mod"):
 		
 		try: # Tries to soft-ban user
 			await ctx.guild.ban(user)
-   			await ctx.send(f"Temporarily banned.\n"
+			await ctx.send(f"Temporarily banned.\n"
 		  					f"By {ctx.author} for {reason}" or f"By {ctx.author} for None Specified") 
 			await ctx.guild.unban(user)
 		except nextcord.Forbidden:
