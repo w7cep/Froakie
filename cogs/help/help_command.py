@@ -71,7 +71,7 @@ class NewHelpCommand(commands.MinimalHelpCommand):
                 # \u2002 = en space
                 value = "\u2002".join(f"`{prefix}{c.name}`" for c in filtered)
                 if cog and cog.description:
-                    value = f"{cog.description}\n{value}"
+                    value = f"_{cog.description}_\n{value}"
                 embed_fields.append(
                     EmbedField(name=name, value=value, inline=False)
                 )
@@ -89,7 +89,7 @@ class NewHelpCommand(commands.MinimalHelpCommand):
             title=f"{cog.qualified_name} Commands", colour=self.COLOUR
         )
         if cog.description:
-            embed.description = cog.description
+            embed.description = (f"{cog.description}")
 
         filtered = await self.filter_commands(cog.get_commands(), sort=True)
         for command in filtered:
