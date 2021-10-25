@@ -31,8 +31,8 @@ class HelpPages(menus.ListPageSource):
         embed = nextcord.Embed(title="Bot Commands",
                                colour=self._help_command.COLOUR)
         embed.description = (
-            f'Use "{prefix}{invoked_with} command" for more info on a command.\n'
-            f'Use "{prefix}{invoked_with} category" for more info on a category.'
+            f'Use "{prefix}{invoked_with} <command>" for more info on a command.\n'
+            f'Use "{prefix}{invoked_with} <category>" for more info on a category.'
         )
         for entry in entries:
             embed.add_field(
@@ -58,14 +58,14 @@ class NewHelpCommand(commands.MinimalHelpCommand):
         invoked_with = self.invoked_with
         embed = nextcord.Embed(title="Bot Commands", colour=self.COLOUR)
         embed.description = (
-            f'Use "{prefix}{invoked_with} command" for more info on a command.\n'
-            f'Use "{prefix}{invoked_with} category" for more info on a category.'
+            f'Use "{prefix}{invoked_with} <command>" for more info on a command.\n'
+            f'Use "{prefix}{invoked_with} <category>" for more info on a category.'
         )
 
         embed_fields: List[EmbedField] = []
 
         for cog, commands in mapping.items():
-            name = "No Category" if cog is None else cog.qualified_name
+            name = "No Category" if cog is None else (f"`cog.qualified_name`")            
             filtered = await self.filter_commands(commands, sort=True)
             if filtered:
                 # \u2002 = en space
