@@ -50,17 +50,18 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 	async def access_roles(self, ctx: commands.Context):
 		"""Starts a role view"""
 		embed=nextcord.Embed(
-			title="Click on a button to select a role"
+			title="__**Access Roles**__",
+			description="Click on a button to select a role"
 		)
 		embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/891852099653083186/895902400416710666/greninja-frogadier.gif")
 		embed.set_image(url="https://cdn.discordapp.com/attachments/859634488593743892/891612213654192168/greninja_banner.jpg")
 		embed.set_author(name="Greninja Mod", icon_url="https://cdn.discordapp.com/avatars/892620195342987274/cb32b40409c7df4d147c400582f939ac.webp?size=128")
 		embed.set_footer(text="Bot is running v1.0.0")
-		embed.add_field(name="__**General Access**__", value=	f"**Giveaway Access**: 🎉\n"
+		embed.add_field(name="__*General Access*__", value=	f"**Giveaway Access**: 🎉\n"
 				 												f"**TradeCord Channel Access**: 🌀", inline=False)
-		embed.add_field(name="__**Misc Roles**__", value=	f"**Sword**: ⚔\n"
+		embed.add_field(name="__*Misc Roles*__", value=	f"**Sword**: ⚔\n"
 				 											f"**Shield**: 🛡", inline=False)
-		embed.add_field(name="__**Gender Roles**__", value=	f"**Female**: 🚺\n"
+		embed.add_field(name="__*Gender Roles*__", value=	f"**Female**: 🚺\n"
                   											f"**Male**: 🚹\n"
                              								f"**Other**: 🚻", inline=False)
 		await ctx.send(embed=embed, view=SelfRoleView())
@@ -70,26 +71,27 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 	async def color_roles(self, ctx: commands.Context):
 		"""Starts a role view"""
 		embed=nextcord.Embed(
-			title="Click on a button to select a color"
+			title="__**Color Roles**__",
+   			description="Click on a button to select a color"
 		)
 		embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/891852099653083186/895902400416710666/greninja-frogadier.gif")
 		embed.set_image(url="https://cdn.discordapp.com/attachments/859634488593743892/891612213654192168/greninja_banner.jpg")
 		embed.set_author(name="Greninja Mod", icon_url="https://cdn.discordapp.com/avatars/892620195342987274/cb32b40409c7df4d147c400582f939ac.webp?size=128")
 		embed.set_footer(text="Bot is running v1.0.0")
-		embed.add_field(name="__**Colors**__", value=	f"**Orange**: 🟠\n"
-				 										f"**Yellow**: 🟡\n"
-               											f"**Green**: 🟢\n"
-                          								f"**Blue**: 🔵\n"
-                                  						f"**Purple**: 🟣\n"
-                                        				f"**Brown**: 🟤\n"
-                                            			f"**White**: ⚪\n"
-                                               			f"**Maroon**: 🔴", inline=True)
+		embed.add_field(name="__**Colors**__", value=	f"*Orange*: 🟠\n"
+				 										f"*Yellow*: 🟡\n"
+               											f"*Green*: 🟢\n"
+                          								f"*Blue*: 🔵\n"
+                                  						f"*Purple*: 🟣\n"
+                                        				f"*Brown*: 🟤\n"
+                                            			f"*White*: ⚪\n"
+                                               			f"*Maroon*: 🔴", inline=True)
 
 		await ctx.send(embed=embed, view=ColorRoleView())
 
-	@commands.command(name="role")
+	@commands.command(name="add_role")
 	@commands.has_permissions(administrator=True) #permissions
-	async def role(self, ctx, user : nextcord.Member, *, role : nextcord.Role):
+	async def add_role(self, ctx, user : nextcord.Member, *, role : nextcord.Role):
 		'''Give role to member.'''
 		if role.position > ctx.author.top_role.position: #if the role is above users top role it sends error
 			return await ctx.send('**:x: | That role is above your top role!**')
@@ -100,7 +102,7 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 			await user.add_roles(role) #adds role if not already has it
 			await ctx.send(f"Added {role} to {user.mention}")
 			
-	@role.error
+	@add_role.error
 	async def role_error(self, ctx, error):
 		if isinstance(error, MissingPermissions):
 			await ctx.send('**:x: | You do not have permission to use this command!**')
