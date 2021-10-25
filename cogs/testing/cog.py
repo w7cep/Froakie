@@ -20,7 +20,7 @@ class Testing(commands.Cog, name="Testing"):
 
 	def __init__(self, bot: commands.Bot):
 		self.bot = bot
-
+	'''
 	@commands.command()
 	async def add(ctx, left: int, right: int):
 		"""Adds two numbers together."""
@@ -31,6 +31,6 @@ class Testing(commands.Cog, name="Testing"):
 		"""Repeats a message multiple times."""
 		for i in range(times):
 			await ctx.send(content)
-
+	'''
 def setup(bot: commands.Bot):
 	bot.add_cog(Testing(bot))

@@ -73,7 +73,7 @@ class NewHelpCommand(commands.MinimalHelpCommand):
                 if cog and cog.description:
                     value = f"{cog.description}\n{value}"
                 embed_fields.append(
-                    EmbedField(name=name, value=value, inline=True)
+                    EmbedField(name=name, value=value, inline=False)
                 )
 
         pages = menus.ButtonMenuPages(
