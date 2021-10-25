@@ -28,7 +28,7 @@ class HelpPages(menus.ListPageSource):
     async def format_page(self, menu: menus.Menu, entries: List[EmbedField]) -> nextcord.Embed:
         prefix = config.PREFIX
         invoked_with = self._help_command.invoked_with
-        embed = nextcord.Embed(title="Bot Commands",
+        embed = nextcord.Embed(title="__Bot Commands__",
                                colour=self._help_command.COLOUR)
         embed.description = (
             f'Use "{prefix}{invoked_with} <command>" for more info on a command.\n'
@@ -56,7 +56,7 @@ class NewHelpCommand(commands.MinimalHelpCommand):
         """implements bot command help page"""
         prefix = config.PREFIX
         invoked_with = self.invoked_with
-        embed = nextcord.Embed(title="Bot Commands", colour=self.COLOUR)
+        embed = nextcord.Embed(title="__Bot Commands__", colour=self.COLOUR)
         embed.description = (
             f'Use "{prefix}{invoked_with} <command>" for more info on a command.\n'
             f'Use "{prefix}{invoked_with} <category>" for more info on a category.'

@@ -147,7 +147,7 @@ class Mod(commands.Cog, name="Mod"):
 		await ctx.send(f"{user.mention} has been unmuted")
 							
 
-	@commands.command(name="addprofanity", aliases=["addswears", "addcurses"])
+	@commands.command(name="addswears", aliases=["addprofanity", "addcurses"])
 	@commands.has_permissions(administrator=True)
 	async def add_profanity(self, ctx, *words):
 		'''Add cuss word to file.'''
@@ -157,7 +157,7 @@ class Mod(commands.Cog, name="Mod"):
 		profanity.load_censor_words_from_file("./data/profanity.txt")
 		await ctx.send("Action complete.")
 
-	@commands.command(name="delprofanity", aliases=["delswears", "delcurses"])
+	@commands.command(name="delswears", aliases=["delprofanity", "delcurses"])
 	@commands.has_permissions(administrator=True)
 	async def remove_profanity(self, ctx, *words):
 		'''Delete cuss word from file.'''
