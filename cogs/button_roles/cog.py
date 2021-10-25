@@ -80,11 +80,11 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 		embed.set_footer(text="Bot is running v1.0.0")
 		embed.add_field(name="__**Colors**__", value=	f"*Orange*: 🟠\n"
 				 										f"*Yellow*: 🟡\n"
-               											f"*Green*: 🟢\n"
-                          								f"*Blue*: 🔵\n"
+               											f"*Green*:  🟢\n"
+                          								f"*Blue*:   🔵\n"
                                   						f"*Purple*: 🟣\n"
-                                        				f"*Brown*: 🟤\n"
-                                            			f"*White*: ⚪\n"
+                                        				f"*Brown*:  🟤\n"
+                                            			f"*White*:  ⚪\n"
                                                			f"*Maroon*: 🔴", inline=True)
 
 		await ctx.send(embed=embed, view=ColorRoleView())
