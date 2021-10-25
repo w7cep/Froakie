@@ -31,7 +31,17 @@ class Testing(commands.Cog, name="Testing"):
 				cur.execute("CREATE TABLE warnings (id SERIAL PRIMARY KEY, name VARCHAR);")
 				await ctx.send("Database created")
 		conn.close()
+	
+	@commands.command()
+	@commands.guild_only()
+	@commands.has_permissions(administrator=True)
+	async def warns(self, ctx,):  
+		with conn:
+			with conn.cursor(cursor_factory=psycopg2.extras.DictCursor) as cur:
 		
+				cur.execute("SELECT * FROM warnings;")
+				await ctx.send(cur.fetchall())
+		conn.close() 	
 	'''	
 	@commands.command(name="add", descripton="Adds two numbers together.", hidden=True)
 	async def add(ctx, left: int, right: int):
