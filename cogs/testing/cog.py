@@ -55,8 +55,7 @@ class Testing(commands.Cog, name="Testing"):
 					cur.execute("INSERT INTO warnings (name) VALUES(%s)", ({member.name}))
 					await ctx.send(cur.fetchall())
 		conn.close() 
-
- 	'''	
+	'''
 	@commands.command(name="add", descripton="Adds two numbers together.", hidden=True)
 	async def add(ctx, left: int, right: int):
 			await ctx.send(left + right)
