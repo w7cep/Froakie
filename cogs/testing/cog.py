@@ -50,7 +50,7 @@ class Testing(commands.Cog, name="Testing"):
 		with conn:
 			with conn.cursor(cursor_factory=psycopg2.extras.DictCursor) as cur:
 				if member == None:
-					return await ctx.send("Please specify a member")
+					await ctx.send("Please specify a member")
 				else:
 					cur.execute("INSERT INTO warnings (name) VALUES(%s)", (member.name))
 					await ctx.send(cur.fetchall())
