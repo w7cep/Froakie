@@ -20,55 +20,17 @@ class Testing(commands.Cog, name="Testing"):
 
 	def __init__(self, bot: commands.Bot):
 		self.bot = bot
-  
-	@commands.command()
-	@commands.guild_only()
-	@commands.has_permissions(administrator=True)
-	async def warn_db(self, ctx,):  
-		with conn:
-			with conn.cursor(cursor_factory=psycopg2.extras.DictCursor) as cur:
-		
-				cur.execute("CREATE TABLE warnings (id SERIAL PRIMARY KEY, name VARCHAR);")
-				await ctx.send("Database created")
-		conn.close()
-	
-	@commands.command()
-	@commands.guild_only()
-	@commands.has_permissions(administrator=True)
-	async def warns(self, ctx,):  
-		with conn:
-			with conn.cursor(cursor_factory=psycopg2.extras.DictCursor) as cur:
-		
-				cur.execute("SELECT * FROM warnings;")
-				await ctx.send(cur.fetchall())
-		conn.close() 	
-	
-	@commands.command()
-	@commands.guild_only()
-	@commands.has_permissions(administrator=True)
-	async def warn(self, ctx, *, member: nextcord.Member = None):
-		with conn:
-			with conn.cursor(cursor_factory=psycopg2.extras.DictCursor) as cur:
-				if member == None:
-					member = member.id
-					#await ctx.send("Please specify a member")
-				#else:
-					cur.execute("INSERT INTO warnings (name) VALUES(%s)", (member))
-					await ctx.send(cur.fetchall())
-		conn.close() 
-	'''
-	@commands.command(name="add", descripton="Adds two numbers together.", hidden=True)
-	async def add(ctx, left: int, right: int):
-			await ctx.send(left + right)
 
-	@commands.command(
-		 name="repeat",
-		description="Repeat a message a number of times.", hidden=True
-	)
+	@commands.command()
+	async def add(ctx, left: int, right: int):
+		"""Adds two numbers together."""
+		await ctx.send(left + right)
+
+	@commands.command()
 	async def repeat(ctx, times: int, content='repeating...'):
-			for i in range(times):
-				await ctx.send(content)
-	'''
+		"""Repeats a message multiple times."""
+		for i in range(times):
+			await ctx.send(content)
 
 def setup(bot: commands.Bot):
 	bot.add_cog(Testing(bot))
