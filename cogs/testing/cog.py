@@ -46,7 +46,7 @@ class Testing(commands.Cog, name="Testing"):
 	@commands.command()
 	@commands.guild_only()
 	@commands.has_permissions(administrator=True)
-	async def warn(self, ctx, member: nextcord.Member = None):  
+	async def warn(self, ctx, *, member: nextcord.Member = None,):  
 		with conn:
 			with conn.cursor(cursor_factory=psycopg2.extras.DictCursor) as cur:
 				if member == None:
