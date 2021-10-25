@@ -11,6 +11,9 @@ from utils.util import Pag
 
 class Testing(commands.Cog, name="Testing"):
 	"""Test commands"""
+
+	def __init__(self, bot: commands.Bot):
+		self.bot = bot
 		
 	@commands.command()
 	@commands.guild_only()
