@@ -47,7 +47,7 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 		  
 	@commands.command()
 	@commands.is_owner()
-	async def roles(self, ctx: commands.Context):
+	async def access_roles(self, ctx: commands.Context):
 		"""Starts a role view"""
 		embed=nextcord.Embed(
 			title="Click on a button to select a role"

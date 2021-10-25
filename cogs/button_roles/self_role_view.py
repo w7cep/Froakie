@@ -11,75 +11,66 @@ class SelfRoleView(RoleView):
 		super().__init__(required_roles=[config.MEMBER_ROLE_ID])
 
 	@nextcord.ui.button(
-		label="Orange",
-		emoji="🟠",
+		label="TradeCord",
+		emoji="🌀",
 		style=nextcord.ButtonStyle.primary,
-		custom_id=custom_id(VIEW_NAME, config.ORANGE_ROLE_ID),
+		custom_id=custom_id(VIEW_NAME, config.TRADECORD_ROLE_ID),
 	)
-	async def orange_button(self, button, interaction):
+	async def tradecord_button(self, button, interaction):
 		await self.handle_click(button, interaction)
 		
 	@nextcord.ui.button(
-		label="Yellow",
-		emoji="🟡",
+		label="Giveaway Ping",
+		emoji="🎉",
 		style=nextcord.ButtonStyle.blurple,
 		# set custom id to be the bot name : the class name : the role id
-		custom_id=custom_id(VIEW_NAME, config.YELLOW_ROLE_ID),
+		custom_id=custom_id(VIEW_NAME, config.GIVEAWAY_PING_ROLE_ID),
 	)
-	async def yellow_button(self, button, interaction):
+	async def giveaway_ping_button(self, button, interaction):
 		await self.handle_click(button, interaction)
 
 	@nextcord.ui.button(
-		label="Green",
-		emoji="🟢",
+		label="Sword",
+		emoji="⚔",
 		style=nextcord.ButtonStyle.primary,
-		custom_id=custom_id(VIEW_NAME, config.GREEN_ROLE_ID),
+		custom_id=custom_id(VIEW_NAME, config.SWORD_ROLE_ID),
 	)
-	async def green_button(self, button, interaction):
+	async def sword_button(self, button, interaction):
 		await self.handle_click(button, interaction)
 
 	@nextcord.ui.button(
-		label="Blue",
-		emoji="🔵",
+		label="Shield",
+		emoji="🛡",
 		style=nextcord.ButtonStyle.primary,
-		custom_id=custom_id(VIEW_NAME, config.BLUE_ROLE_ID),
+		custom_id=custom_id(VIEW_NAME, config.SHIELD_ROLE_ID),
 	)
-	async def blue_button(self, button, interaction):
+	async def shield_button(self, button, interaction):
 		await self.handle_click(button, interaction)
 
 	@nextcord.ui.button(
-		label="Purple",
-		emoji="🟣",
+		label="Male",
+		emoji="🚹",
 		style=nextcord.ButtonStyle.blurple,
 		# set custom id to be the bot name : the class name : the role id
-		custom_id=custom_id(VIEW_NAME, config.PURPLE_ROLE_ID),
+		custom_id=custom_id(VIEW_NAME, config.MALE_ROLE_ID),
 	)
-	async def purple_button(self, button, interaction):
+	async def male_button(self, button, interaction):
 		await self.handle_click(button, interaction)
 
 	@nextcord.ui.button(
-		label="Brown",
-		emoji="🟤",
+		label="Female",
+		emoji="🚺",
 		style=nextcord.ButtonStyle.primary,
-		custom_id=custom_id(VIEW_NAME, config.BROWN_ROLE_ID),
+		custom_id=custom_id(VIEW_NAME, config.FEMALE_ROLE_ID),
 	)
-	async def brown_button(self, button, interaction):
+	async def female_button(self, button, interaction):
 		await self.handle_click(button, interaction)
 
 	@nextcord.ui.button(
-		label="White",
-		emoji="⚪",
+		label="Other",
+		emoji="🚻",
 		style=nextcord.ButtonStyle.primary,
-		custom_id=custom_id(VIEW_NAME, config.WHITE_ROLE_ID),
+		custom_id=custom_id(VIEW_NAME, config.OTHER_ROLE_ID),
 	)
-	async def white_button(self, button, interaction):
-		await self.handle_click(button, interaction)
-  
-	@nextcord.ui.button(
-		label="Maroon",
-		emoji="🔴",
-		style=nextcord.ButtonStyle.primary,
-		custom_id=custom_id(VIEW_NAME, config.MAROON_ROLE_ID),
-	)
-	async def maroon_button(self, button, interaction):
-		await self.handle_click(button, interaction)  
+	async def other_button(self, button, interaction):
+		await self.handle_click(button, interaction) 
