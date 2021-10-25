@@ -12,6 +12,7 @@ class SelfRoleView(RoleView):
 
 	@nextcord.ui.button(
 		label="TradeCord",
+		emoji="🌀",
 		style=nextcord.ButtonStyle.primary,
 		custom_id=custom_id(VIEW_NAME, config.TRADECORD_ROLE_ID),
 	)
@@ -20,6 +21,7 @@ class SelfRoleView(RoleView):
 		
 	@nextcord.ui.button(
 		label="Giveaway Ping",
+		emoji="🎉",
 		style=nextcord.ButtonStyle.blurple,
 		# set custom id to be the bot name : the class name : the role id
 		custom_id=custom_id(VIEW_NAME, config.GIVEAWAY_PING_ROLE_ID),
@@ -27,20 +29,20 @@ class SelfRoleView(RoleView):
 	async def giveaway_ping_button(self, button, interaction):
 		await self.handle_click(button, interaction)
 
-	'''@nextcord.ui.button(
-		label="Content Creator",
-		emoji="✍",
+	@nextcord.ui.button(
+		label="Sword",
+		emoji="⚔",
 		style=nextcord.ButtonStyle.primary,
-		custom_id=custom_id(VIEW_NAME, config.CONTENT_CREATOR_ROLE_ID),
+		custom_id=custom_id(VIEW_NAME, config.SWORD_ROLE_ID),
 	)
-	async def content_creator_button(self, button, interaction):
-		await self.handle_click(button, interaction)'''
+	async def sword_button(self, button, interaction):
+		await self.handle_click(button, interaction)
 
-	'''@nextcord.ui.button(
-		label="YouTube Ping",
-		emoji="🔔",
+	@nextcord.ui.button(
+		label="Shield",
+		emoji="🛡",
 		style=nextcord.ButtonStyle.primary,
-		custom_id=custom_id(VIEW_NAME, config.YOUTUBE_PING_ROLE_ID),
+		custom_id=custom_id(VIEW_NAME, config.SHIELD_ROLE_ID),
 	)
-	async def youtube_ping_button(self, button, interaction):
-		await self.handle_click(button, interaction)'''
+	async def shield_button(self, button, interaction):
+		await self.handle_click(button, interaction)
