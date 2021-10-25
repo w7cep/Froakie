@@ -54,10 +54,13 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 		embed.set_image(url="https://cdn.discordapp.com/attachments/859634488593743892/891612213654192168/greninja_banner.jpg")
 		embed.set_author(name="Greninja Mod", icon_url="https://cdn.discordapp.com/avatars/892620195342987274/cb32b40409c7df4d147c400582f939ac.webp?size=128")
 		embed.set_footer(text="Bot is running v1.0.0")
-		embed.add_field(name="__**General Access**__", value=	f"**Giveaway Access**: 🎉 Giveaway Ping\n"
-				 												f"**TradeCord Channel Access**: 🌀 TradeCord", inline=True)
-		embed.add_field(name="__**Misc Roles**__", value=	f"**Sword**: ⚔ Sword\n"
-				 											f"**Shield**: 🛡 Shield", inline=True)
+		embed.add_field(name="__**General Access**__", value=	f"**Giveaway Access**: 🎉\n"
+				 												f"**TradeCord Channel Access**: 🌀", inline=True)
+		embed.add_field(name="__**Misc Roles**__", value=	f"**Sword**: ⚔\n"
+				 											f"**Shield**: 🛡", inline=True)
+		embed.add_field(name="__**Gender Roles**__", value=	f"**Female**: 🚺\n"
+                  											f"**Male**: 🚹\n"
+                             								f"**Other**: 🚻", inline=True)
 		await ctx.send(embed=embed, view=SelfRoleView())
 
 	@commands.command(name="role")
