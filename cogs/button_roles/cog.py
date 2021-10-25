@@ -50,7 +50,7 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 	@commands.guild_only()
 	async def rules(self, ctx):
 		embed= nextcord.Embed(	title="__**Rules**__", 
-                			  	description=f"\n<:Switch:865465921040678932> __**The Rules**__ <:Switch:865465921040678932>\n\n"
+							  	description=f"\n<:Switch:865465921040678932> __**The Rules**__ <:Switch:865465921040678932>\n\n"
 								f"1. Full compliance to Discord's ToS.\n"
 							f"2. Absolutely no drama.\n"
 							f"3. Got issues with someone, talk to <@&829942684947841024>  or <@&867254914563178527> or resolve it in DM's.\n"
@@ -69,7 +69,7 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 							f"https://discord.gg/dm7gSAT68d\n\n"
 							f"Server and Bot rules subject to change.\n\n"
 							f"<a:rainbowmeltandab:866027057691230229>\n\n"
-       						)
+	   						)
 		embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/891852099653083186/895902400416710666/greninja-frogadier.gif")
 		embed.set_image(url="https://cdn.discordapp.com/attachments/859634488593743892/891612213654192168/greninja_banner.jpg")
 		embed.set_author(name="Greninja Mod", icon_url="https://cdn.discordapp.com/avatars/892620195342987274/cb32b40409c7df4d147c400582f939ac.webp?size=128")
@@ -113,8 +113,8 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 		embed.add_field(name="__*Misc Roles*__", value=	f"**Sword**: ⚔\n"
 				 											f"**Shield**: 🛡", inline=False)
 		embed.add_field(name="__*Gender Roles*__", value=	f"**Female**: 🚺\n"
-                  											f"**Male**: 🚹\n"
-                             								f"**Other**: 🚻", inline=False)
+				  											f"**Male**: 🚹\n"
+							 								f"**Other**: 🚻", inline=False)
 		await ctx.send(embed=embed, view=SelfRoleView())
 
 	@commands.command()
@@ -131,12 +131,12 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 		embed.set_footer(text="Bot is running v1.0.0")
 		embed.add_field(name="__**Colors**__", value=	f"*Orange*: 🟠\n"
 				 										f"*Yellow*: 🟡\n"
-               											f"*Green*:  🟢\n"
-                          								f"*Blue*:   🔵\n"
-                                  						f"*Purple*: 🟣\n"
-                                        				f"*Brown*:  🟤\n"
-                                            			f"*White*:  ⚪\n"
-                                               			f"*Maroon*: 🔴", inline=True)
+			   											f"*Green*:  🟢\n"
+						  								f"*Blue*:   🔵\n"
+								  						f"*Purple*: 🟣\n"
+														f"*Brown*:  🟤\n"
+														f"*White*:  ⚪\n"
+											   			f"*Maroon*: 🔴", inline=True)
 
 		await ctx.send(embed=embed, view=ColorRoleView())
 
@@ -157,7 +157,19 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 	async def role_error(self, ctx, error):
 		if isinstance(error, MissingPermissions):
 			await ctx.send('**:x: | You do not have permission to use this command!**')
-
+   
+	@commands.command(name="sysbot_embed")
+	@commands.has_permissions(administrator=True)
+	async def sysbot_embed(self, ctx):
+		embed=nextcord.Embed(title="__**Sybot Access**__", 
+							description=f"Check out <#868914000572846120> for access to the sysbot.\n"
+										f"Reminder don't delete messages in the bot channel. It makes it harder to trouble shoot problems with the bot."
+	   )
+		embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/891852099653083186/895902400416710666/greninja-frogadier.gif")
+		embed.set_image(url="https://cdn.discordapp.com/attachments/859634488593743892/891612213654192168/greninja_banner.jpg")
+		embed.set_author(name="Greninja Mod", icon_url="https://cdn.discordapp.com/avatars/892620195342987274/cb32b40409c7df4d147c400582f939ac.webp?size=128")
+		embed.set_footer(text="Bot is running v1.0.0")  
+		await ctx.send(embed=embed)
 # setup functions for bot
 def setup(bot):
 	bot.add_cog(ButtonRolesCog(bot))
