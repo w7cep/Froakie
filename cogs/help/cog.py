@@ -2,7 +2,7 @@ from nextcord.ext import commands
 from .help_command import NewHelpCommand
 
 
-class HelpCog(commands.Cog, name="Help"):
+class HelpCog(commands.Cog, name="Help", hidden=True):
     """Displays help information for commands and cogs"""
 
     def __init__(self, bot: commands.Bot):
