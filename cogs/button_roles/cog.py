@@ -34,18 +34,6 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 		bot_rules_channel = await ctx.guild.fetch_channel(config.BOT_RULES_CHANNEL_ID)
 		message = await bot_rules_channel.fetch_message(message_id)
 		await message.edit(view=SysBotRuleView())
-  
-	@commands.command()
-	@commands.is_owner()
-	async def roles(self, ctx: commands.Context):
-		"""Starts a role view"""
-		embed=nextcord.Embed(
-			title="Click on a button to select a role"
-		)
-		embed.add_thumbnail(file=nextcord.File("assets/imgs/greninja-frogadier.gif"))
-		embed.add_field(name="**General Access**", value=	f"**SysBot Channel Access**: Giveaway\n"
-                 											f"**TradeCord Channel Access**: TradeCord")
-		await ctx.send(embed=embed, view=SelfRoleView())
 
 	@commands.command()
 	@commands.is_owner()
@@ -54,7 +42,19 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 		rules_channel = await ctx.guild.fetch_channel(config.RULES_CHANNEL_ID)
 		message = await rules_channel.fetch_message(message_id)
 		await message.edit(view=ConfirmView())
-		
+		  
+	@commands.command()
+	@commands.is_owner()
+	async def roles(self, ctx: commands.Context):
+		"""Starts a role view"""
+		embed=nextcord.Embed(
+			title="Click on a button to select a role"
+		)
+		embed.set_thumbnail(file=nextcord.File("assets/imgs/greninja-frogadier.gif"))
+		embed.add_field(name="**General Access**", value=	f"**SysBot Channel Access**: Giveaway\n"
+                 											f"**TradeCord Channel Access**: TradeCord")
+		await ctx.send(embed=embed, view=SelfRoleView())
+
 	@commands.command(name="role")
 	@commands.has_permissions(administrator=True) #permissions
 	async def role(self, ctx, user : nextcord.Member, *, role : nextcord.Role):
@@ -72,9 +72,6 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 	async def role_error(self, ctx, error):
 		if isinstance(error, MissingPermissions):
 			await ctx.send('**:x: | You do not have permission to use this command!**')
-			
-		
-
 
 # setup functions for bot
 def setup(bot):
