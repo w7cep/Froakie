@@ -67,7 +67,7 @@ class Mod(commands.Cog, name="Mod"):
 		await ctx.guild.ban(user)
 
 		ban= nextcord.Embed(title=f'A moderation action has been performed!', description='', color=0x90fd05)
-		ban.add_field(name='User Affected:', value=f'`{user.name}`', inline=True)
+		ban.add_field(name='User Affected:', value=f'`{user.name}``{user.discriminator}`', inline=True)
 		ban.add_field(name='User ID:', value=f'`{user.id}`', inline=True)
 		ban.add_field(name='Moderator Name:', value=f'`{ctx.author}`', inline=True)
 		ban.add_field(name='Moderator ID:', value=f'`{ctx.author.id}`', inline=True)
@@ -85,7 +85,7 @@ class Mod(commands.Cog, name="Mod"):
 		user = await self.bot.fetch_user(id)
 
 		softban= nextcord.Embed(title=f'A moderation action has been performed!', description='', color=0x90fd05)
-		softban.add_field(name='User Affected:', value=f'`{user.name}`', inline=True)
+		softban.add_field(name='User Affected:', value=f'`{user.name}``{user.discriminator}`', inline=True)
 		softban.add_field(name='User ID:', value=f'`{user.id}`', inline=True)
 		softban.add_field(name='Moderator Name:', value=f'`{ctx.author}`', inline=True)
 		softban.add_field(name='Moderator ID:', value=f'`{ctx.author.id}`', inline=True)
@@ -104,7 +104,7 @@ class Mod(commands.Cog, name="Mod"):
 		await ctx.guild.unban(user)
 
 		unban= nextcord.Embed(title=f'A moderation action has been performed!', description='', color=0x90fd05)
-		unban.add_field(name='User Affected:', value=f'`{user.name}`', inline=True)
+		unban.add_field(name='User Affected:', value=f'`{user.name}``{user.discriminator}`', inline=True)
 		unban.add_field(name='User ID:', value=f'`{user.id}`', inline=True)
 		unban.add_field(name='Moderator Name:', value=f'`{ctx.author}`', inline=True)
 		unban.add_field(name='Moderator ID:', value=f'`{ctx.author.id}`', inline=True)
