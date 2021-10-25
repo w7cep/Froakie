@@ -28,7 +28,7 @@ class Rules(commands.Cog, name="Rules"):
 		await message.edit(
 			content="",
 			embed=embed_success(
-				title="🚨 Dev Pro Tips Server Rules", description=new_rules
+				title="🚨 __Greninja's Grotto Rules__🚨", description=new_rules
 			),
 		)
 		# confirmation

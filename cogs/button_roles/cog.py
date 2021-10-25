@@ -1,6 +1,6 @@
-from cogs.button_roles.color_role_view import ColorRoleView
 import config
 import nextcord
+from cogs.button_roles.color_role_view import ColorRoleView
 from nextcord.ext import commands
 from nextcord.ext.commands import MissingPermissions
 
@@ -8,7 +8,7 @@ from .confirm_view import ConfirmView
 from .self_role_view import SelfRoleView
 from .sysbot_role_view import SysBotRuleView
 
-"""//TODO Refine reaction roles"""
+
 class ButtonRolesCog(commands.Cog, name="Roles"):
 	"""Give and remove roles based on button presses"""
 
@@ -49,7 +49,7 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 	@commands.has_permissions(administrator=True)
 	@commands.guild_only()
 	async def rules(self, ctx):
-		embed= nextcord.Embed(	title="__**Rules**__", 
+		embed= nextcord.Embed(	title="__**Greninja's Grotto Rules**__", 
 							  	description=f"\n<:Switch:865465921040678932> __**The Rules**__ <:Switch:865465921040678932>\n\n"
 								f"1. Full compliance to Discord's ToS.\n"
 							f"2. Absolutely no drama.\n"
@@ -163,7 +163,7 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 	async def sysbot_embed(self, ctx):
 		embed=nextcord.Embed(title="__**Sysbot Access**__", 
 							description=f"Check out <#868914000572846120> for access to the sysbot.\n")
-		embed.add_field(name="Reminder", value="Don't delete messages in the bot channel. It makes it harder to trouble shoot problems with the bot.")
+		embed.add_field(name="__**Reminder**__", value="Don't delete messages in the bot channel. It makes it harder to trouble shoot problems with the bot.")
 	   
 		embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/891852099653083186/895902400416710666/greninja-frogadier.gif")
 		embed.set_image(url="https://cdn.discordapp.com/attachments/859634488593743892/891612213654192168/greninja_banner.jpg")
