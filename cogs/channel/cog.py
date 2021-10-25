@@ -77,7 +77,7 @@ class Channel(commands.Cog, name="Channel"):
 			return m.author == self.bot.user
 		await ctx.message.channel.purge(limit=100, check=is_me)
   
-		"""//TODO: Fix Block and Unblock command. """
+		"""//FIXME-Fix Block and Unblock command. """
 	@commands.command()
 	@commands.has_permissions(administrator=True) 
 	async def block(self, ctx, user: Sinner=None):
@@ -103,7 +103,7 @@ class Channel(commands.Cog, name="Channel"):
 		
 		await self.set.permissions(user, send_messages=True) # gives back send messages permissions
 	  
-	"""//FIXME fix lockdown command"""	
+	"""//FIXME-fix lockdown command"""	
 	@commands.command()
 	@commands.guild_only()
 	@commands.has_guild_permissions(manage_channels=True)
