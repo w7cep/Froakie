@@ -59,7 +59,7 @@ class Mod(commands.Cog, name="Mod"):
 	async def __error(self, ctx, error):
 		if isinstance(error, commands.BadArgument):
 				await ctx.send(error)
-			
+	"""//TODO Refine Ban, Unban, softban, Kick commands"""		
 	@commands.command(aliases=["banish"])
 	@commands.has_permissions(ban_members=True)
 	async def ban(self, ctx, user: Sinner=None, reason=None):
@@ -69,7 +69,7 @@ class Mod(commands.Cog, name="Mod"):
 			return await ctx.send("You must specify a user")
 		
 		try: # Tries to ban user
-			await ctx.guild.ban(user, f"By {ctx.author} for {reason}" or f"By {ctx.author} for None Specified")
+			await ctx.guild.ban(user)
 			await ctx.send(f"{user.mention} was cast out of heaven for {reason}.")
 		except nextcord.Forbidden:
 			return await ctx.send("Are you trying to ban someone higher than the bot")
@@ -83,17 +83,31 @@ class Mod(commands.Cog, name="Mod"):
 			return await ctx.send("You must specify a user")
 		
 		try: # Tries to soft-ban user
-			await ctx.guild.ban(user, f"By {ctx.author} for {reason}" or f"By {ctx.author} for None Specified") 
-			await ctx.guild.unban(user, "Temporarily Banned")
+			await ctx.guild.ban(user)
+   			await ctx.send(f"Temporarily banned.\n"
+          					f"By {ctx.author} for {reason}" or f"By {ctx.author} for None Specified") 
+			await ctx.guild.unban(user)
 		except nextcord.Forbidden:
 			return await ctx.send("Are you trying to soft-ban someone higher than the bot?")
 	
 	@commands.command()
-	@commands.has_permissions(administrator=True) 
-	async def mute(self, ctx, user: Sinner, reason=None):
-		"""Gives them hell."""
-		await mute(ctx, user, reason or "treason") # uses the mute function
-	
+	@commands.has_permissions(ban_members = True)
+	async def unban(self, ctx, id: int):
+		user = await self.client.fetch_user(id)
+		await ctx.guild.unban(user)
+
+		unban= nextcord.Embed(title=f'A moderation action has been performed!', description='', color=0x90fd05)
+		#unban.add_field(name='User Affected:', value=f'`{member.name}`', inline=True)
+		#unban.add_field(name='User ID:', value=f'`{member.id}`', inline=True)
+		unban.add_field(name='Moderator Name:', value=f'`{ctx.author}`', inline=True)
+		unban.add_field(name='Moderator ID:', value=f'`{ctx.author.id}`', inline=True)
+		unban.add_field(name='Action Performed:', value='`UnBan`', inline=True)
+		unban.set_author(name=f'{ctx.guild}', icon_url=ctx.guild.icon_url)
+		#unban.set_thumbnail(url=member.avatar_url)
+		unban.timestamp = datetime.datetime.utcnow()
+
+		await ctx.send(embed=unban)
+
 	@commands.command()
 	@commands.has_permissions(administrator=True) 
 	async def kick(self, ctx, user: Sinner=None, reason=None):
@@ -101,7 +115,8 @@ class Mod(commands.Cog, name="Mod"):
 			return await ctx.send("You must specify a user")
 		
 		try: # tries to kick user
-			await ctx.guild.kick(user, f"By {ctx.author} for {reason}" or f"By {ctx.author} for None Specified") 
+			await ctx.guild.kick(user)
+   			await ctx.send(f"By {ctx.author} for {reason}" or f"By {ctx.author} for None Specified") 
 		except nextcord.Forbidden:
 			return await ctx.send("Are you trying to kick someone higher than the bot?")
 
@@ -111,14 +126,19 @@ class Mod(commands.Cog, name="Mod"):
 		
 		await ctx.purge(limit=limit + 1) # also deletes your own message
 		await ctx.send(f"Bulk deleted `{limit}` messages")''' 
-	
+	@commands.command()
+	@commands.has_permissions(administrator=True) 
+	async def mute(self, ctx, user: Sinner, reason=None):
+		"""Gives them hell."""
+		await mute(ctx, user, reason or "treason") # uses the mute function
+		
 	@commands.command()
 	@commands.has_permissions(administrator=True) 
 	async def unmute(self, ctx, user: Redeemed):
 		"""Unmutes a muted user"""
 		await user.remove_roles(nextcord.utils.get(ctx.guild.roles, name="Muted")) # removes muted role
 		await ctx.send(f"{user.mention} has been unmuted")
-
+		"""//TODO: Fix Block and Unblock command. """
 	@commands.command()
 	@commands.has_permissions(administrator=True) 
 	async def block(self, ctx, user: Sinner=None):

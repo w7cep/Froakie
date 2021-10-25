@@ -1,17 +1,19 @@
-import nextcord
 import config
-from nextcord.ext.commands import MissingPermissions
+import nextcord
 from nextcord.ext import commands
+from nextcord.ext.commands import MissingPermissions
+
 from .confirm_view import ConfirmView
 from .self_role_view import SelfRoleView
 from .sysbot_role_view import SysBotRuleView
 
+"""//TODO Refine reaction roles"""
 class ButtonRolesCog(commands.Cog, name="Roles"):
 	"""Give and remove roles based on button presses"""
 
 	def __init__(self, bot: commands.Bot):
 		self.__bot = bot
-
+	
 	@commands.Cog.listener()
 	async def on_ready(self):
 		"""When the bot is ready, load the role views"""
