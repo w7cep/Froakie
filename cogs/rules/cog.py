@@ -58,10 +58,10 @@ class Rules(commands.Cog, name="Rules"):
 						f"Server and Bot rules subject to change.\n\n"
 						f"<a:rainbowmeltandab:866027057691230229>\n\n")
 
-	@commands.command(name="bot_rules")
+	@commands.command(name="sysbot_rules")
 	@commands.has_permissions(administrator=True)
 	@commands.guild_only()
-	async def bot_rules(self, ctx):
+	async def sysbot_rules(self, ctx):
 
 		"""SysBot Rules"""
 
