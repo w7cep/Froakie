@@ -30,7 +30,7 @@ class Testing(commands.Cog, name="Testing"):
 		
 				cur.execute("CREATE TABLE warnings (id SERIAL PRIMARY KEY, name VARCHAR);")
 				await ctx.send("Database created")
-
+		conn.close()
 		
 	'''	
 	@commands.command(name="add", descripton="Adds two numbers together.", hidden=True)
@@ -45,6 +45,6 @@ class Testing(commands.Cog, name="Testing"):
 			for i in range(times):
 				await ctx.send(content)
     '''
-conn.close()
+
 def setup(bot: commands.Bot):
 	bot.add_cog(Testing(bot))
