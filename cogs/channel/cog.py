@@ -91,7 +91,7 @@ class Channel(commands.Cog, name="Channel"):
 		if not user: # checks if there is user
 			return await ctx.send("You must specify a user")
 								
-		await self.set_permissions(user, send_messages=False) # sets permissions for current channel
+		await self.set.permissions(user, send_messages=False) # sets permissions for current channel
 	
 	@commands.command()
 	@commands.has_permissions(administrator=True) 
@@ -101,7 +101,7 @@ class Channel(commands.Cog, name="Channel"):
 		if not user: # checks if there is user
 			return await ctx.send("You must specify a user")
 		
-		await self.set_permissions(user, send_messages=True) # gives back send messages permissions
+		await self.set.permissions(user, send_messages=True) # gives back send messages permissions
 	  
 	"""//FIXME fix lockdown command"""	
 	@commands.command()
