@@ -116,7 +116,7 @@ class Mod(commands.Cog, name="Mod"):
 		
 		try: # tries to kick user
 			await ctx.guild.kick(user)
-   			await ctx.send(f"By {ctx.author} for {reason}" or f"By {ctx.author} for None Specified") 
+			await ctx.send(f"By {ctx.author} for {reason}" or f"By {ctx.author} for None Specified") 
 		except nextcord.Forbidden:
 			return await ctx.send("Are you trying to kick someone higher than the bot?")
 
