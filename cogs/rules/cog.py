@@ -38,26 +38,33 @@ class Rules(commands.Cog, name="Rules"):
 	@commands.has_permissions(administrator=True)
 	@commands.guild_only()
 	async def test_rules(self, ctx):
-		await ctx.send(	f"\n<:Switch:865465921040678932> __**The Rules**__ <:Switch:865465921040678932>\n\n"
-						f"1. Full compliance to Discord's ToS.\n"
-						f"2. Absolutely no drama.\n"
-						f"3. Got issues with someone, talk to <@&829942684947841024>  or <@&867254914563178527> or resolve it in DM's.\n"
-						f"4. Keep your -isms IRL and not in here.\n"
-						f"5. You've got 3 strikes, so don't be that person.\n"
-						f"6. Invite your friends, yet keep the Drama Queens out.\n"
-						f"7. Please keep Politics and Religion out, we don't mind a healthy discussion, but DMs are best suited for that.\n"
-						f"8. We allow pinging each other, demanding not to get pinged will get you a warning.\n"
-						f"9. We don't mind cussing, sarcasm or sexually tinted jokes, but keep porn out.\n"
-						f"10. Don't ask or distribute illegal Pokémon, talk is permitted (Use `!illegal` for a list).\n"
-						f"11. No selling of any kind. (unless approved by an admin).\n"
-						f"12. Don't DM other members unless you have their permission to do so.\n\n"
-						f"This can be updated for future reference.\n\n"
-						f"Click :thumbsup:Confirm to gain access to the rest of the server!\n\n"
-						f"Then visit <#861616591199141908> to give yourself some roles and <#868914000572846120> for Sys-Bot access!\n\n"
-						f"https://discord.gg/dm7gSAT68d\n\n"
-						f"Server and Bot rules subject to change.\n\n"
-						f"<a:rainbowmeltandab:866027057691230229>\n\n")
-
+		embed= nextcord.Embed(	title="Test Rules", 
+                			  	description=f"\n<:Switch:865465921040678932> __**The Rules**__ <:Switch:865465921040678932>\n\n"
+								f"1. Full compliance to Discord's ToS.\n"
+							f"2. Absolutely no drama.\n"
+							f"3. Got issues with someone, talk to <@&829942684947841024>  or <@&867254914563178527> or resolve it in DM's.\n"
+							f"4. Keep your -isms IRL and not in here.\n"
+							f"5. You've got 3 strikes, so don't be that person.\n"
+							f"6. Invite your friends, yet keep the Drama Queens out.\n"
+							f"7. Please keep Politics and Religion out, we don't mind a healthy discussion, but DMs are best suited for that.\n"
+							f"8. We allow pinging each other, demanding not to get pinged will get you a warning.\n"
+							f"9. We don't mind cussing, sarcasm or sexually tinted jokes, but keep porn out.\n"
+							f"10. Don't ask or distribute illegal Pokémon, talk is permitted (Use `!illegal` for a list).\n"
+							f"11. No selling of any kind. (unless approved by an admin).\n"
+							f"12. Don't DM other members unless you have their permission to do so.\n\n"
+							f"This can be updated for future reference.\n\n"
+							f"Click :thumbsup:Confirm to gain access to the rest of the server!\n\n"
+							f"Then visit <#861616591199141908> to give yourself some roles and <#868914000572846120> for Sys-Bot access!\n\n"
+							f"https://discord.gg/dm7gSAT68d\n\n"
+							f"Server and Bot rules subject to change.\n\n"
+							f"<a:rainbowmeltandab:866027057691230229>\n\n"
+       						)
+		embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/891852099653083186/895902400416710666/greninja-frogadier.gif")
+		embed.set_image(url="https://cdn.discordapp.com/attachments/859634488593743892/891612213654192168/greninja_banner.jpg")
+		embed.set_author(name="Greninja Mod", icon_url="https://cdn.discordapp.com/avatars/892620195342987274/cb32b40409c7df4d147c400582f939ac.webp?size=128")
+		embed.set_footer(text="Bot is running v1.0.0")
+		await ctx.send(embed=embed)
+  
 	@commands.command(name="sysbot_rules")
 	@commands.has_permissions(administrator=True)
 	@commands.guild_only()
