@@ -161,10 +161,10 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 	@commands.command(name="sysbot_embed")
 	@commands.has_permissions(administrator=True)
 	async def sysbot_embed(self, ctx):
-		embed=nextcord.Embed(title="__**Sybot Access**__", 
-							description=f"Check out <#868914000572846120> for access to the sysbot.\n"
-										f"Reminder don't delete messages in the bot channel. It makes it harder to trouble shoot problems with the bot."
-	   )
+		embed=nextcord.Embed(title="__**Sysbot Access**__", 
+							description=f"Check out <#868914000572846120> for access to the sysbot.\n")
+		embed.add_field(name="Reminder", value="Don't delete messages in the bot channel. It makes it harder to trouble shoot problems with the bot.")
+	   
 		embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/891852099653083186/895902400416710666/greninja-frogadier.gif")
 		embed.set_image(url="https://cdn.discordapp.com/attachments/859634488593743892/891612213654192168/greninja_banner.jpg")
 		embed.set_author(name="Greninja Mod", icon_url="https://cdn.discordapp.com/avatars/892620195342987274/cb32b40409c7df4d147c400582f939ac.webp?size=128")
