@@ -205,26 +205,6 @@ class Mod(commands.Cog, name="Mod"):
 		except asyncio.TimeoutError:
 			await sent.delete()
 			await ctx.send("Cancelling", delete_after=10)
-
-	@commands.command(name="mute")
-	@commands.has_permissions(administrator=True) #permissions
-	async def mute(self, ctx, user : nextcord.Member):
-		role = nextcord.utils.get(user.guild.roles, name="muted")
-		if role.position > ctx.author.top_role.position: #if the role is above users top role it sends error
-			return await ctx.send('**:x: | That role is above your top role!**')
-		else:
-			await user.add_roles(role) #adds role if not already has it
-			await ctx.send(f"{user.mention} has been {role}")
-
-	@commands.command(name="unmute")
-	@commands.has_permissions(administrator=True) #permissions
-	async def unmute(self, ctx, user : nextcord.Member):
-		role = nextcord.utils.get(user.guild.roles, name="muted")
-		if role.position > ctx.author.top_role.position: #if the role is above users top role it sends error
-			return await ctx.send('**:x: | That role is above your top role!**')
-		else:
-			await user.remove_roles(role) #removes the role if user already has
-			await ctx.send(f"{user.mention} has been un{role}")
 """
 
 def setup(bot: commands.Bot):
