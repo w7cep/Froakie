@@ -59,7 +59,7 @@ class Mod(commands.Cog, name="Mod"):
 	async def __error(self, ctx, error):
 		if isinstance(error, commands.BadArgument):
 				await ctx.send(error)
-	"""//TODO Refine Ban, Unban, softban, Kick commands"""		
+		
 	@commands.command()
 	@commands.has_permissions(ban_members = True)
 	async def ban(self, ctx, id: int):
@@ -132,13 +132,7 @@ class Mod(commands.Cog, name="Mod"):
 		#unban.timestamp = datetime.datetime.utcnow()
 
 		await ctx.send(embed=kick)
-
-	'''@commands.command()
-	async def purge(self, ctx, limit: int):
-		"""Bulk deletes messages"""
-		
-		await ctx.purge(limit=limit + 1) # also deletes your own message
-		await ctx.send(f"Bulk deleted `{limit}` messages")''' 
+ 
 	@commands.command()
 	@commands.has_permissions(administrator=True) 
 	async def mute(self, ctx, user: Sinner, reason=None):
@@ -151,32 +145,7 @@ class Mod(commands.Cog, name="Mod"):
 		"""Unmutes a muted user"""
 		await user.remove_roles(nextcord.utils.get(ctx.guild.roles, name="Muted")) # removes muted role
 		await ctx.send(f"{user.mention} has been unmuted")
-		"""//TODO: Fix Block and Unblock command. """
-	@commands.command()
-	@commands.has_permissions(administrator=True) 
-	async def block(self, ctx, user: Sinner=None):
-		"""
-		Blocks a user from chatting in current channel.
-		   
-		Similar to mute but instead of restricting access
-		to all channels it restricts in current channel.
-		"""
-								
-		if not user: # checks if there is user
-			return await ctx.send("You must specify a user")
-								
-		await self.set_permissions(user, send_messages=False) # sets permissions for current channel
-	
-	@commands.command()
-	@commands.has_permissions(administrator=True) 
-	async def unblock(self, ctx, user: Sinner=None):
-		"""Unblocks a user from current channel"""
-								
-		if not user: # checks if there is user
-			return await ctx.send("You must specify a user")
-		
-		await self.set_permissions(user, send_messages=True) # gives back send messages permissions
-								
+							
 
 	@commands.command(name="addprofanity", aliases=["addswears", "addcurses"])
 	@commands.has_permissions(administrator=True)

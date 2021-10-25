@@ -23,6 +23,14 @@ import json
 
 profanity.load_censor_words_from_file("./data/profanity.txt")
 
+class Sinner(commands.Converter):
+	async def convert(self, ctx, argument):
+		argument = await commands.MemberConverter().convert(ctx, argument) # gets a member object
+		permission = argument.guild_permissions.manage_messages # can change into any permission
+		if not permission: # checks if user has the permission
+			return argument # returns user object
+		else:
+			raise commands.BadArgument("You cannot punish other staff members") # tells user that target is a staff member
 class BannedUser(Converter):
 	async def convert(self, ctx, arg):
 		if ctx.guild.me.guild_permissions.ban_members:
@@ -68,7 +76,34 @@ class Channel(commands.Cog, name="Channel"):
 		def is_me(m):
 			return m.author == self.bot.user
 		await ctx.message.channel.purge(limit=100, check=is_me)
+  
+		"""//TODO: Fix Block and Unblock command. """
+	@commands.command()
+	@commands.has_permissions(administrator=True) 
+	async def block(self, ctx, user: Sinner=None):
+		"""
+		Blocks a user from chatting in current channel.
+		   
+		Similar to mute but instead of restricting access
+		to all channels it restricts in current channel.
+		"""
+								
+		if not user: # checks if there is user
+			return await ctx.send("You must specify a user")
+								
+		await self.set_permissions(user, send_messages=False) # sets permissions for current channel
+	
+	@commands.command()
+	@commands.has_permissions(administrator=True) 
+	async def unblock(self, ctx, user: Sinner=None):
+		"""Unblocks a user from current channel"""
+								
+		if not user: # checks if there is user
+			return await ctx.send("You must specify a user")
 		
+		await self.set_permissions(user, send_messages=True) # gives back send messages permissions
+	  
+	"""//FIXME fix lockdown command"""	
 	@commands.command(
 		name="lockdown",
 		description="A command to lock or unlock a channel.",

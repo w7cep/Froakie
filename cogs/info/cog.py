@@ -119,7 +119,7 @@ class Information(commands.Cog, name="Information"):
 		)
 		embed.set_thumbnail(url=emoji.url)
 		await ctx.send(embed=embed)
-		
+	"""//FIXME Refine channel stats command"""	
 	@commands.command(aliases=['cs'], hidden=True)
 	@commands.has_permissions(administrator=True)
 	@commands.bot_has_guild_permissions(manage_channels=True)
