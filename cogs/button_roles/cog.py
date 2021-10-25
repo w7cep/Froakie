@@ -39,8 +39,13 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 	@commands.is_owner()
 	async def roles(self, ctx: commands.Context):
 		"""Starts a role view"""
-		await ctx.send(	f"**SysBot Channel Access**: Frogadier\n"
-                 		f"**TradeCord Channel Access**: TradeCord", view=SelfRoleView())
+		embed=nextcord.Embed(
+			title="__**Access Roles**__\n",
+			description="Click on a button to select a role"
+		)
+		embed.add_field(title="**General Access**", value=	f"**SysBot Channel Access**: Giveaway\n"
+                 											f"**TradeCord Channel Access**: TradeCord")
+		await ctx.send(embed=embed, view=SelfRoleView())
 
 	@commands.command()
 	@commands.is_owner()
