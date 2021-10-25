@@ -119,7 +119,7 @@ class Information(commands.Cog, name="Information"):
 		)
 		embed.set_thumbnail(url=emoji.url)
 		await ctx.send(embed=embed)
-	"""//FIXME Refine channel stats command"""	
+	
 	@commands.command(aliases=['cs'], hidden=True)
 	@commands.has_permissions(administrator=True)
 	@commands.bot_has_guild_permissions(manage_channels=True)
@@ -141,7 +141,7 @@ class Information(commands.Cog, name="Information"):
 		embed.add_field(name="Channel Hash", value=hash(channel), inline=False)
 
 		await ctx.send(embed=embed)
-
+		"""FIXME-figure out how to view if channel perms are synced."""
 
 def setup(bot: commands.Bot):
 	bot.add_cog(Information(bot))        
