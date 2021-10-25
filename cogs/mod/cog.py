@@ -102,7 +102,7 @@ class Mod(commands.Cog, name="Mod"):
 		unban.add_field(name='Moderator Name:', value=f'`{ctx.author}`', inline=True)
 		unban.add_field(name='Moderator ID:', value=f'`{ctx.author.id}`', inline=True)
 		unban.add_field(name='Action Performed:', value='`UnBan`', inline=True)
-		unban.set_author(name=f'{ctx.guild}', icon_url=ctx.guild.icon_url)
+		unban.set_author(name=f'{ctx.guild}', icon_url=ctx.guild.icon.url)
 		#unban.set_thumbnail(url=member.avatar_url)
 		unban.timestamp = datetime.datetime.utcnow()
 
