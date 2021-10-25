@@ -42,7 +42,21 @@ class Testing(commands.Cog, name="Testing"):
 				cur.execute("SELECT * FROM warnings;")
 				await ctx.send(cur.fetchall())
 		conn.close() 	
-	'''	
+	
+	@commands.command()
+	@commands.guild_only()
+	@commands.has_permissions(administrator=True)
+	async def warn(self, ctx, member: nextcord.Member = None):  
+		with conn:
+			with conn.cursor(cursor_factory=psycopg2.extras.DictCursor) as cur:
+				if member == None:
+					return await ctx.send("Please specify a member")
+				else:
+					cur.execute("INSERT INTO warnings (name) VALUES(%s)", ({member}))
+					await ctx.send(cur.fetchall())
+		conn.close() 
+
+ 	'''	
 	@commands.command(name="add", descripton="Adds two numbers together.", hidden=True)
 	async def add(ctx, left: int, right: int):
 			await ctx.send(left + right)
