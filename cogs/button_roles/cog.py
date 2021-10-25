@@ -43,7 +43,7 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 			title="__**Access Roles**__\n",
 			description="Click on a button to select a role"
 		)
-		embed.add_field(title="**General Access**", value=	f"**SysBot Channel Access**: Giveaway\n"
+		embed.add_field(name="**General Access**", value=	f"**SysBot Channel Access**: Giveaway\n"
                  											f"**TradeCord Channel Access**: TradeCord")
 		await ctx.send(embed=embed, view=SelfRoleView())
 
