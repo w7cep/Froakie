@@ -138,7 +138,7 @@ class Mod(commands.Cog, name="Mod"):
 	@commands.has_role(829942684947841024) 
 	async def mute(self, ctx, user: Sinner, reason=None):
 		"""Gives them hell."""
-		await mute(ctx, user, reason or "treason") # uses the mute function
+		await mute(ctx, user, reason or "being sus") # uses the mute function
 		
 	@commands.command()
 	@commands.has_role(829942684947841024)

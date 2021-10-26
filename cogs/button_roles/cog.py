@@ -82,17 +82,17 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 	@commands.guild_only()
 	async def sysbot_rules(self, ctx):
 		"""SysBot Rules"""
-		version = "v1.1.0"
 
 		embed = nextcord.Embed(
 			title="__**Greninja SysBot Rules**__",
 			description="Anyone who break the rules or is just straight up a pain in the ass about it, gets access revoked, to either the bot or the server. \n\n1. Don't try anything illegal, it won't work. \n2. You've tried everything and it still isn't legal, DM or ping <@&858153204146634782> \n2. Help can be asked, we won't shy away from it just make sure you've read<#858130122221420554> first. \n3. Anyone who uses it, does so at their own discretion. Don't be that person to call others out for using it. \n4. First try? Checkout <#858130122221420554> \n5. Made anything with the bot and you go sell it, insta-ban, no excuses.\n6. Refrain from deleting messages, even if it's a spelling mistake.  \n8. Have fun and Be respectful\n9. Using the bot is fun, to keep it fun for everyone, please complete your trade with the bot. Even when making a mistake and you've started the trade, complete it.\nSee it as a free item and fodder you don't have to catch.\n10. No code sharing. The bot is for this server only\n\nBot access will be revoked for multiple offenders.\n\nRequests for special mons can be made in <#865074053759893525> , The PK8 Master will get to it as soon as he can.\n\nTo get access to the bots click below!\n🤖: Greninja SysBot Access",
-			colour=nextcord.Colour.blue()
+			colour=ctx.author.colour,
+			timestamp=ctx.message.created_at,
 		)
 		embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/891852099653083186/895902400416710666/greninja-frogadier.gif")
-		embed.set_author(name="Greninja Mod", icon_url="https://cdn.discordapp.com/avatars/866572422438060052/cb32b40409c7df4d147c400582f939ac.webp?size=4096")
 		embed.set_image(url="https://cdn.discordapp.com/attachments/859634488593743892/891612213654192168/greninja_banner.jpg")
-		embed.set_footer(text=f"Bot is running {version}")
+		embed.set_footer(text=f"{ctx.author.name}")
+		embed.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar.url)
 		await ctx.send(embed=embed, view=SysBotRuleView())
 		  
 	@commands.command(name="access_roles")
