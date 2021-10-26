@@ -194,12 +194,13 @@ class Mod(commands.Cog, name="Mod"):
 	@commands.command(name="say_embed")
 	@commands.is_owner()
 	async def say_embed(self, ctx, channel:nextcord.TextChannel, *, message):
-		"""Make the bot say something in the specified channel."""
+		"""Make the bot say something in the specified channel as an embed."""
 		if channel is not None:
 			embed= nextcord.Embed(description=f"{message}")
 			embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/891852099653083186/895902400416710666/greninja-frogadier.gif")
-			embed.set_image(url="https://cdn.discord.com/attachments/891852099/891612213654192168/greninja_banner.jpg")
-			embed.set_author(name=f"{ctx.author.name}", icon_url=ctx.author.avatar.url)
+			embed.set_image(url="https://cdn.discordapp.com/attachments/901687898452131860/902400527621566504/greninja_banner.jpg")
+			embed.set_footer(name=f"{ctx.author.name}", icon_url=ctx.author.avatar.url)
+			embed.set_author(name=f"{self.bot.name}", icon_url=self.bot.avatar.url)
 		await channel.send(embed=embed)
 
 def setup(bot: commands.Bot):
