@@ -16,7 +16,7 @@ class Information(commands.Cog, name="Information"):
 		dpyVersion = nextcord.__version__
 		serverCount = len(self.bot.guilds)
 		memberCount = len(set(self.bot.get_all_members()))
-		version = "v1.0.0"
+		version = "v1.1.0"
 		developer = "<@741118153299591240>"
   
 		embed = nextcord.Embed(

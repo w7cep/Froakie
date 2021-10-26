@@ -82,7 +82,7 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 	@commands.guild_only()
 	async def sysbot_rules(self, ctx):
 		"""SysBot Rules"""
-		version = "v1.0.0"
+		version = "v1.1.0"
 
 		embed = nextcord.Embed(
 			title="__**Greninja SysBot Rules**__",
