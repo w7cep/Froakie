@@ -46,7 +46,7 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 		await message.edit(view=ConfirmView())
 
 	@commands.command(name="rules", hidden=True)
-	@commands.has_permissions(administrator=True)
+	@commands.is_owner()
 	@commands.guild_only()
 	async def rules(self, ctx):
 		embed= nextcord.Embed(	title="__**Greninja's Grotto Rules**__", 
@@ -77,7 +77,7 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 		await ctx.send(embed=embed, view=ConfirmView())
 
 	@commands.command(name="sysbot_rules", hidden=True)
-	@commands.has_permissions(administrator=True)
+	@commands.is_owner()
 	@commands.guild_only()
 	async def sysbot_rules(self, ctx):
 
@@ -141,7 +141,7 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 		await ctx.send(embed=embed, view=ColorRoleView())
 
 	@commands.command(name="add_role", hidden=True)
-	@commands.has_permissions(administrator=True) #permissions
+	@commands.is_owner() #permissions
 	async def add_role(self, ctx, user : nextcord.Member, *, role : nextcord.Role):
 		'''Give role to member.'''
 		if role.position > ctx.author.top_role.position: #if the role is above users top role it sends error
@@ -159,7 +159,7 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 			await ctx.send('**:x: | You do not have permission to use this command!**')
    
 	@commands.command(name="sysbot_embed", hidden=True)
-	@commands.has_permissions(administrator=True)
+	@commands.is_owner()
 	async def sysbot_embed(self, ctx):
 		embed=nextcord.Embed(title="__**Sysbot Access**__", 
 							description=f"Check out <#868914000572846120> for access to the sysbot.\n")

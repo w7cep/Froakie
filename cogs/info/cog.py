@@ -47,7 +47,7 @@ class Information(commands.Cog, name="Information"):
 		await ctx.send(f"Here : {url}")
   
 	@commands.command(name="memberinfo", aliases=["mi"]) 
-	@commands.has_permissions(administrator=True)
+	@commands.has_role(829942684947841024)
 	@commands.guild_only()
 	async def memberinfo(self, ctx, *, user : nextcord.Member = None):
 		
@@ -75,7 +75,7 @@ class Information(commands.Cog, name="Information"):
 		return await ctx.send(embed=embed)
 
 	@commands.command(name="emojiinfo", aliases=["ei"])
-	@commands.has_permissions(administrator=True)
+	@commands.has_role(829942684947841024)
 	async def emoji_info(self, ctx, emoji: nextcord.Emoji = None):
 		if not emoji:
 					await ctx.invoke(self.bot.get_command("help"), entity="emojiinfo")
@@ -121,7 +121,7 @@ class Information(commands.Cog, name="Information"):
 		await ctx.send(embed=embed)
 	
 	@commands.command(aliases=['cs'], hidden=True)
-	@commands.has_permissions(administrator=True)
+	@commands.has_role(829942684947841024)
 	@commands.bot_has_guild_permissions(manage_channels=True)
 	async def channelstats(self, ctx):
 		"""

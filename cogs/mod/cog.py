@@ -61,7 +61,7 @@ class Mod(commands.Cog, name="Mod"):
 				await ctx.send(error)
 		
 	@commands.command()
-	@commands.has_permissions(ban_members = True)
+	@commands.has_role(829942684947841024)
 	async def ban(self, ctx, id: int):
 		user = await self.bot.fetch_user(id)
 		await ctx.guild.ban(user)
@@ -79,7 +79,7 @@ class Mod(commands.Cog, name="Mod"):
 		await ctx.send(embed=ban)
 
 	@commands.command()
-	@commands.has_permissions(administrator=True) 
+	@commands.has_role(829942684947841024) 
 	async def softban(self, ctx, id: int):
 		"""Temporarily restricts access to heaven."""
 		user = await self.bot.fetch_user(id)
@@ -98,7 +98,7 @@ class Mod(commands.Cog, name="Mod"):
 		await ctx.send(embed=softban)
 	
 	@commands.command()
-	@commands.has_permissions(ban_members = True)
+	@commands.has_role(829942684947841024)
 	async def unban(self, ctx, id: int):
 		user = await self.bot.fetch_user(id)
 		await ctx.guild.unban(user)
@@ -116,7 +116,7 @@ class Mod(commands.Cog, name="Mod"):
 		await ctx.send(embed=unban)
 
 	@commands.command()
-	@commands.has_permissions(ban_members = True)
+	@commands.has_role(829942684947841024)
 	async def kick(self, ctx, id: int):
 		user = await self.bot.fetch_user(id)
 		await ctx.guild.kick(user)
@@ -134,13 +134,13 @@ class Mod(commands.Cog, name="Mod"):
 		await ctx.send(embed=kick)
  
 	@commands.command()
-	@commands.has_permissions(administrator=True) 
+	@commands.has_role(829942684947841024) 
 	async def mute(self, ctx, user: Sinner, reason=None):
 		"""Gives them hell."""
 		await mute(ctx, user, reason or "treason") # uses the mute function
 		
 	@commands.command()
-	@commands.has_permissions(administrator=True) 
+	@commands.has_role(829942684947841024)
 	async def unmute(self, ctx, user: Redeemed):
 		"""Unmutes a muted user"""
 		await user.remove_roles(nextcord.utils.get(ctx.guild.roles, name="Muted")) # removes muted role
@@ -148,7 +148,7 @@ class Mod(commands.Cog, name="Mod"):
 							
 
 	@commands.command(name="addswears", aliases=["addprofanity", "addcurses"])
-	@commands.has_permissions(administrator=True)
+	@commands.has_role(829942684947841024)
 	async def add_profanity(self, ctx, *words):
 		'''Add cuss word to file.'''
 		with open("./data/profanity.txt", "a", encoding="utf-8") as f:
@@ -158,7 +158,7 @@ class Mod(commands.Cog, name="Mod"):
 		await ctx.send("Action complete.")
 
 	@commands.command(name="delswears", aliases=["delprofanity", "delcurses"])
-	@commands.has_permissions(administrator=True)
+	@commands.has_role(829942684947841024)
 	async def remove_profanity(self, ctx, *words):
 		'''Delete cuss word from file.'''
 		with open("./data/profanity.txt", "r", encoding="utf-8") as f:
@@ -180,9 +180,9 @@ class Mod(commands.Cog, name="Mod"):
 		if profanity.contains_profanity(message.content):
 			await message.delete()
 			await message.channel.send("You can't use that word here.", delete_after=10)
-"""
+
 	@commands.command(name="echo")
-	@commands.has_permissions(administrator=True)
+	@commands.has_role(829942684947841024)
 	async def echo(self, ctx):
 		await ctx.message.delete()
 		embed = nextcord.Embed(
@@ -205,7 +205,7 @@ class Mod(commands.Cog, name="Mod"):
 		except asyncio.TimeoutError:
 			await sent.delete()
 			await ctx.send("Cancelling", delete_after=10)
-"""
+
 
 def setup(bot: commands.Bot):
 	bot.add_cog(Mod(bot))

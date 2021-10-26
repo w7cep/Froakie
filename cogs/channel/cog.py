@@ -60,7 +60,7 @@ class Channel(commands.Cog, name="Channel"):
 		usage="[amount]",
 	)
 	@commands.guild_only()
-	@commands.has_permissions(administrator=True)
+	@commands.has_role(829942684947841024)
 	async def purge(self, ctx, amount=5):
 		await ctx.channel.purge(limit=amount + 1)
 		embed = nextcord.Embed(
@@ -70,7 +70,7 @@ class Channel(commands.Cog, name="Channel"):
 		await ctx.send(embed=embed, delete_after=15)
 
 	@commands.command(name="clean")
-	@commands.has_permissions(administrator=True)
+	@commands.has_role(829942684947841024)
 	async def clean(self, ctx):
 		"""Cleans the chat of the bot's messages."""
 		def is_me(m):
@@ -79,7 +79,7 @@ class Channel(commands.Cog, name="Channel"):
   
 		"""//FIXME-Fix Block and Unblock command. """
 	@commands.command()
-	@commands.has_permissions(administrator=True) 
+	@commands.has_role(829942684947841024) 
 	async def block(self, ctx, user: Sinner=None):
 		"""
 		Blocks a user from chatting in current channel.
@@ -94,7 +94,7 @@ class Channel(commands.Cog, name="Channel"):
 		await self.set.permissions(user, send_messages=False) # sets permissions for current channel
 	
 	@commands.command()
-	@commands.has_permissions(administrator=True) 
+	@commands.has_role(829942684947841024) 
 	async def unblock(self, ctx, user: Sinner=None):
 		"""Unblocks a user from current channel"""
 								
@@ -106,7 +106,7 @@ class Channel(commands.Cog, name="Channel"):
 	"""//FIXME-fix lockdown command"""	
 	@commands.command()
 	@commands.guild_only()
-	@commands.has_guild_permissions(manage_channels=True)
+	@commands.has_role(829942684947841024)
 	@commands.bot_has_guild_permissions(manage_channels=True)
 	async def lockdown(self, ctx, channel: nextcord.TextChannel=None):
 		channel = channel or ctx.channel
@@ -141,7 +141,7 @@ class Channel(commands.Cog, name="Channel"):
    
 	@commands.group(invoke_without_command=True)
 	@commands.guild_only()
-	@commands.has_guild_permissions(manage_channels=True)
+	@commands.has_role(829942684947841024)
 	@commands.bot_has_guild_permissions(manage_channels=True)
 	async def new(self, ctx):
 		"""Create new channels and categories.
@@ -152,7 +152,7 @@ class Channel(commands.Cog, name="Channel"):
 
 	@new.command()
 	@commands.guild_only()
-	@commands.has_guild_permissions(manage_channels=True)
+	@commands.has_role(829942684947841024)
 	@commands.bot_has_guild_permissions(manage_channels=True)
 	async def category(self, ctx, role: nextcord.Role, *, name):
 		overwrites = {
@@ -165,7 +165,7 @@ class Channel(commands.Cog, name="Channel"):
 
 	@new.command()
 	@commands.guild_only()
-	@commands.has_guild_permissions(manage_channels=True)
+	@commands.has_role(829942684947841024)
 	@commands.bot_has_guild_permissions(manage_channels=True)
 	async def channel(self, ctx, role: nextcord.Role, *, name):
 		overwrites = {
@@ -178,7 +178,7 @@ class Channel(commands.Cog, name="Channel"):
 
 	@commands.group(invoke_without_command=True)
 	@commands.guild_only()
-	@commands.has_guild_permissions(manage_channels=True)
+	@commands.has_role(829942684947841024)
 	@commands.bot_has_guild_permissions(manage_channels=True)
 	async def delete(self, ctx):
 		"""Delete channels and categories.
@@ -189,7 +189,7 @@ class Channel(commands.Cog, name="Channel"):
 
 	@delete.command(name='category')
 	@commands.guild_only()
-	@commands.has_guild_permissions(manage_channels=True)
+	@commands.has_role(829942684947841024)
 	@commands.bot_has_guild_permissions(manage_channels=True)
 	async def _category(self, ctx, category: nextcord.CategoryChannel, *, reason=None):
 		await category.delete(reason=reason)
@@ -197,7 +197,7 @@ class Channel(commands.Cog, name="Channel"):
 
 	@delete.command(name='channel')
 	@commands.guild_only()
-	@commands.has_guild_permissions(manage_channels=True)
+	@commands.has_role(829942684947841024)
 	@commands.bot_has_guild_permissions(manage_channels=True)
 	async def _channel(self, ctx, channel: nextcord.TextChannel=None, *, reason=None):
 		channel = channel or ctx.channel
