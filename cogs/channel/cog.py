@@ -74,7 +74,7 @@ class Channel(commands.Cog, name="Channel"):
 		await ctx.message.channel.purge(limit=100, check=is_me)
   
 		"""//FIXME-Fix Block and Unblock command. """
-	@commands.command(name="unblock", hidden=True)
+	@commands.command(name="block", hidden=True)
 	@commands.has_role(829942684947841024) 
 	async def block(self, ctx, user: Sinner=None):
 		"""
