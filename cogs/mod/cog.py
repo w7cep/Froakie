@@ -2,14 +2,12 @@ import random
 from typing import Optional
 import nextcord, datetime
 import nextcord.errors
-from nextcord.ext import commands
 from datetime import time
 from nextcord.ext.commands import MissingPermissions
 import asyncio
 from asyncio import sleep
 from datetime import datetime, timedelta
 from re import search
-from typing import Optional
 from better_profanity import profanity
 from nextcord import Embed, Member, NotFound, Object
 from nextcord.utils import find
