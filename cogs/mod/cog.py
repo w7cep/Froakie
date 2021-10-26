@@ -187,6 +187,7 @@ class Mod(commands.Cog, name="Mod"):
 	@commands.command(name="say")
 	@commands.is_owner()
 	async def say(self, ctx, channel:nextcord.TextChannel, *, message):
+		"""Make the bot say something in a specified channel."""
 		if channel is not None:
 			await channel.send(message)
 
