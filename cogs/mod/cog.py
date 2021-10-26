@@ -148,39 +148,6 @@ class Mod(commands.Cog, name="Mod"):
 		"""Unmutes a muted user"""
 		await user.remove_roles(nextcord.utils.get(ctx.guild.roles, name="Muted")) # removes muted role
 		await ctx.send(f"{user.mention} has been unmuted")
-							
-	@commands.command()
-	async def tempmute(ctx, member: nextcord.Member, time: int, d, *, reason=None):
-		guild = ctx.guild
-
-		for role in guild.roles:
-			if role.name == "Muted":
-				await member.add_roles(role)
-
-			embed = nextcord.Embed(title="muted!", description=f"{member.mention} has been tempmuted ", colour=nextcord.Colour.light_gray())
-			embed.add_field(name="reason:", value=reason, inline=False)
-			embed.add_field(name="time left for the mute:", value=f"{time}{d}", inline=False)
-			await ctx.send(embed=embed)
-
-			if d == "s":
-				await asyncio.sleep(time)
-
-			if d == "m":
-				await asyncio.sleep(time*60)
-
-			if d == "h":
-				await asyncio.sleep(time*60*60)
-
-			if d == "d":
-				await asyncio.sleep(time*60*60*24)
-
-			await member.remove_roles(role)
-
-			embed = nextcord.Embed(title="unmute (temp) ", description=f"unmuted -{member.mention} ", colour=nextcord.Colour.light_gray())
-			await ctx.send(embed=embed)
-
-			return
-
 
 	@commands.command(name="addswears", aliases=["addprofanity", "addcurses"])
 	@commands.has_role(829942684947841024)

@@ -200,7 +200,7 @@ class Channel(commands.Cog, name="Channel"):
 		channel = channel or ctx.channel
 		await channel.delete(reason=reason)
 		await ctx.send(f"Hey man! I deleted {channel.name} for ya!")  
-  
+	"""//TODO-Use the echo command as a base to make a tempmute command."""
 	@commands.command(name="echo")
 	@commands.has_role(829942684947841024)
 	async def echo(self, ctx):
