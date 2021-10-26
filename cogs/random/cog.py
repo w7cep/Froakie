@@ -43,6 +43,7 @@ class Random(commands.Cog, name="Random"):
 			
 	@commands.command(name="joke")
 	async def joke(self, ctx):
+		"""Random dad joke."""
 		selectjoke = random.choice([
 			"Why don’t crabs give to charity? Because they’re shellfish.",
 			"Why did the man name his dogs Rolex and Timex? Because they were watch dogs.",
@@ -52,14 +53,17 @@ class Random(commands.Cog, name="Random"):
 
 	@commands.command(name="coinflip")
 	async def coinflip(self, ctx):
+		"""Flip a coin."""
 		await ctx.send("Heads" if random.randint(1, 2) == 1 else "Tails")
 
 	@commands.command(name="mirror")
 	async def mirror(self, ctx, message):
+		"""Bot will mirror your message."""
 		await ctx.send(message)
 
 	@commands.command(name="length")
 	async def length(self, ctx, sent):
+		"""Gives you the details of a sentence."""
 		sentence: str = ctx.message.content[7:]
 		print(sentence)
 		length: int = len(sentence)
@@ -75,6 +79,7 @@ class Random(commands.Cog, name="Random"):
 
 	@commands.command(name="fact")
 	async def animal_fact(self, ctx, animal: str):
+		"""Gives you a fact for these animals: "dog", "cat", "panda", "fox", "bird", "koala"."""
 		if (animal := animal.lower()) in ("dog", "cat", "panda", "fox", "bird", "koala", ):
 			fact_url = f"https://some-random-api.ml/facts/{animal}"
 			image_url = f"https://some-random-api.ml/img/{'birb' if animal == 'bird' else animal}"
@@ -109,6 +114,7 @@ class Random(commands.Cog, name="Random"):
 		 name="slap", 
 		aliases=["hit"])
 	async def slap_member(self, ctx, member: Member, *, reason: Optional[str] = "for no reason"):
+		"""Slap another member for a reason or no reason."""
 		await ctx.send(f"{ctx.author.display_name} slapped {member.mention} {reason}!")
 		await ctx.message.delete()
 
