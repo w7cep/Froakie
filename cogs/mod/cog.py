@@ -184,6 +184,12 @@ class Mod(commands.Cog, name="Mod"):
 			await message.delete()
 			await message.channel.send("You can't use that word here.", delete_after=10)
 
+	@commands.command(name="say")
+	@commands.is_owner()
+	async def say(self, ctx, channel:nextcord.TextChannel, *, message):
+		if channel is not None:
+			await channel.send(message)
+
 def setup(bot: commands.Bot):
 	bot.add_cog(Mod(bot))
 	
