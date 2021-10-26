@@ -13,9 +13,9 @@ class CustomCommands(commands.Cog, name="Custom_Commands"):
 	def __init__(self, bot: commands.Bot):
 		self.bot = bot
 	
-	@commands.command(name="sysbot_instructions") 
+	@commands.command(name="sysbot_instructions", aliases=["si","bot_instructions"]) 
 	async def sysbot_instructions(self, ctx):
-		"""A useful command that displays bot statistics."""
+		"""A useful command that displays sysbot instructions."""
 		version = "v1.1.0"
 
 		embed = nextcord.Embed(
