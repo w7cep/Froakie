@@ -13,5 +13,11 @@ class Testing(commands.Cog, name="Testing"):
 	def __init__(self, bot: commands.Bot):
 		self.bot = bot
 	
+	@commands.command(name="say")
+	@commands.is_owner()
+	async def say(self, ctx, channel:nextcord.TextChannel, *, message):
+		if channel is not None:
+			await channel.send(message)
+     
 def setup(bot: commands.Bot):
 	bot.add_cog(Testing(bot))
