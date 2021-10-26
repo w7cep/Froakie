@@ -200,7 +200,7 @@ class Mod(commands.Cog, name="Mod"):
 			embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/891852099653083186/895902400416710666/greninja-frogadier.gif")
 			embed.set_image(url="https://cdn.discord.com/attachments/891852099/891612213654192168/greninja_banner.jpg")
 			embed.set_author(name=f"{ctx.author.name}", icon_url=ctx.author.icon.url)
- 		await channel.send(embed=embed)
+		await channel.send(embed=embed)
 
 def setup(bot: commands.Bot):
 	bot.add_cog(Mod(bot))
