@@ -11,6 +11,14 @@ BOT_TOKEN = os.getenv("BOT_TOKEN", "")
 # Discord Guild ID
 GUILD_ID = int(os.getenv("GUILD_ID", ""))
 
+WATCHING_STATUS = "for infringements"
+
+MUTED_ROLE_NAME = "Muted"
+MOD_LOG_CHANNEL_NAME = "mod-log"
+
+
+MODLOG_COLORS = {"BAN": 0xeb4034, "MUTE": 0xeda239, "UNMUTE": 0x56c470, "UNBAN": 0x4fb09e, "KICK": 0x559ced}
+
 # Discord Channel IDs
 INTRO_CHANNEL_ID = int(os.getenv("INTRO_CHANNEL_ID", ""))
 RULES_CHANNEL_ID = int(os.getenv("RULES_CHANNEL_ID", ""))
