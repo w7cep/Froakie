@@ -187,9 +187,20 @@ class Mod(commands.Cog, name="Mod"):
 	@commands.command(name="say")
 	@commands.is_owner()
 	async def say(self, ctx, channel:nextcord.TextChannel, *, message):
-		"""Make the bot say something in a specified channel."""
+		"""Make the bot say something in the specified channel."""
 		if channel is not None:
 			await channel.send(message)
+
+	@commands.command(name="say_embed")
+	@commands.is_owner()
+	async def say_embed(self, ctx, channel:nextcord.TextChannel, *, message):
+		"""Make the bot say something in the specified channel."""
+		if channel is not None:
+			embed= nextcord.Embed(description=f"{message}")
+			embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/891852099653083186/895902400416710666/greninja-frogadier.gif")
+			embed.set_image(url="https://cdn.discord.com/attachments/891852099/891612213654192168/greninja_banner.jpg")
+			embed.set_author(name=f"{ctx.author.name}", icon_url=ctx.author.icon.url)
+ 		await channel.send(embed=embed)
 
 def setup(bot: commands.Bot):
 	bot.add_cog(Mod(bot))
