@@ -58,6 +58,7 @@ class Channel(commands.Cog, name="Channel"):
 	@commands.guild_only()
 	@commands.has_role(829942684947841024)
 	async def purge(self, ctx, amount=5):
+		"""Purge a number of messages in a channel"""
 		await ctx.channel.purge(limit=amount + 1)
 		embed = nextcord.Embed(
 			title=f"{ctx.author.name} purged: {ctx.channel.name}",
@@ -203,6 +204,7 @@ class Channel(commands.Cog, name="Channel"):
 	@commands.command(name="echo")
 	@commands.has_role(829942684947841024)
 	async def echo(self, ctx):
+		"""Have the bot echo something and hide the evidence."""
 		await ctx.message.delete()
 		embed = nextcord.Embed(
 			title="Please tell me what you want me to repeat!",

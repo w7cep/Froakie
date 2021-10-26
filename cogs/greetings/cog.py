@@ -17,10 +17,12 @@ class GreetingsCog(commands.Cog, name="Greetings"):
         
     @command(name="hello", aliases=["hi"])
     async def say_hello(self, ctx):
+        """Say hi to the bot and it will say hi back."""
         await ctx.send(f"{choice(('Hello', 'Hi', 'Hey', 'Hiya'))} {ctx.author.mention}!")
 
     @command(name="bye")
     async def say_bye(self, ctx):
+        """Say bye to the bot and it will say bye back."""
         await ctx.send(f"{choice(('Bye', 'Peace', 'See Ya', 'Later'))} {ctx.author.mention}!")
 
 def setup(bot: commands.Bot):

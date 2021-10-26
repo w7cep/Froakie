@@ -9,11 +9,9 @@ class Information(commands.Cog, name="Information"):
 	def __init__(self, bot: commands.Bot):
 		self.bot = bot
 
-	@commands.command(
-		name="stats", 
-		  description="A useful command that displays bot statistics."
-	)
+	@commands.command(name="stats") 
 	async def stats(self, ctx):
+		"""A useful command that displays bot statistics."""
 		pythonVersion = platform.python_version()
 		dpyVersion = nextcord.__version__
 		serverCount = len(self.bot.guilds)
@@ -77,6 +75,7 @@ class Information(commands.Cog, name="Information"):
 	@commands.command(name="emojiinfo", aliases=["ei"])
 	@commands.has_role(829942684947841024)
 	async def emoji_info(self, ctx, emoji: nextcord.Emoji = None):
+		"""Display information about an emoji in the server."""
 		if not emoji:
 					await ctx.invoke(self.bot.get_command("help"), entity="emojiinfo")
 

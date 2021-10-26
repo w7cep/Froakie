@@ -63,6 +63,7 @@ class Mod(commands.Cog, name="Mod"):
 	@commands.command()
 	@commands.has_role(829942684947841024)
 	async def ban(self, ctx, id: int):
+		"""Ban a user from the server."""
 		user = await self.bot.fetch_user(id)
 		await ctx.guild.ban(user)
 
@@ -81,7 +82,7 @@ class Mod(commands.Cog, name="Mod"):
 	@commands.command()
 	@commands.has_role(829942684947841024) 
 	async def softban(self, ctx, id: int):
-		"""Temporarily restricts access to heaven."""
+		"""Softban a user from the server."""
 		user = await self.bot.fetch_user(id)
 
 		softban= nextcord.Embed(title=f'A moderation action has been performed!', description='', color=0x90fd05)
@@ -100,6 +101,7 @@ class Mod(commands.Cog, name="Mod"):
 	@commands.command()
 	@commands.has_role(829942684947841024)
 	async def unban(self, ctx, id: int):
+		"""Unban a user from the server."""
 		user = await self.bot.fetch_user(id)
 		await ctx.guild.unban(user)
 
@@ -118,6 +120,7 @@ class Mod(commands.Cog, name="Mod"):
 	@commands.command()
 	@commands.has_role(829942684947841024)
 	async def kick(self, ctx, id: int):
+		"""Kick a user from the server."""
 		user = await self.bot.fetch_user(id)
 		await ctx.guild.kick(user)
 
