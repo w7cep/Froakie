@@ -71,11 +71,11 @@ class NewHelpCommand(commands.MinimalHelpCommand):
                 # \u2002 = en space
                 value = "\u2002".join(f"`{prefix}{c.name}`" for c in filtered)
                 if cog and cog.description:
-                    value = f"_{cog.description}_\n{value}"
+                    value = f"{value}"
                 embed_fields.append(
                     EmbedField(name=name, value=value, inline=False)
                 )
-
+#_{cog.description}_\n
         pages = menus.ButtonMenuPages(
             source=HelpPages(self, embed_fields),
             clear_buttons_after=True,
