@@ -181,32 +181,6 @@ class Mod(commands.Cog, name="Mod"):
 			await message.delete()
 			await message.channel.send("You can't use that word here.", delete_after=10)
 
-	@commands.command(name="echo")
-	@commands.has_role(829942684947841024)
-	async def echo(self, ctx):
-		await ctx.message.delete()
-		embed = nextcord.Embed(
-			title="Please tell me what you want me to repeat!",
-			description="This request will timeout after 1 minute.",
-		)
-		sent = await ctx.send(embed=embed)
-
-		try:
-			msg = await self.bot.wait_for(
-				"message",
-				timeout=60,
-				check=lambda message: message.author == ctx.author
-				and message.channel == ctx.channel,
-			)
-			if msg:
-				await sent.delete()
-				await msg.delete()
-				await ctx.send(msg.content)
-		except asyncio.TimeoutError:
-			await sent.delete()
-			await ctx.send("Cancelling", delete_after=10)
-
-
 def setup(bot: commands.Bot):
 	bot.add_cog(Mod(bot))
 	
