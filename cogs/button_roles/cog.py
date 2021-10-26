@@ -29,7 +29,7 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 		self.__bot.persistent_views_added = True
 		print("Button views added")
 
-	@commands.command()
+	@commands.command(name="sysbot_roles", hidden=True)
 	@commands.is_owner()
 	async def sysbot_roles(self, ctx: commands.Context, message_id: str):
 		"""Starts a bot role view aka bot access role"""
@@ -37,7 +37,7 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 		message = await bot_rules_channel.fetch_message(message_id)
 		await message.edit(view=SysBotRuleView())
 
-	@commands.command()
+	@commands.command(name="add_confirm", hidden=True)
 	@commands.is_owner()
 	async def add_confirm(self, ctx: commands.Context, message_id: str):
 		"""Starts a confirm view aka default role button"""
@@ -45,7 +45,7 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 		message = await rules_channel.fetch_message(message_id)
 		await message.edit(view=ConfirmView())
 
-	@commands.command(name="rules")
+	@commands.command(name="rules", hidden=True)
 	@commands.has_permissions(administrator=True)
 	@commands.guild_only()
 	async def rules(self, ctx):
@@ -76,7 +76,7 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 		embed.set_footer(text="Bot is running v1.0.0")
 		await ctx.send(embed=embed, view=ConfirmView())
 
-	@commands.command(name="sysbot_rules")
+	@commands.command(name="sysbot_rules", hidden=True)
 	@commands.has_permissions(administrator=True)
 	@commands.guild_only()
 	async def sysbot_rules(self, ctx):
@@ -96,7 +96,7 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 		embed.set_footer(text=f"Bot is running {version}")
 		await ctx.send(embed=embed, view=SysBotRuleView())
 		  
-	@commands.command()
+	@commands.command(name="access_roles", hidden=True)
 	@commands.is_owner()
 	async def access_roles(self, ctx: commands.Context):
 		"""Starts a role view"""
@@ -117,7 +117,7 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 							 								f"**Other**: 🚻", inline=False)
 		await ctx.send(embed=embed, view=SelfRoleView())
 
-	@commands.command()
+	@commands.command(name="color_roles", hidden=True)
 	@commands.is_owner()
 	async def color_roles(self, ctx: commands.Context):
 		"""Starts a role view"""
@@ -140,7 +140,7 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 
 		await ctx.send(embed=embed, view=ColorRoleView())
 
-	@commands.command(name="add_role")
+	@commands.command(name="add_role", hidden=True)
 	@commands.has_permissions(administrator=True) #permissions
 	async def add_role(self, ctx, user : nextcord.Member, *, role : nextcord.Role):
 		'''Give role to member.'''
@@ -158,7 +158,7 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 		if isinstance(error, MissingPermissions):
 			await ctx.send('**:x: | You do not have permission to use this command!**')
    
-	@commands.command(name="sysbot_embed")
+	@commands.command(name="sysbot_embed", hidden=True)
 	@commands.has_permissions(administrator=True)
 	async def sysbot_embed(self, ctx):
 		embed=nextcord.Embed(title="__**Sysbot Access**__", 
@@ -170,6 +170,7 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 		embed.set_author(name="Greninja Mod", icon_url="https://cdn.discordapp.com/avatars/892620195342987274/cb32b40409c7df4d147c400582f939ac.webp?size=128")
 		embed.set_footer(text="Bot is running v1.0.0")  
 		await ctx.send(embed=embed)
+  
 # setup functions for bot
 def setup(bot):
 	bot.add_cog(ButtonRolesCog(bot))
