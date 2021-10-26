@@ -54,11 +54,7 @@ class Channel(commands.Cog, name="Channel"):
 		
 		self.url_regex = r"(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'\".,<>?«»“”‘’]))"
 
-	@commands.command(
-		name="purge",
-		description="A command which purges the channel it is called in",
-		usage="[amount]",
-	)
+	@commands.command(name="purge")
 	@commands.guild_only()
 	@commands.has_role(829942684947841024)
 	async def purge(self, ctx, amount=5):
@@ -78,7 +74,7 @@ class Channel(commands.Cog, name="Channel"):
 		await ctx.message.channel.purge(limit=100, check=is_me)
   
 		"""//FIXME-Fix Block and Unblock command. """
-	@commands.command()
+	@commands.command(name="unblock", hidden=True)
 	@commands.has_role(829942684947841024) 
 	async def block(self, ctx, user: Sinner=None):
 		"""
@@ -93,7 +89,7 @@ class Channel(commands.Cog, name="Channel"):
 								
 		await self.set.permissions(user, send_messages=False) # sets permissions for current channel
 	
-	@commands.command()
+	@commands.command(name="unblock", hidden=True)
 	@commands.has_role(829942684947841024) 
 	async def unblock(self, ctx, user: Sinner=None):
 		"""Unblocks a user from current channel"""
@@ -104,7 +100,7 @@ class Channel(commands.Cog, name="Channel"):
 		await self.set.permissions(user, send_messages=True) # gives back send messages permissions
 	  
 	"""//FIXME-fix lockdown command"""	
-	@commands.command()
+	@commands.command(name="lockdown", hidden=True)
 	@commands.guild_only()
 	@commands.has_role(829942684947841024)
 	@commands.bot_has_guild_permissions(manage_channels=True)
