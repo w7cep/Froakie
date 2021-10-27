@@ -30,8 +30,8 @@ class CustomCommands(commands.Cog, name="Custom_Commands"):
 		embed.set_image(url="https://cdn.discordapp.com/attachments/859634488593743892/891612213654192168/greninja_banner.jpg")
 		embed.set_footer(text=f"{ctx.author.name}", icon_url=ctx.author.avatar.url)
 		embed.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar.url)
-		embed.add_field(name="`$trade, $t`", value="```E.G.:\n$trade Scorbunny (M) @ Life Orb\nAbility: Libero\nLevel: 5\nShiny: Square\nBall: Poke Ball\nOT: FreshBot\nOTGender: Male\nTID: 035481\nSID: 0231\nEVs: 116 HP / 188 Atk / 204 Spe\nIVs: 30 SpA\nJolly Nature\n- Blaze Kick\n- Sucker Punch\n- Gunk Shot\n- High Jump Kick\n```")
-		embed.add_field(name="We all know the random mon command", value="`$ga random`\nAnd when the pool has been released, the actual number of the one you want.")
+		embed.add_field(name="`$trade, $t`", value="```E.G.:\n$trade Scorbunny (M) @ Life Orb\nAbility: Libero\nLevel: 5\nShiny: Square\nBall: Poke Ball\nOT: FreshBot\nOTGender: Male\nTID: 035481\nSID: 0231\nEVs: 116 HP / 188 Atk/ 204 Spe\nIVs: 30 SpA\nJolly Nature\n- Blaze Kick\n- Sucker Punch\n- Gunk Shot\n- High Jump Kick\n```", inline=False)
+		embed.add_field(name="We all know the random mon command", value="`$ga random`\nAnd when the pool has been released, the actual number of the one you want.", inline=False)
 		await ctx.send(embed=embed)
      
 def setup(bot: commands.Bot):
