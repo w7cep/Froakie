@@ -32,6 +32,9 @@ class CustomCommands(commands.Cog, name="Custom_Commands"):
 		embed.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar.url)
 		embed.add_field(name="`$trade, $t`", value="```E.G.:\n$trade Scorbunny (M) @ Life Orb\nAbility: Libero\nLevel: 5\nShiny: Square\nBall: Poke Ball\nOT: FreshBot\nOTGender: Male\nTID: 035481\nSID: 0231\nEVs: 116 HP / 188 Atk/ 204 Spe\nIVs: 30 SpA\nJolly Nature\n- Blaze Kick\n- Sucker Punch\n- Gunk Shot\n- High Jump Kick\n```", inline=False)
 		embed.add_field(name="__We all know the random mon command__", value="`$ga random`\nAnd when the pool has been released, the actual number of the one you want.\n`$ga ###`", inline=False)
+		embed.add_field(name="__But it can do more!__", value="Got a pesky admon and you want it fixed?\nThis will change the OT to yours. (You can trick the bot by renaming it to a website for any OT change)\n`$fixot, $fix`")
+		embed.add_field(name="Want an egg?", value="$trade egg <showdown format>\nE.G.\n$trade egg (Scorbunny) (F)\nShiny: Square\nJolly Nature\n- Tackle\n- Growl\n- Sucker Punch\n- High Jump Kick")
+		embed.add_field(name="_Reminder_", value="Always ask for eggmoves, others will be illegal (or leave em blank when you just don't care)\nPut brackets around the mon's name. ")
 		await ctx.send(embed=embed)
      
 def setup(bot: commands.Bot):
