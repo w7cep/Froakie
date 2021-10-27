@@ -13,7 +13,6 @@ class CustomCommands(commands.Cog, name="Custom_Commands"):
 	def __init__(self, bot: commands.Bot):
 		self.bot = bot
 
-	"""//TODO:gbi-Greninja SysBot Instructions command--Add in how to use a sysbot"""	
 	@commands.command(name="sysbot_instructions", aliases=["sbi","bot_instructions", "bi"]) 
 	async def sysbot_instructions(self, ctx):
 		"""A useful command that displays sysbot instructions."""
