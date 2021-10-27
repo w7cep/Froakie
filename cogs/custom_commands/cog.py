@@ -35,7 +35,13 @@ class CustomCommands(commands.Cog, name="Custom_Commands"):
 		embed.add_field(name="_Reminder_", value="Always ask for eggmoves, others will be illegal (or leave em blank when you just don't care)\nPut brackets around the mon's name. ", inline=False)
 		embed.add_field(name="__Unlimited items__", value="Need an extra Master Ball or 20 or any other item?\nThe bot will send a Delibird with your item!\n```$itemtrade <item name>\n$item <item name>\n$it <item name>```\n\nE.G.\n`$item Beast Ball`", inline=False)
 		embed.add_field(name="__Breeding Dittos__", value="```$dittotrade, $ditto,\n$dt <Stats> <Languages> <Nature>```\n\n`Stats:`\nChoosing one of these or all 3 will make that IV 0 or No Good. 6IV will always yield 31 or Best\nATK\nSPA\nSPE\n6IV\nCombinations can be made, no spaces between them.\n\n`E.G.`\nATKSPE will give you a ditto with 0 ATK & SPE\n`Language:`\nThese Locales in the games can be chosen:\nJapanese\nEnglish\nFrench\nItalian\nGerman\n\n`Nature:`\nHardy / Docile / Serious / Bashful\nQuirky / Lonely / Brave / Adamant\nNaughty / Bold / Relaxed / Impish\nLax / Modest / Mild / Quiet / Naive \nRash / Calm / Gentle / Sassy\nCareful / Timid / Hasty / Jolly\n_E.G. of the full command:_\n\n`$ditto SPE Japanese Brave`\nWill give you a 0 Speed Japanese Ditto with a Brave nature\n\n`$ditto 6IV German Timid`\nWill give you a 6IV German Ditto with a Timid nature.", inline=False)
-		await ctx.send(embed=embed)
-     
+		await ctx.send(embed=embed, ephemeral=True)
+		"""//TODO:gbr-Greninja SysBot Rules command"""
+		"""//TODO:gbi-Greninja SysBot Instructions command--Add in how to use a sysbot"""
+		"""//TODO:illegal-Illegal Pokemon"""
+		"""//TODO:rules-Rules!"""
+		"""//TODO:tci-TradeCord Instructions"""
+		"""//TODO:raid-How to request a den for Greninja Raid Bot to host."""
+		"""//TODO:invite-Permanent Invite Link"""
 def setup(bot: commands.Bot):
 	bot.add_cog(CustomCommands(bot))
