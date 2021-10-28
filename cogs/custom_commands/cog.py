@@ -108,7 +108,7 @@ class CustomCommands(commands.Cog, name="Custom_Commands"):
 										f"`$ti` - Display currently set trainer info.\n\n"
 										f"`$list <name/shinies/all/egg/ball> / $l <name/shinies/all/egg/ball>` - Displays a list of specific species or a list of shinies a user has.\n\n", inline=False)
 		embed.add_field(name="2", value=f"`$dc` - Display daycare.\n\n"
-										f"$dc w <catch id or 'all'> / $dc withdraw <catch id or 'all'>` - Withdraw a specific Pokémon from daycare, or withdraw everything.\n\n"
+										f"`$dc w <catch id or 'all'> / $dc withdraw <catch id or 'all'>` - Withdraw a specific Pokémon from daycare, or withdraw everything.\n\n"
 										f"`$dc d <catch id> / $dc deposit <catch id>` - Deposit a specific Pokémon to daycare.\n\n"
 										f"`$release <catch id> / $r <catch id>` - Release a specific Pokémon. File will be deleted.\n\n"
 										f"`$massrelease <optional species-form, cherish or shiny>/ $mr <optional species-form, cherish or shiny>` - Will release everything that's not shiny, not a Ditto, not in a Cherish Ball, not in favorites, and not in daycare. If species and/or form specified, will release just that (still obeys prior criteria). Files will be deleted.\n\n", inline=False)
@@ -128,8 +128,8 @@ class CustomCommands(commands.Cog, name="Custom_Commands"):
 										f"`$giveitem <item name>` - Will give an item for your buddy to hold. Some evolutions require held items (e.g. $giveitem ice stone).\n\n"
 										f"`$takeitem` - If your buddy is holding an item, it will remove it and place it back to your 'pouch'.\n\n", inline=False)
 		embed.add_field(name="6", value=f"`$giftitem <item name> <item count> <user mention>` - Will gift an X amount of a specified item to the mentioned user (e.g. $giftitem ice stone 5 @user).\n\n"
-										f"`$`itemlist/$il <item name or 'all'>` - Similarly to $list, it will display items in your 'pouch' (e.g. $list ice stone).\n\n"
-										f"`$dropitem/$drop <item name or 'all'> - Will remove all of the specified item, or every single item you have (e.g. $drop ice stone).\n\n"
+										f"`$itemlist/$il <item name or 'all'>` - Similarly to $list, it will display items in your 'pouch' (e.g. $list ice stone).\n\n"
+										f"`$dropitem/$drop <item name or 'all'>` - Will remove all of the specified item, or every single item you have (e.g. $drop ice stone).\n\n"
 										f"`$timezone/$tz <UTC time offset>` - Will set the UTC time offset to the specified value. Can find out your offset by subtracting the local time from standard UTC time (e.g. $tz -5).", inline=False)
 
 		embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/891852099653083186/895902400416710666/greninja-frogadier.gif")
