@@ -39,7 +39,6 @@ class CustomCommands(commands.Cog, name="Custom_Commands"):
 		embed.add_field(name="__Breeding Dittos__", value="`$dittotrade, $ditto, $dt <Stats> <Languages> <Nature>`\n\n`Stats:`\nChoosing one of these or all 3 will make that IV 0 or No Good. 6IV will always yield 31 or Best\n-ATK\n-SPA\n-SPE\n-6IV\n\nCombinations can be made, no spaces between them.\n__E.G.__\n'ATKSPE' will give you a ditto with 0 ATK & SPE\n`Language:`\nThese Locales in the games can be chosen:\n-Japanese\n-English\n-French\n-Italian\n-German\n`Nature:`\nHardy / Docile / Serious / Bashful\nQuirky / Lonely / Brave / Adamant\nNaughty / Bold / Relaxed / Impish\nLax / Modest / Mild / Quiet / Naive \nRash / Calm / Gentle / Sassy\nCareful / Timid / Hasty / Jolly\n\n__**E.G. of the full command:**__\n`$ditto ATKSPE Japanese Brave`\n-Will give you a 0 Speed Japanese Ditto with a Brave nature\n`$ditto 6IV German Timid`\n-Will give you a 6IV German Ditto with a Timid nature.", inline=False)
 		await ctx.send(embed=embed)
 
-	"""//TODO:gbr-Greninja SysBot Rules command"""
 	@commands.command(name="sysbot_rules", aliases=["sbr","bot_rules", "br"]) 
 	async def sysbot_rules(self, ctx):
 		"""A useful command that displays sysbot rules."""
@@ -57,10 +56,9 @@ class CustomCommands(commands.Cog, name="Custom_Commands"):
 		embed.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar.url)
 		await ctx.send(embed=embed)
 
-	"""//TODO:rules-Rules!"""
 	@commands.command(name="rules", aliases=["server_rules", "Rules", "sr"]) 
 	async def rules(self, ctx):
-		"""A useful command that displays sysbot instructions."""
+		"""A useful command that displays server rules."""
 		version = "v1.1.0"
 
 		embed = nextcord.Embed(
@@ -94,14 +92,43 @@ class CustomCommands(commands.Cog, name="Custom_Commands"):
 		await ctx.send(embed=embed)
 
 	"""//TODO:tci-TradeCord Instructions"""
-	'''@commands.command(name="sysbot_instructions", aliases=["sbi","bot_instructions", "bi"]) 
+	@commands.command(name="tradecord_instructions", aliases=["tci", "tc_instructions"]) 
 	async def sysbot_instructions(self, ctx):
-		"""A useful command that displays sysbot instructions."""
+		"""A useful command that displays TradeCord instructions."""
 		version = "v1.1.0"
 
 		embed = nextcord.Embed(
 			title=f"__Greninja SysBot Commands__",
-			description="__🤖 New bot, Extra commands!🤖__",
+			description=f"Commands:\n"
+						f"`$catch / $k` - Will 'catch' a random Pokémon with an optional (but highly recommended) cool down.\n"
+						f"`$tc <catch id> / $tc <link code> <catch id>` - Trade a catch. File will be moved to a backup folder just in case.\n"
+						f"`$tis` - Set custom trainer info via an attached .pk8 file. Type $tis, attach a file, send as one message. Bot will automatically set trainer info.\n"
+						f"`$ti` - Display currently set trainer info.\n"
+						f"`$list <name/shinies/all/egg/ball> / $l <name/shinies/all/egg/ball>` - Displays a list of specific species or a list of shinies a user has.\n"
+						f"`$dc` - Display daycare.\n"
+						f"$dc w <catch id or 'all'> / $dc withdraw <catch id or 'all'>` - Withdraw a specific Pokémon from daycare, or withdraw everything.\n"
+						f"`$dc d <catch id> / $dc deposit <catch id>` - Deposit a specific Pokémon to daycare.\n"
+						f"`$release <catch id> / $r <catch id>` - Release a specific Pokémon. File will be deleted.\n"
+						f"`$massrelease <optional species-form, cherish or shiny>/ $mr <optional species-form, cherish or shiny>` - Will release everything that's not shiny, not a Ditto, not in a Cherish Ball, not in favorites, and not in daycare. If species and/or form specified, will release just that (still obeys prior criteria). Files will be deleted.\n"
+						f"`$info <catch id> / $i <catch id>` - Displays a Showdown set for a specific Pokémon.\n"
+						f"`$gift <catch id> <@user> / $g <catch id> <@user>` - Gift a Pokémon to another user. If the receiving user has fewer than 10 Dex completions and hasn't registered the Pokémon being gifted, it will be registered to their Dex.\n"
+						f"`$fav` - Displays a list of favorite Pokémon.\n"
+						f"`$fav <catch id or 'clear''>` - Adds a Pokémon to favorites (or removes it if it's already added to favorites). If keyword 'clear' is entered, it will unfavorite everything. Favorite Pokémon cannot be released or mass released.\n"
+						f"`$dex <optional 'missing' parameter>` - Shows your TradeCordDex progress (catches, level), or a list of Pokémon you haven't caught yet. Whenever a full dex is completed, level is increased. Levels can be used as points for perk selection.\n"
+						f"`$perks` - Display available perks and point investment into each one.\n"
+						f"`$perks <clear, or perk and amount of points>` - $perks clear will remove all assigned points for redistribution. $perks cherishboost 5 will add 5 points (if available) to overall mystery gift roll chance.\n"
+						f"`$boost <Pokémon>` - Will boost the catch rate of a particular Pokémon, if at least one SpeciesBoost perk has been added. $boost Charizard would slightly increase the chance of Charizard appearing.\n"
+						f"`$buddy` - Will display active buddy if you have one. If the buddy is an egg, it will hatch after a little while.\n"
+						f"`$buddy <id>` - Will set the specified catch ID as your active buddy.\n"
+						f"`$buddy remove` - Will remove the active buddy.\n"
+						f"`$nickname <some text, or 'clear'>` - Will nickname an active buddy. If keyword 'clear' is used, it will remove the nickname.\n"
+						f"`$evolve <optional parameter with item name or Alcremie form>` - Will evolve your active buddy, if applicable. To use an evolution item, specify an item name. To specify an Alcremie form if evolving Milcery, type in the form (e.g. Ice Stone for a usable item, Caramel Swirl for an Alcremie form; e.g. $evolve galarica cuff to evolve a Slowpoke-Galar to Slowbro-Galar).\n"
+						f"`$giveitem <item name>` - Will give an item for your buddy to hold. Some evolutions require held items (e.g. $giveitem ice stone).\n"
+						f"`$takeitem` - If your buddy is holding an item, it will remove it and place it back to your 'pouch'.\n"
+						f"`$giftitem <item name> <item count> <user mention>` - Will gift an X amount of a specified item to the mentioned user (e.g. $giftitem ice stone 5 @user).\n"
+						f"`$`itemlist/$il <item name or 'all'>` - Similarly to $list, it will display items in your 'pouch' (e.g. $list ice stone).\n"
+						f"`$dropitem/$drop <item name or 'all'> - Will remove all of the specified item, or every single item you have (e.g. $drop ice stone).\n"
+						f"`$timezone/$tz <UTC time offset>` - Will set the UTC time offset to the specified value. Can find out your offset by subtracting the local time from standard UTC time (e.g. $tz -5).",
 			colour=ctx.author.colour,
 			timestamp=ctx.message.created_at,
 		)
@@ -109,7 +136,7 @@ class CustomCommands(commands.Cog, name="Custom_Commands"):
 		embed.set_image(url="https://cdn.discordapp.com/attachments/859634488593743892/891612213654192168/greninja_banner.jpg")
 		embed.set_footer(text=f"{ctx.author.name}", icon_url=ctx.author.avatar.url)
 		embed.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar.url)
-		await ctx.send(embed=embed)'''
+		await ctx.send(embed=embed)
 	"""//TODO:raid-How to request a den for Greninja Raid Bot to host."""
 	'''@commands.command(name="sysbot_instructions", aliases=["sbi","bot_instructions", "bi"]) 
 	async def sysbot_instructions(self, ctx):

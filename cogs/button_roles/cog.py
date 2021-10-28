@@ -37,7 +37,7 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 		message = await bot_rules_channel.fetch_message(message_id)
 		await message.edit(view=SysBotRuleView())
 
-	@commands.command(name="add_confirm", hidden=True)
+	@commands.command(name="add_confirm")
 	@commands.is_owner()
 	async def add_confirm(self, ctx: commands.Context, message_id: str):
 		"""Starts a confirm view aka default role button"""
@@ -49,7 +49,7 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 	@commands.is_owner()
 	@commands.guild_only()
 	async def server_rules_access(self, ctx):
-		"""Server Rules."""
+		"""Server Rules. with reaction role"""
 		embed= nextcord.Embed(	
             title="__**Greninja's Grotto Rules**__", 
 			description=f"\n<:Switch:865465921040678932> __**The Rules**__ <:Switch:865465921040678932>\n\n"
@@ -82,7 +82,7 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 	@commands.is_owner()
 	@commands.guild_only()
 	async def sysbot_rules_access(self, ctx):
-		"""SysBot Rules"""
+		"""SysBot Rules. with reaction role"""
 		version = "v1.1.0"
 
 		embed = nextcord.Embed(

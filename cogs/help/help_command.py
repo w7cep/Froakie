@@ -23,7 +23,7 @@ class EmbedField:
 class HelpPages(menus.ListPageSource):
     def __init__(self, help_command: "NewHelpCommand", data: List[EmbedField]):
         self._help_command = help_command
-        super().__init__(data, per_page=2)
+        super().__init__(data, per_page=4)
 
     async def format_page(self, menu: menus.Menu, entries: List[EmbedField]) -> nextcord.Embed:
         prefix = config.PREFIX
@@ -75,7 +75,7 @@ class NewHelpCommand(commands.MinimalHelpCommand):
                 embed_fields.append(
                     EmbedField(name=name, value=value, inline=False)
                 )
-#_{cog.description}_\n
+
         pages = menus.ButtonMenuPages(
             source=HelpPages(self, embed_fields),
             clear_buttons_after=True,
