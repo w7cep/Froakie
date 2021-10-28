@@ -154,17 +154,20 @@ class CustomCommands(commands.Cog, name="Custom_Commands"):
 		embed.set_image(url="https://cdn.discordapp.com/attachments/859634488593743892/891612213654192168/greninja_banner.jpg")
 		embed.set_footer(text=f"{ctx.author.name}", icon_url=ctx.author.avatar.url)
 		embed.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar.url)
+		embed.add_field(name="Step 1", value="")
+		embed.add_field(name="Step 1", value="")
+		embed.add_field(name="Step 1", value="")
+		embed.add_field(name="Step 1", value="")
+		embed.add_field(name="Step 1", value="")        
 		await ctx.send(embed=embed)'''
   
-	"""//TODO:invite-Permanent Invite Link"""
-	'''@commands.command(name="sysbot_instructions", aliases=["sbi","bot_instructions", "bi"]) 
-	async def sysbot_instructions(self, ctx):
-		"""A useful command that displays sysbot instructions."""
-		version = "v1.1.0"
 
+	@commands.command(name="server_invite") 
+	async def server_invite(self, ctx):
+		"""A useful command that displays a permanent invite link."""
 		embed = nextcord.Embed(
-			title=f"__Greninja SysBot Commands__",
-			description="__🤖 New bot, Extra commands!🤖__",
+			title="__Permanent Invite Link__",
+			description="https://discord.gg/dm7gSAT68d",
 			colour=ctx.author.colour,
 			timestamp=ctx.message.created_at,
 		)
@@ -172,7 +175,8 @@ class CustomCommands(commands.Cog, name="Custom_Commands"):
 		embed.set_image(url="https://cdn.discordapp.com/attachments/859634488593743892/891612213654192168/greninja_banner.jpg")
 		embed.set_footer(text=f"{ctx.author.name}", icon_url=ctx.author.avatar.url)
 		embed.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar.url)
-		await ctx.send(embed=embed)'''
-
+		await ctx.send(embed=embed)
+	"""//TODO:invite-invite bot to server command."""
+	"""//TODO:make the bot usable in multiple servers."""
 def setup(bot: commands.Bot):
 	bot.add_cog(CustomCommands(bot))
