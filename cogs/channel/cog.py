@@ -74,31 +74,6 @@ class Channel(commands.Cog, name="Channel"):
 			return m.author == self.bot.user
 		await ctx.message.channel.purge(limit=100, check=is_me)
   
-	@commands.command(name="block")
-	@commands.has_role(829942684947841024) 
-	async def block(self, ctx, user: Sinner=None, channel: nextcord.TextChannel = None, reason = None):
-					
-		if not user: # checks if there is user
-			return await ctx.send("You must specify a user")
-		if channel == None:
-			channel = ctx.channel
-		if reason == None:
-			reason = "no reason"
-		await channel.set_permissions(user, send_messages=False, view_channel=True, read_message_history=True) # sets permissions for current channel
-		await channel.send(f"🚫{user.mention} has been blocked in {channel.mention} 🚫 for {reason}")
-	
-	@commands.command(name="unblock")
-	@commands.has_role(829942684947841024) 
-	async def unblock(self, ctx, user: Sinner=None, channel: nextcord.TextChannel = None, reason = None):
-					
-		if not user: # checks if there is user
-			return await ctx.send("You must specify a user")
-		if channel == None:
-			channel = ctx.channel
-   
-		await channel.set_permissions(user, send_messages=None, view_channel=None, read_message_history=None) # sets permissions for current channel
-		await channel.send(f"✅{user.mention} has been unblocked in {channel.mention}✅")
-  
 	"""//FIXME-fix lockdown command"""	
 	@commands.command(name="lock")
 	@commands.has_permissions(manage_channels=True)
@@ -200,32 +175,7 @@ class Channel(commands.Cog, name="Channel"):
 		channel = channel or ctx.channel
 		await channel.delete(reason=reason)
 		await ctx.send(f"Hey man! I deleted {channel.name} for ya!")  
-	"""//TODO-Use the echo command as a base to make a tempmute command."""
-	@commands.command(name="echo")
-	@commands.has_role(829942684947841024)
-	async def echo(self, ctx):
-		"""Have the bot echo something and hide the evidence."""
-		await ctx.message.delete()
-		embed = nextcord.Embed(
-			title="Please tell me what you want me to repeat!",
-			description="This request will timeout after 1 minute.",
-		)
-		sent = await ctx.send(embed=embed)
 
-		try:
-			msg = await self.bot.wait_for(
-				"message",
-				timeout=60,
-				check=lambda message: message.author == ctx.author
-				and message.channel == ctx.channel,
-			)
-			if msg:
-				await sent.delete()
-				await msg.delete()
-				await ctx.send(msg.content)
-		except asyncio.TimeoutError:
-			await sent.delete()
-			await ctx.send("Cancelling", delete_after=10)
 	 
 def setup(bot: commands.Bot):
 	bot.add_cog(Channel(bot))
