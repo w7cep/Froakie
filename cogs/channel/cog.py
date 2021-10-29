@@ -88,8 +88,8 @@ class Channel(commands.Cog, name="Channel"):
 		if not user: # checks if there is user
 			return await ctx.send("You must specify a user")
 								
-		await self.set.permissions(user, send_messages=False) # sets permissions for current channel
-	
+		await self.set_permissions(user, send_messages=False) # sets permissions for current channel
+	'''
 	@commands.command(name="unblock", hidden=True)
 	@commands.has_role(829942684947841024) 
 	async def unblock(self, ctx, user: Sinner=None):
@@ -123,7 +123,7 @@ class Channel(commands.Cog, name="Channel"):
 			overwrites = channel.overwrites[ctx.guild.default_role]
 			overwrites.send_messages = True
 			await channel.set_permissions(ctx.guild.default_role, overwrite=overwrites)
-			await ctx.send(f"I have removed `{channel.name}` from lockdown.")
+			await ctx.send(f"I have removed `{channel.name}` from lockdown.")'''
 		 
 	@commands.Cog.listener()
 	async def on_message(self, message):
