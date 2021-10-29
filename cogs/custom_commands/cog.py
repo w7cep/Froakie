@@ -138,7 +138,6 @@ class CustomCommands(commands.Cog, name="Custom_Commands"):
 		embed.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar.url)
 		await ctx.send(embed=embed)
 
-	"""//TODO:raid-How to request a den for Greninja Raid Bot to host."""
 	@commands.command(name="raid_request_instructions", aliases=["rri"]) 
 	async def sysbot_instructions(self, ctx):
 		"""A useful command that displays raid request instructions."""
@@ -153,7 +152,7 @@ class CustomCommands(commands.Cog, name="Custom_Commands"):
 		embed.set_image(url="https://cdn.discordapp.com/attachments/859634488593743892/891612213654192168/greninja_banner.jpg")
 		embed.set_footer(text=f"{ctx.author.name}", icon_url=ctx.author.avatar.url)
 		embed.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar.url)
-		embed.add_field(name="****Step 1:**", value="Go to <#875571213844488223>", inline=False)
+		embed.add_field(name="**Step 1:**", value="Go to <#875571213844488223>", inline=False)
 		embed.add_field(name="**Step 2:**", value="Use `.suggest [suggestion]` to submit a raid request", inline=False)
 		embed.add_field(name="**Step 3:**", value="Wait for raid host to get to your suggestion", inline=False)
 		embed.add_field(name="**EXAMPLE:**", value="`.suggest Den 157`")     
