@@ -74,21 +74,22 @@ class Channel(commands.Cog, name="Channel"):
 			return m.author == self.bot.user
 		await ctx.message.channel.purge(limit=100, check=is_me)
   
-	@commands.command(name="block", hidden=True)
+	@commands.command(name="block")
 	@commands.has_role(829942684947841024) 
-	async def block(self, ctx, user: Sinner=None, channel:nextcord.TextChannel = None):
+	async def block(self, ctx, user: Sinner=None, channel: nextcord.Channel = None, reason = None):
 					
 		if not user: # checks if there is user
 			return await ctx.send("You must specify a user")
 		if channel == None:
 			channel = ctx.channel
-   
+		if reason == None:
+			reason = "no reason"
 		await channel.set_permissions(user, send_messages=False, view_channel=True, read_message_history=True) # sets permissions for current channel
-		await channel.send(f"🚫{user.mention} has been blocked in {channel.mention} 🚫")
+		await channel.send(f"🚫{user.mention} has been blocked in {channel.mention} 🚫 for {reason}")
 	
-	@commands.command(name="unblock", hidden=True)
+	@commands.command(name="unblock")
 	@commands.has_role(829942684947841024) 
-	async def unblock(self, ctx, user: Sinner=None, channel:nextcord.TextChannel = None):
+	async def unblock(self, ctx, user: Sinner=None, channel: nextcord.Channel = None, reason = None):
 					
 		if not user: # checks if there is user
 			return await ctx.send("You must specify a user")
@@ -97,7 +98,6 @@ class Channel(commands.Cog, name="Channel"):
    
 		await channel.set_permissions(user, send_messages=None, view_channel=None, read_message_history=None) # sets permissions for current channel
 		await channel.send(f"✅{user.mention} has been unblocked in {channel.mention}✅")
-	 
   
 	"""//FIXME-fix lockdown command"""	
 	'''@commands.command(name="lockdown", hidden=True)
