@@ -172,6 +172,24 @@ class Mod(commands.Cog, name="Mod"):
 		await channel.set_permissions(user, send_messages=None, view_channel=None, read_message_history=None) # sets permissions for current channel
 		await channel.send(f"✅{user.mention} has been unblocked in {channel.mention}✅")
 
+	@commands.command(name="give_role")
+	@commands.is_owner() #permissions
+	async def give_role(self, ctx, user : nextcord.Member, *, role : nextcord.Role):
+		"""Give role to member."""
+		if role.position > ctx.author.top_role.position: #if the role is above users top role it sends error
+			return await ctx.send('**:x: | That role is above your top role!**')
+		if role in user.roles:
+			await user.remove_roles(role) #removes the role if user already has
+			await ctx.send(f"Removed {role} from {user.mention}") 
+		else:
+			await user.add_roles(role) #adds role if not already has it
+			await ctx.send(f"Added {role} to {user.mention}")
+			
+	@give_role.error
+	async def role_error(self, ctx, error):
+		if isinstance(error, MissingPermissions):
+			await ctx.send('**:x: | You do not have permission to use this command!**')
+
 def setup(bot: commands.Bot):
 	bot.add_cog(Mod(bot))
 	

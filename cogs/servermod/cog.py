@@ -8,6 +8,8 @@ from nextcord.ext.commands import BadArgument
 from nextcord.ext.commands import command
 from nextcord.ext import commands
 from better_profanity import profanity
+
+profanity.load_censor_words_from_file("./data/profanity.txt")
 class ServerMod(commands.Cog, name="ServerMod"):
 	"""Greeting commands"""
 	

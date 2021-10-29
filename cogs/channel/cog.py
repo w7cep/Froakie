@@ -21,8 +21,6 @@ from db import db
 import requests
 import json
 
-profanity.load_censor_words_from_file("./data/profanity.txt")
-
 class Sinner(commands.Converter):
 	async def convert(self, ctx, argument):
 		argument = await commands.MemberConverter().convert(ctx, argument) # gets a member object
@@ -99,17 +97,6 @@ class Channel(commands.Cog, name="Channel"):
 	async def lock_error(ctx, error):
 		if isinstance(error,commands.CheckFailure):
 			await ctx.send('You do not have permission to use this command!')'''
-		 
-	@commands.Cog.listener()
-	async def on_message(self, message):
-		def _check(m):
-			return (m.author == message.author
-					and len(m.mentions)
-					and (datetime.utcnow()-m.created_at).seconds < 60)
-
-		if profanity.contains_profanity(message.content):
-			await message.delete()
-			await message.channel.send("You can't use that word here.", delete_after=10)
    
 	@commands.group(invoke_without_command=True)
 	@commands.guild_only()
