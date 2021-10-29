@@ -21,7 +21,7 @@ from db import db
 import requests
 import json
 
-class Support(commands.Cog, name="Support"):
+class TechSupport(commands.Cog, name="Support"):
 		"""Channel commands"""
 
 def __init__(self, bot: commands.Bot):
@@ -47,4 +47,4 @@ def __init__(self, bot: commands.Bot):
 		await channel.send(embed=supem)
 	 
 def setup(bot: commands.Bot):
-	bot.add_cog(Support(bot))
+	bot.add_cog(TechSupport(bot))
