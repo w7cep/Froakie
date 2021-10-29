@@ -77,7 +77,7 @@ class Channel(commands.Cog, name="Channel"):
 		"""//FIXME-Fix Block and Unblock command. """
 	@commands.command(name="block", hidden=True)
 	@commands.has_role(829942684947841024) 
-	async def block(self, ctx, user: Sinner=None):
+	async def block(self, ctx, user: Sinner=None, channel: nextcord.Channel = None):
 		"""
 		Blocks a user from chatting in current channel.
 		   
@@ -87,8 +87,9 @@ class Channel(commands.Cog, name="Channel"):
 								
 		if not user: # checks if there is user
 			return await ctx.send("You must specify a user")
-								
-		await self.set_permissions(user, send_messages=False) # sets permissions for current channel
+		channel = channel or ctx.channel
+		await channel.set_permissions(user, send_messages=False) # sets permissions for current channel
+		await channel.send(f"🚫{user.mention} has been blocked 🚫")
 	'''
 	@commands.command(name="unblock", hidden=True)
 	@commands.has_role(829942684947841024) 

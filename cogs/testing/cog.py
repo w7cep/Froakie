@@ -16,8 +16,8 @@ class Testing(commands.Cog, name="Testing"):
 '''	@commands.command(name="block")
 	async def block(self, ctx, *, user : nextcord.Member = None, reason = None):
 		
-		if user is None:
-			user = ctx.author
+		if not user: # checks if there is user
+			return await ctx.send("You must specify a user")
 
 		"""amount2 = 1
 		await ctx.channel.purge(limit=amount2)"""
