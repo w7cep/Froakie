@@ -103,7 +103,8 @@ class Channel(commands.Cog, name="Channel"):
 	@commands.command()
 	@commands.has_permissions(manage_channels=True)
 	async def lock(self, ctx, *, channel : nextcord.TextChannel=None):
-		channel = channel or ctx.channel
+		if channel == None:
+  			channel = ctx.channel
 		overwrite = ctx.channel.overwrites_for(ctx.guild.default_role)
 		overwrite.send_messages = False
 		await ctx.channel.set_permissions(ctx.guild.default_role, overwrite=overwrite)
