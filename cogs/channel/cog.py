@@ -88,7 +88,7 @@ class Channel(commands.Cog, name="Channel"):
 		if not user: # checks if there is user
 			return await ctx.send("You must specify a user")
 		channel = ctx.channel
-		await channel.set_permissions(user, send_messages=False) # sets permissions for current channel
+		await channel.set_permissions(user, send_messages=False, view_channel=True, read_message_history=True) # sets permissions for current channel
 		await channel.send(f"🚫{user.mention} has been blocked in {channel.mention} 🚫")
 	'''
 	@commands.command(name="unblock", hidden=True)
