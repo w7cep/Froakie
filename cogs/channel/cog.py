@@ -90,19 +90,25 @@ class Channel(commands.Cog, name="Channel"):
 		channel = ctx.channel
 		await channel.set_permissions(user, send_messages=False, view_channel=True, read_message_history=True) # sets permissions for current channel
 		await channel.send(f"🚫{user.mention} has been blocked in {channel.mention} 🚫")
-	'''
+	
 	@commands.command(name="unblock", hidden=True)
 	@commands.has_role(829942684947841024) 
 	async def unblock(self, ctx, user: Sinner=None):
-		"""Unblocks a user from current channel"""
+		"""
+		Unblocks a user from chatting in current channel.
+		   
+		Similar to mute but instead of restricting access
+		to all channels it restricts in current channel.
+		"""
 								
 		if not user: # checks if there is user
 			return await ctx.send("You must specify a user")
-		
-		await self.set.permissions(user, send_messages=True) # gives back send messages permissions
+		channel = ctx.channel
+		await channel.set_permissions(user, send_messages=True, view_channel=True, read_message_history=True) # sets permissions for current channel
+		await channel.send(f"✅{user.mention} has been unblocked in {channel.mention}✅")
 	  
 	"""//FIXME-fix lockdown command"""	
-	@commands.command(name="lockdown", hidden=True)
+	'''@commands.command(name="lockdown", hidden=True)
 	@commands.guild_only()
 	@commands.has_role(829942684947841024)
 	@commands.bot_has_guild_permissions(manage_channels=True)
