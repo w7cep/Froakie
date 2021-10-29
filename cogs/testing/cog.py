@@ -32,7 +32,7 @@ class Testing(commands.Cog, name="Testing"):
      
 		suggestion_channel = await ctx.guild.fetch_channel(config.SUGGESTION_CHANNEL_ID)
   
-		if ctx.channel == suggestion_channel:   
+		if ctx.channel.id == 875571213844488223:   
 			user = ctx.author
 			supem = nextcord.Embed(title=f"{user} requested.", description=f"{reason}", color=0x00ff00)
 			supem.set_thumbnail(url="https://cdn.discordapp.com/attachments/891852099653083186/895902400416710666/greninja-frogadier.gif")
