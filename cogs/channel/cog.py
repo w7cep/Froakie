@@ -76,7 +76,7 @@ class Channel(commands.Cog, name="Channel"):
   
 	@commands.command(name="block", hidden=True)
 	@commands.has_role(829942684947841024) 
-	async def block(self, ctx, user: Sinner=None, channel: nextcord.Channel = None):
+	async def block(self, ctx, user: Sinner=None, channel:nextcord.TextChannel = None):
 					
 		if not user: # checks if there is user
 			return await ctx.send("You must specify a user")
@@ -88,7 +88,7 @@ class Channel(commands.Cog, name="Channel"):
 	
 	@commands.command(name="unblock", hidden=True)
 	@commands.has_role(829942684947841024) 
-	async def unblock(self, ctx, user: Sinner=None, channel: nextcord.Channel = None):
+	async def unblock(self, ctx, user: Sinner=None, channel:nextcord.TextChannel = None):
 					
 		if not user: # checks if there is user
 			return await ctx.send("You must specify a user")
