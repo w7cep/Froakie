@@ -118,7 +118,7 @@ class Channel(commands.Cog, name="Channel"):
 			channel = ctx.channel
    
 		await channel.set_permissions(ctx.guild.default_role, send_messages=None, read_messages=None)
-		await channel.send(f"{channel.mention} has been locked 🔒")
+		await channel.send(f"{channel.mention} has been unlocked 🔓")
   
 	'''	@lock.error
 	async def lock_error(ctx, error):

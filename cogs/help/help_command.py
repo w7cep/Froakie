@@ -23,7 +23,7 @@ class EmbedField:
 class HelpPages(menus.ListPageSource):
     def __init__(self, help_command: "NewHelpCommand", data: List[EmbedField]):
         self._help_command = help_command
-        super().__init__(data, per_page=4)
+        super().__init__(data, per_page=2)
 
     async def format_page(self, menu: menus.Menu, entries: List[EmbedField]) -> nextcord.Embed:
         prefix = config.PREFIX
