@@ -13,7 +13,7 @@ class CustomCommands(commands.Cog, name="Custom_Commands"):
 	def __init__(self, bot: commands.Bot):
 		self.bot = bot
 
-	@commands.command(name="sysbot_instructions", aliases=["sbi","bot_instructions", "bi"]) 
+	@commands.command(name="sysbot_instructions", aliases=["sbi","bot_instructions", "bi"], hidden=True) 
 	async def sysbot_instructions(self, ctx):
 		"""A useful command that displays sysbot instructions."""
 		version = "v1.1.0"
@@ -39,7 +39,7 @@ class CustomCommands(commands.Cog, name="Custom_Commands"):
 		embed.add_field(name="__Breeding Dittos__", value="`$dittotrade, $ditto, $dt <Stats> <Languages> <Nature>`\n\n`Stats:`\nChoosing one of these or all 3 will make that IV 0 or No Good. 6IV will always yield 31 or Best\n-ATK\n-SPA\n-SPE\n-6IV\n\nCombinations can be made, no spaces between them.\n__E.G.__\n'ATKSPE' will give you a ditto with 0 ATK & SPE\n`Language:`\nThese Locales in the games can be chosen:\n-Japanese\n-English\n-French\n-Italian\n-German\n`Nature:`\nHardy / Docile / Serious / Bashful\nQuirky / Lonely / Brave / Adamant\nNaughty / Bold / Relaxed / Impish\nLax / Modest / Mild / Quiet / Naive \nRash / Calm / Gentle / Sassy\nCareful / Timid / Hasty / Jolly\n\n__**E.G. of the full command:**__\n`$ditto ATKSPE Japanese Brave`\n-Will give you a 0 Speed Japanese Ditto with a Brave nature\n`$ditto 6IV German Timid`\n-Will give you a 6IV German Ditto with a Timid nature.", inline=False)
 		await ctx.send(embed=embed)
 
-	@commands.command(name="sysbot_rules", aliases=["sbr","bot_rules", "br"]) 
+	@commands.command(name="sysbot_rules", aliases=["sbr","bot_rules", "br"], hidden=True) 
 	async def sysbot_rules(self, ctx):
 		"""A useful command that displays sysbot rules."""
 		version = "v1.1.0"
@@ -56,7 +56,7 @@ class CustomCommands(commands.Cog, name="Custom_Commands"):
 		embed.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar.url)
 		await ctx.send(embed=embed)
 
-	@commands.command(name="rules", aliases=["server_rules", "Rules", "sr"]) 
+	@commands.command(name="rules", aliases=["server_rules", "Rules", "sr"], hidden=True) 
 	async def rules(self, ctx):
 		"""A useful command that displays server rules."""
 		version = "v1.1.0"
@@ -91,7 +91,7 @@ class CustomCommands(commands.Cog, name="Custom_Commands"):
 		embed.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar.url)
 		await ctx.send(embed=embed)
 
-	@commands.command(name="tradecord_instructions", aliases=["tci", "tc_instructions"]) 
+	@commands.command(name="tradecord_instructions", aliases=["tci", "tc_instructions"], hidden=True) 
 	async def sysbot_instructions(self, ctx):
 		"""A useful command that displays TradeCord instructions."""
 		version = "v1.1.0"
@@ -138,7 +138,7 @@ class CustomCommands(commands.Cog, name="Custom_Commands"):
 		embed.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar.url)
 		await ctx.send(embed=embed)
 
-	@commands.command(name="raid_request_instructions", aliases=["rri"]) 
+	@commands.command(name="raid_request_instructions", aliases=["rri"], hidden=True) 
 	async def sysbot_instructions(self, ctx):
 		"""A useful command that displays raid request instructions."""
 		version = "v1.1.0"

@@ -136,11 +136,10 @@ class Information(commands.Cog, name="Information"):
 		embed.add_field(name="Channel is nsfw?", value=channel.is_nsfw(), inline=False)
 		embed.add_field(name="Channel is news?", value=channel.is_news(), inline=False)
 		embed.add_field(name="Channel Creation Time", value=channel.created_at, inline=False)
-		#embed.add_field(name="Channel Permissions Synced", value=channel.permissions_synced, inline=False)
 		embed.add_field(name="Channel Hash", value=hash(channel), inline=False)
-
+		#FIXMEembed.add_field(name="Channel Permissions Synced", value=channel.permissions_synced, inline=False)
 		await ctx.send(embed=embed)
-		"""FIXME-figure out how to view if channel perms are synced."""
+		
 
 def setup(bot: commands.Bot):
 	bot.add_cog(Information(bot))        

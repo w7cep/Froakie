@@ -70,7 +70,6 @@ class ServerMod(commands.Cog, name="ServerMod"):
 			embed.set_author(name=f"Greninja Mod", icon_url="https://cdn.discordapp.com/avatars/892620195342987274/cb32b40409c7df4d147c400582f939ac.webp?size=128")
 		await channel.send(embed=embed)
 
-	"""//TODO-Use the echo command as a base to make a tempmute command."""
 	@commands.command(name="echo")
 	@commands.has_role(829942684947841024)
 	async def echo(self, ctx):

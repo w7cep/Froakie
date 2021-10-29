@@ -130,8 +130,6 @@ class Mod(commands.Cog, name="Mod"):
 		kick.add_field(name='Action Performed:', value='`Kick`', inline=True)
 		kick.set_author(name=f'{ctx.guild}', icon_url=ctx.guild.icon.url)
 		kick.set_thumbnail(url=user.avatar.url)
-		#unban.timestamp = datetime.datetime.utcnow()
-
 		await ctx.send(embed=kick)
  
 	@commands.command()
@@ -146,7 +144,9 @@ class Mod(commands.Cog, name="Mod"):
 		"""Unmutes a muted user"""
 		await user.remove_roles(nextcord.utils.get(ctx.guild.roles, name="Muted")) # removes muted role
 		await ctx.send(f"{user.mention} has been unmuted")
-
+  
+	# TODO-Make temp_mute command
+	
 	@commands.command(name="block")
 	@commands.has_role(829942684947841024) 
 	async def block(self, ctx, user: Sinner=None, channel: nextcord.TextChannel = None, reason = None):

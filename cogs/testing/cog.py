@@ -24,7 +24,7 @@ class Testing(commands.Cog, name="Testing"):
 	def __init__(self, bot: commands.Bot):
 		self.bot = bot
 	
-	@commands.command(name="raid_request")
+	@commands.command(name="raid_request", hidden=True)
 	@commands.guild_only()
 	@commands.has_role(829942684947841024)
 	@commands.bot_has_guild_permissions(manage_channels=True)
@@ -32,7 +32,7 @@ class Testing(commands.Cog, name="Testing"):
      
 		suggestion_channel = await ctx.guild.fetch_channel(config.SUGGESTION_CHANNEL_ID)
 		if reason is None:
-			reason = "no reason"
+			await ctx.send("You must suggest a den number!")
 		if ctx.channel.id == 875571213844488223:   
 			user = ctx.author
 			supem = nextcord.Embed(title=f"{user} REQUESTED:", description=f"**{reason}**", color=0x00ff00)
