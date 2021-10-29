@@ -100,17 +100,21 @@ class Channel(commands.Cog, name="Channel"):
 		await channel.send(f"✅{user.mention} has been unblocked in {channel.mention}✅")
   
 	"""//FIXME-fix lockdown command"""	
-	@commands.command(pass_context=True)
+	@commands.command(name="lock")
 	@commands.has_permissions(manage_channels=True)
-	async def lock(ctx, channel : nextcord.TextChannel=None):
-		channel = channel or ctx.channel
-		await channel.set_permissions(ctx.guild.default_role, send_messages=False)
-		await ctx.send('Channel locked.')
+	async def lock(self, ctx, *, channel: nextcord.TextChannel = None,reason = None):
+
+		if channel == None:
+			channel = ctx.channel
+   
+		await channel.set_permissions(ctx.guild.default_role, send_messages=False, read_messages=False)
+		await channel.send(f"{channel.mention} has been locked 🔒")
+
   
-	@lock.error
+	'''	@lock.error
 	async def lock_error(ctx, error):
 		if isinstance(error,commands.CheckFailure):
-			await ctx.send('You do not have permission to use this command!')
+			await ctx.send('You do not have permission to use this command!')'''
 		 
 	@commands.Cog.listener()
 	async def on_message(self, message):
