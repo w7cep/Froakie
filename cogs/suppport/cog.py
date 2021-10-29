@@ -27,7 +27,7 @@ class Support(commands.Cog, name="Support"):
 def __init__(self, bot: commands.Bot):
 	self.bot = bot
 
-	@commands.command()
+	@commands.command(name="support")
 	async def support(self, ctx, *, reason = None):
 		guildid = ctx.guild.id
 		guild = ctx.guild
