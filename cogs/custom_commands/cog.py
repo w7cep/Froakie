@@ -139,14 +139,13 @@ class CustomCommands(commands.Cog, name="Custom_Commands"):
 		await ctx.send(embed=embed)
 
 	"""//TODO:raid-How to request a den for Greninja Raid Bot to host."""
-	'''@commands.command(name="sysbot_instructions", aliases=["sbi","bot_instructions", "bi"]) 
+	@commands.command(name="raid_request_instructions", aliases=["rri"]) 
 	async def sysbot_instructions(self, ctx):
-		"""A useful command that displays sysbot instructions."""
+		"""A useful command that displays raid request instructions."""
 		version = "v1.1.0"
 
 		embed = nextcord.Embed(
-			title=f"__Greninja SysBot Commands__",
-			description="__🤖 New bot, Extra commands!🤖__",
+			title="__**Raid Request Intructions**__",
 			colour=ctx.author.colour,
 			timestamp=ctx.message.created_at,
 		)
@@ -154,14 +153,12 @@ class CustomCommands(commands.Cog, name="Custom_Commands"):
 		embed.set_image(url="https://cdn.discordapp.com/attachments/859634488593743892/891612213654192168/greninja_banner.jpg")
 		embed.set_footer(text=f"{ctx.author.name}", icon_url=ctx.author.avatar.url)
 		embed.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar.url)
-		embed.add_field(name="Step 1", value="")
-		embed.add_field(name="Step 1", value="")
-		embed.add_field(name="Step 1", value="")
-		embed.add_field(name="Step 1", value="")
-		embed.add_field(name="Step 1", value="")        
-		await ctx.send(embed=embed)'''
+		embed.add_field(name="****Step 1:**", value="Go to <#875571213844488223>")
+		embed.add_field(name="**Step 2:**", value="Use `.suggest [suggestion]` to submit a raid request")
+		embed.add_field(name="**Step 3:**", value="Wait for raid host to get to your suggestion")
+		embed.add_field(name="**EXAMPLE:**", value="`.suggest Den 157`")     
+		await ctx.send(embed=embed)
   
-
 	@commands.command(name="server_invite") 
 	async def server_invite(self, ctx):
 		"""A useful command that displays a permanent invite link."""
@@ -176,7 +173,6 @@ class CustomCommands(commands.Cog, name="Custom_Commands"):
 		embed.set_footer(text=f"{ctx.author.name}", icon_url=ctx.author.avatar.url)
 		embed.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar.url)
 		await ctx.send(embed=embed)
-	"""//TODO:invite-invite bot to server command."""
-	"""//TODO:make the bot usable in multiple servers."""
+
 def setup(bot: commands.Bot):
 	bot.add_cog(CustomCommands(bot))
