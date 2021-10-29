@@ -100,7 +100,7 @@ class Channel(commands.Cog, name="Channel"):
 		await channel.send(f"✅{user.mention} has been unblocked in {channel.mention}✅")
   
 	"""//FIXME-fix lockdown command"""	
-	'''@commands.command(name="lockdown", hidden=True)
+	@commands.command(name="lockdown", hidden=True)
 	@commands.guild_only()
 	@commands.has_role(829942684947841024)
 	@commands.bot_has_guild_permissions(manage_channels=True)
@@ -122,7 +122,7 @@ class Channel(commands.Cog, name="Channel"):
 			overwrites = channel.overwrites[ctx.guild.default_role]
 			overwrites.send_messages = True
 			await channel.set_permissions(ctx.guild.default_role, overwrite=overwrites)
-			await ctx.send(f"I have removed `{channel.name}` from lockdown.")'''
+			await ctx.send(f"I have removed `{channel.name}` from lockdown.")
 		 
 	@commands.Cog.listener()
 	async def on_message(self, message):
