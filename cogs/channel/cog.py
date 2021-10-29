@@ -64,7 +64,7 @@ class Channel(commands.Cog, name="Channel"):
 			title=f"{ctx.author.name} purged: {ctx.channel.name}",
 			description=f"{amount} messages were cleared",
 		)
-		await ctx.send(embed=embed, delete_after=15)
+		await ctx.send(embed=embed, delete_after=5)
 
 	@commands.command(name="clean")
 	@commands.has_role(829942684947841024)
@@ -104,7 +104,7 @@ class Channel(commands.Cog, name="Channel"):
 		if not user: # checks if there is user
 			return await ctx.send("You must specify a user")
 		channel = ctx.channel
-		await channel.set_permissions(user, send_messages=True, view_channel=True, read_message_history=True) # sets permissions for current channel
+		await channel.set_permissions(user, send_messages=None, view_channel=None, read_message_history=None) # sets permissions for current channel
 		await channel.send(f"✅{user.mention} has been unblocked in {channel.mention}✅")
 	  
 	"""//FIXME-fix lockdown command"""	
