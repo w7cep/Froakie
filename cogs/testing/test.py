@@ -21,17 +21,15 @@ class Testing(commands.Cog, name="Testing"):
 	def __init__(self, bot: commands.Bot):
 		self.bot = bot
 	
-	@commands.command(name="lockdown", hidden=True)
+@commands.command(name="lockdown", hidden=True)
 	@commands.guild_only()
 	@commands.has_role(829942684947841024)
 	@commands.bot_has_guild_permissions(manage_channels=True)
 	async def lockdown(self, ctx, channel: nextcord.TextChannel=None):
 		channel = channel or ctx.channel
 
-		if ctx.guild.default_role(send_messages=True):
-			overwrites = {
-			ctx.guild.default_role: nextcord.PermissionOverwrite(send_messages=False)
-			}
+		if ctx.guild.default_role not in channel.overwrites:
+			overwrites = ctx.channel.overwrites_for(ctx.guild.default_role)overwrite.send_messages = False
 			await channel.edit(overwrites=overwrites)
 			await ctx.send(f"I have put `{channel.name}` on lockdown.")
 		elif channel.overwrites[ctx.guild.default_role].send_messages == True or channel.overwrites[ctx.guild.default_role].send_messages == None:
