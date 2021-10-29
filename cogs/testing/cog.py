@@ -1,6 +1,8 @@
+import asyncio
 import random
 from typing import Optional
-import asyncio
+
+import config
 import nextcord
 from aiohttp import request
 from nextcord import Embed, Member
@@ -49,10 +51,10 @@ class Testing(commands.Cog, name="Testing"):
 			mute_time = "120s"
 		if reason == None:
 			reason = "no reason"
-  		if not user:
+		if not user:
 			await ctx.send("Who do you want me to mute?")
 			return
-  		role = nextcord.utils.get(ctx.guild.roles, name="Muted") # retrieves muted role returns none if there isn't 
+		role = nextcord.utils.get(ctx.guild.roles, name="Muted") # retrieves muted role returns none if there isn't 
 		await user.add_roles(role) # adds already existing muted role
 		await ctx.send(f"{user.mention} has been muted for {reason}")
 
