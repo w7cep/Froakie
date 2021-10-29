@@ -28,10 +28,11 @@ class Testing(commands.Cog, name="Testing"):
 	@commands.guild_only()
 	@commands.has_role(829942684947841024)
 	@commands.bot_has_guild_permissions(manage_channels=True)
-	async def raid_request(self, ctx, reason= str):
+	async def raid_request(self, ctx, reason = None):
      
 		suggestion_channel = await ctx.guild.fetch_channel(config.SUGGESTION_CHANNEL_ID)
-  
+		if reason is None:
+			reason = "no reason"
 		if ctx.channel.id == 875571213844488223:   
 			user = ctx.author
 			supem = nextcord.Embed(title=f"{user} REQUESTED:", description=f"**{reason}**", color=0x00ff00)
@@ -44,22 +45,6 @@ class Testing(commands.Cog, name="Testing"):
    
 		elif ctx.channel.id != 875571213844488223:
 			await ctx.send("❌ You can't use this command here!")
-
-	@commands.command()
-	@commands.has_role(829942684947841024) 
-	async def temp_mute(ctx, user: nextcord.Member=None, mute_time: int = None, reason = None):
-		if reason == None:
-			reason = "no reason"
-		if not user:
-			await ctx.send("Who do you want me to mute?")
-			return
-		role = nextcord.utils.get(ctx.guild.roles, name="Muted") # retrieves muted role returns none if there isn't 
-		await user.add_roles(role) # adds already existing muted role
-		await ctx.send(f"{user.mention} has been muted for {reason}")
-
-		await asyncio.sleep(mute_time)
-		await user.remove_roles(role)
-		await ctx.send("ok times up")
  
 def setup(bot: commands.Bot):
 	bot.add_cog(Testing(bot))
