@@ -227,7 +227,7 @@ class Channel(commands.Cog, name="Channel"):
 			await sent.delete()
 			await ctx.send("Cancelling", delete_after=10)
 
-	@command()
+	@commands.command()
 	async def support(self, ctx, *, reason = None):
 		guildid = ctx.guild.id
 		guild = ctx.guild
