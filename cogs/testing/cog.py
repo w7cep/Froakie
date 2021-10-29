@@ -29,8 +29,10 @@ class Testing(commands.Cog, name="Testing"):
 	@commands.has_role(829942684947841024)
 	@commands.bot_has_guild_permissions(manage_channels=True)
 	async def raid_request(self, ctx, reason = None):
-		if ctx.channel ==  875571213844488223:
-			suggestion_channel = await ctx.guild.fetch_channel(config.SUGGESTION_CHANNEL_ID)
+     
+		suggestion_channel = await ctx.guild.fetch_channel(config.SUGGESTION_CHANNEL_ID)
+  
+		if ctx.channel == suggestion_channel:   
 			user = ctx.author
 			supem = nextcord.Embed(title=f"{user} requested.", description=f"{reason}", color=0x00ff00)
 			supem.set_thumbnail(url="https://cdn.discordapp.com/attachments/891852099653083186/895902400416710666/greninja-frogadier.gif")
@@ -39,14 +41,13 @@ class Testing(commands.Cog, name="Testing"):
 			supem.set_author(name=f"Greninja Mod", icon_url="https://cdn.discordapp.com/avatars/892620195342987274/cb32b40409c7df4d147c400582f939ac.webp?size=128")
 			supem.add_field(name=f"Thanks for the suggestion!", value="Staff will get to your suggestion soon...")
 			await suggestion_channel.send(embed=supem)
+   
 		elif ctx.channel.id != 875571213844488223:
 			await ctx.send("❌ You can't use this command here!")
 
 	@commands.command()
 	@commands.has_role(829942684947841024) 
 	async def temp_mute(ctx, user: nextcord.Member=None, mute_time: int = None, reason = None):
-		if mute_time == None:
-			mute_time = "120"
 		if reason == None:
 			reason = "no reason"
 		if not user:
