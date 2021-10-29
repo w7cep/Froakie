@@ -110,6 +110,15 @@ class Channel(commands.Cog, name="Channel"):
 		await channel.set_permissions(ctx.guild.default_role, send_messages=False, read_messages=False)
 		await channel.send(f"{channel.mention} has been locked 🔒")
 
+	@commands.command(name="unlock")
+	@commands.has_permissions(manage_channels=True)
+	async def unlock(self, ctx, *, channel: nextcord.TextChannel = None,reason = None):
+
+		if channel == None:
+			channel = ctx.channel
+   
+		await channel.set_permissions(ctx.guild.default_role, send_messages=None, read_messages=None)
+		await channel.send(f"{channel.mention} has been locked 🔒")
   
 	'''	@lock.error
 	async def lock_error(ctx, error):
