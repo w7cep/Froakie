@@ -1,6 +1,6 @@
 import random
 from typing import Optional
-
+import asyncio
 import nextcord
 from aiohttp import request
 from nextcord import Embed, Member
@@ -41,7 +41,25 @@ class Testing(commands.Cog, name="Testing"):
 			await suggestion_channel.send(embed=supem)
 		elif ctx.channel.id != 875571213844488223:
 			await ctx.send("❌ You can't use this command here!")
-  
+
+	@commands.command()
+	@commands.has_role(829942684947841024) 
+	async def temp_mute(ctx, user: nextcord.Member=None, mute_time: int = None, reason = None):
+		if mute_time == None:
+			mute_time = "120s"
+		if reason == None:
+			reason = "no reason"
+  		if not user:
+			await ctx.send("Who do you want me to mute?")
+			return
+  		role = nextcord.utils.get(ctx.guild.roles, name="Muted") # retrieves muted role returns none if there isn't 
+		await user.add_roles(role) # adds already existing muted role
+		await ctx.send(f"{user.mention} has been muted for {reason}")
+
+		await asyncio.sleep(mute_time)
+		await user.remove_roles(role)
+		await ctx.send("ok times up")
+ 
 def setup(bot: commands.Bot):
 	bot.add_cog(Testing(bot))
 

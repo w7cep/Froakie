@@ -71,8 +71,7 @@ class Channel(commands.Cog, name="Channel"):
 		def is_me(m):
 			return m.author == self.bot.user
 		await ctx.message.channel.purge(limit=100, check=is_me)
-  
-	"""//FIXME-fix lockdown command"""	
+  	
 	@commands.command(name="lock")
 	@commands.has_permissions(manage_channels=True)
 	async def lock(self, ctx, *, channel: nextcord.TextChannel = None,reason = None):
