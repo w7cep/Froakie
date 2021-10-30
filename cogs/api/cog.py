@@ -1,6 +1,6 @@
 import nextcord
 from aiohttp import ClientSession
-from discord.ext import commands, tasks
+from nextcord.ext import commands, tasks
 
 
 class API(commands.Cog, name="API"):
