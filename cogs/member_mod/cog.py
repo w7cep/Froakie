@@ -150,7 +150,7 @@ class Mod(commands.Cog, name="Mod"):
 		await user.remove_roles(nextcord.utils.get(ctx.guild.roles, name="Muted")) # removes muted role
 		await ctx.send(f"{user.mention} has been unmuted")
   
-	# TODO-Make temp_mute command
+	# TODO Make: temp_mute command
 	
 	@commands.command(name="block")
 	@commands.has_role(829942684947841024) 
