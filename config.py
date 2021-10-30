@@ -14,7 +14,7 @@ GUILD_ID = int(os.getenv("GUILD_ID", ""))
 WATCHING_STATUS = "for infringements"
 
 MUTED_ROLE_NAME = "Muted"
-MOD_LOG_CHANNEL_NAME = "greninja-mod-server-log"
+MOD_LOG_CHANNEL_NAME = "greninja-mod-logs"
 
 
 MODLOG_COLORS = {"BAN": 0xeb4034, "MUTE": 0xeda239, "UNMUTE": 0x56c470, "UNBAN": 0x4fb09e, "KICK": 0x559ced}
@@ -26,7 +26,7 @@ BOT_LOG_CHANNEL_ID = int(os.getenv("BOT_LOG_CHANNEL_ID", ""))
 BOT_RULES_CHANNEL_ID = int(os.getenv("BOT_RULES_CHANNEL_ID", ""))
 OUTRO_CHANNEL_ID = int(os.getenv("OUTRO_CHANNEL_ID", ""))
 SUGGESTION_CHANNEL_ID = int(os.getenv("SUGGESTION_CHANNEL_ID", ""))
-MOD_LOG_CHANNEL_NAME = int(os.getenv("MOD_LOG_CHANNEL_NAME", ""))
+
 # Discord Role IDs
 FROGADIER_ROLE_ID = int(os.getenv("FROGADIER_ROLE_ID", ""))
 TRADECORD_ROLE_ID = int(os.getenv("TRADECORD_ROLE_ID", ""))
