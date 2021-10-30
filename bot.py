@@ -6,18 +6,12 @@ import nextcord.ext
 from nextcord.ext import commands
 
 import config
-from config import BOT_TOKEN
-
-from dotenv import load_dotenv
 
 def main():
     # allows privledged intents for monitoring members joining, roles editing, and role assignments
     intents = nextcord.Intents.all()
 
-
     activity = nextcord.Activity(type=nextcord.ActivityType.listening, name=f"{config.PREFIX}help")
-
-    load_dotenv()
 
     bot = commands.Bot(command_prefix=config.PREFIX, intents=intents, activity=activity)
 
@@ -27,7 +21,7 @@ def main():
     @bot.event
     async def on_ready():
         print(f"{bot.user.name} has connected to Discord.")
-
+        
     # load all cogs
     for folder in os.listdir("cogs"):
         if os.path.exists(os.path.join("cogs", folder, "cog.py")):
@@ -39,7 +33,7 @@ def main():
     bot.loop.create_task(startup())
 
     # run the bot
-    bot.run(os.getenv('BOT_TOKEN'))
+    bot.run(config.BOT_TOKEN)
 
 if __name__ == "__main__":
     main()
