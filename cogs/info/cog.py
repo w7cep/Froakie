@@ -46,6 +46,11 @@ class Information(commands.Cog, name="Information"):
 		url: str = f"https://wikipedia.org/wiki/{msg}"
 		await ctx.send(f"Here : {url}")
 
+	@commands.command(name="ping")
+	async def ping(self, ctx: commands.Context):
+		"""Checks for a response from the bot"""
+		await ctx.send(f"Pong! (Latency: {round(self.bot.latency * 1000)}ms)")
+
 def setup(bot: commands.Bot):
 	bot.add_cog(Information(bot))        
 		

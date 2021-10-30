@@ -58,7 +58,7 @@ class Mod(commands.Cog, name="Mod"):
 		if isinstance(error, commands.BadArgument):
 				await ctx.send(error)
 		
-	@commands.command()
+	@commands.command(name="ban")
 	@commands.has_role(829942684947841024)
 	async def ban(self, ctx, id: int):
 		"""Ban a user from the server."""
@@ -78,7 +78,7 @@ class Mod(commands.Cog, name="Mod"):
 
 		await ctx.send(embed=ban)
 
-	@commands.command()
+	@commands.command(name="softban")
 	@commands.has_role(829942684947841024) 
 	async def softban(self, ctx, id: int):
 		"""Softban a user from the server."""
@@ -98,7 +98,7 @@ class Mod(commands.Cog, name="Mod"):
 		await ctx.guild.unban(user)
 		await ctx.send(embed=softban)
 	
-	@commands.command()
+	@commands.command(name="unban")
 	@commands.has_role(829942684947841024)
 	async def unban(self, ctx, id: int):
 		"""Unban a user from the server."""
@@ -118,7 +118,7 @@ class Mod(commands.Cog, name="Mod"):
 
 		await ctx.send(embed=unban)
 
-	@commands.command()
+	@commands.command(name="kick")
 	@commands.has_role(829942684947841024)
 	async def kick(self, ctx, id: int):
 		"""Kick a user from the server."""
@@ -137,13 +137,13 @@ class Mod(commands.Cog, name="Mod"):
 		kick.set_footer(text=f"{ctx.author.name}", icon_url=ctx.author.avatar.url)
 		await ctx.send(embed=kick)
  
-	@commands.command()
+	@commands.command(name="mute")
 	@commands.has_role(829942684947841024) 
 	async def mute(self, ctx, user: Sinner, reason=None):
 		"""Gives them hell."""
 		await mute(ctx, user, reason or "being sus") # uses the mute function
 		
-	@commands.command()
+	@commands.command(name="unmute")
 	@commands.has_role(829942684947841024)
 	async def unmute(self, ctx, user: Redeemed):
 		"""Unmutes a muted user"""
@@ -196,14 +196,14 @@ class Mod(commands.Cog, name="Mod"):
 			await ctx.send('**:x: | You do not have permission to use this command!**')
 
   
-	@commands.command(name="memberinfo", aliases=["mi"]) 
+	@commands.command(name="userinfo", aliases=["ui"]) 
 	@commands.has_role(829942684947841024)
 	@commands.guild_only()
 	async def memberinfo(self, ctx, *, user : nextcord.Member = None):
 		
 		"""
 		Get information about you, or a specified user.
-		`$$mi <user>`
+		`$$ui <user>`
 		`user`: The user who you want information about. Can be an ID, mention or name.
 		"""
 

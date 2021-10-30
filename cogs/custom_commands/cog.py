@@ -158,7 +158,7 @@ class CustomCommands(commands.Cog, name="Custom_Commands"):
 		embed.add_field(name="**EXAMPLE:**", value="`.suggest Den 157`")     
 		await ctx.send(embed=embed)
   
-	@commands.command(name="server_invite") 
+	@commands.command(name="server_invite", hidden=True) 
 	async def server_invite(self, ctx):
 		"""A useful command that displays a permanent invite link."""
 		embed = nextcord.Embed(
