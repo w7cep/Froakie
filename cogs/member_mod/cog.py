@@ -177,7 +177,7 @@ class Mod(commands.Cog, name="Mod"):
 		await channel.set_permissions(user, send_messages=None, view_channel=None, read_message_history=None) # sets permissions for current channel
 		await channel.send(f"✅{user.mention} has been unblocked in {channel.mention}✅")
 
-	@commands.command(name="give_role")
+	@commands.command(name="addrole")
 	@commands.is_owner() #permissions
 	async def give_role(self, ctx, user : nextcord.Member, *, role : nextcord.Role):
 		"""Give role to member."""
