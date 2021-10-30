@@ -4,20 +4,13 @@ from dotenv.main import load_dotenv
 load_dotenv()
 
 # Bot setup
-PREFIX = "!"
-BOT_NAME = "Greninja Mod"
+PREFIX = os.getenv("PREFIX", "")
+BOT_NAME = os.getenv("BOT_NAME", "")
 BOT_TOKEN = os.getenv("BOT_TOKEN", "")
 
 # Discord Guild ID
 GUILD_ID = int(os.getenv("GUILD_ID", ""))
 
-WATCHING_STATUS = "for infringements"
-
-MUTED_ROLE_NAME = "Muted"
-MOD_LOG_CHANNEL_NAME = "greninja-mod-logs"
-
-
-MODLOG_COLORS = {"BAN": 0xeb4034, "MUTE": 0xeda239, "UNMUTE": 0x56c470, "UNBAN": 0x4fb09e, "KICK": 0x559ced}
 
 # Discord Channel IDs
 INTRO_CHANNEL_ID = int(os.getenv("INTRO_CHANNEL_ID", ""))
@@ -51,4 +44,5 @@ BOT_BAN_ROLE_ID = int(os.getenv("BOT_BAN_ROLE_ID"))
 
 # Discord Message IDs#
 RULES_MESSAGE_ID = int(os.getenv("RULES_MESSAGE_ID", ""))
+BOT_RULES_MESSAGE_ID = int(os.getenv("BOT_RULES_MESSAGE_ID"))
 
