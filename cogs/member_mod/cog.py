@@ -195,7 +195,6 @@ class Mod(commands.Cog, name="Mod"):
 		if isinstance(error, MissingPermissions):
 			await ctx.send('**:x: | You do not have permission to use this command!**')
 
-  
 	@commands.command(name="userinfo", aliases=["ui"]) 
 	@commands.has_role(829942684947841024)
 	@commands.guild_only()
@@ -206,15 +205,10 @@ class Mod(commands.Cog, name="Mod"):
 		`$$ui <user>`
 		`user`: The user who you want information about. Can be an ID, mention or name.
 		"""
-
 		if user is None:
 			user = ctx.author
 			
-		embed = nextcord.Embed(
-			
-			title=f"{user.name}'s Stats and Information.",
-			
-		)
+		embed = nextcord.Embed(title=f"{user.name}'s Stats and Information.")
 		embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/891852099653083186/895902400416710666/greninja-frogadier.gif")
 		embed.set_image(url="https://cdn.discordapp.com/attachments/859634488593743892/891612213654192168/greninja_banner.jpg")
 		embed.set_footer(text="ID: {user.id}")
@@ -226,7 +220,6 @@ class Mod(commands.Cog, name="Mod"):
 																		  f"**Joined server:** {user.joined_at.__format__('%A %d %B %Y at %H:%M')}\n"
 																		  f"**Roles:** {' '.join([r.mention for r in user.roles[1:]])}")
 		return await ctx.send(embed=embed)
-
 
 
 def setup(bot: commands.Bot):
