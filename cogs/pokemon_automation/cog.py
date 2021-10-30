@@ -46,6 +46,11 @@ class PkmAutomation(commands.Cog, name="PkmAutomation"):
 		area = ctx.channel
 		await ctx.send_file(area, r"F:\\DiscordBots\\Greninja Mod Bots\\Greninja\\cogs\\pokemon_automation\\beta",filename="PA-SerialPrograms.zip",content="Message test")  
   
+	@commands.command(name="testbeta")
+	async def testbeta(self, ctx):
+		await ctx.channel.trigger_typing()
+		await ctx.send(file=nextcord.File("cogs/pokemon_automation/beta/PA-SerialPrograms.zip"))
+  
 def setup(bot: commands.Bot):
 	bot.add_cog(PkmAutomation(bot))
 
