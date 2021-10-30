@@ -26,4 +26,3 @@ class API(commands.Cog, name="API"):
 
 def setup(bot: commands.Bot):
 		bot.add_cog(API(bot))
-  
