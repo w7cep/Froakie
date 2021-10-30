@@ -190,6 +190,37 @@ class Mod(commands.Cog, name="Mod"):
 		if isinstance(error, MissingPermissions):
 			await ctx.send('**:x: | You do not have permission to use this command!**')
 
+  
+	@commands.command(name="memberinfo", aliases=["mi"]) 
+	@commands.has_role(829942684947841024)
+	@commands.guild_only()
+	async def memberinfo(self, ctx, *, user : nextcord.Member = None):
+		
+		"""
+		Get information about you, or a specified user.
+		`$$mi <user>`
+		`user`: The user who you want information about. Can be an ID, mention or name.
+		"""
+
+		if user is None:
+			user = ctx.author
+			
+		embed = nextcord.Embed(
+			
+			title=f"{user.name}'s Stats and Information.",
+			
+		)
+		embed.set_footer(text=f"ID: {user.id}")
+		embed.set_thumbnail(url=user.display_avatar.with_static_format("png").url)
+		embed.add_field(name="__**General information:**__", value=f"**Discord Name:** {user}\n"
+																   f"**Account created:** {user.created_at.__format__('%A %d %B %Y at %H:%M')}", inline=False)        
+		embed.add_field(name="__**Server-related information:**__", value=f"**Nickname:** {user.nick}\n"
+																		  f"**Joined server:** {user.joined_at.__format__('%A %d %B %Y at %H:%M')}\n"
+																		  f"**Roles:** {' '.join([r.mention for r in user.roles[1:]])}")
+		return await ctx.send(embed=embed)
+
+
+
 def setup(bot: commands.Bot):
 	bot.add_cog(Mod(bot))
 	
