@@ -73,7 +73,8 @@ class Mod(commands.Cog, name="Mod"):
 		ban.add_field(name='Action Performed:', value='`Ban`', inline=True)
 		ban.set_author(name=f'{ctx.guild}', icon_url=ctx.guild.icon.url)
 		ban.set_thumbnail(url=user.avatar.url)
-		#unban.timestamp = datetime.datetime.utcnow()
+		ban.set_image(url="https://cdn.discordapp.com/attachments/859634488593743892/891612213654192168/greninja_banner.jpg")
+		ban.set_footer(text=f"{ctx.author.name}", icon_url=ctx.author.avatar.url)
 
 		await ctx.send(embed=ban)
 
@@ -91,7 +92,8 @@ class Mod(commands.Cog, name="Mod"):
 		softban.add_field(name='Action Performed:', value='`Softban`', inline=True)
 		softban.set_author(name=f'{ctx.guild}', icon_url=ctx.guild.icon.url)
 		softban.set_thumbnail(url=user.avatar.url)
-		#unban.timestamp = datetime.datetime.utcnow()
+		softban.set_image(url="https://cdn.discordapp.com/attachments/859634488593743892/891612213654192168/greninja_banner.jpg")
+		softban.set_footer(text=f"{ctx.author.name}", icon_url=ctx.author.avatar.url)
 		await ctx.guild.ban(user)
 		await ctx.guild.unban(user)
 		await ctx.send(embed=softban)
@@ -111,7 +113,8 @@ class Mod(commands.Cog, name="Mod"):
 		unban.add_field(name='Action Performed:', value='`Unban`', inline=True)
 		unban.set_author(name=f'{ctx.guild}', icon_url=ctx.guild.icon.url)
 		unban.set_thumbnail(url=user.avatar.url)
-		#unban.timestamp = datetime.datetime.utcnow()
+		unban.set_image(url="https://cdn.discordapp.com/attachments/859634488593743892/891612213654192168/greninja_banner.jpg")
+		unban.set_footer(text=f"{ctx.author.name}", icon_url=ctx.author.avatar.url)
 
 		await ctx.send(embed=unban)
 
@@ -130,6 +133,8 @@ class Mod(commands.Cog, name="Mod"):
 		kick.add_field(name='Action Performed:', value='`Kick`', inline=True)
 		kick.set_author(name=f'{ctx.guild}', icon_url=ctx.guild.icon.url)
 		kick.set_thumbnail(url=user.avatar.url)
+		kick.set_image(url="https://cdn.discordapp.com/attachments/859634488593743892/891612213654192168/greninja_banner.jpg")
+		kick.set_footer(text=f"{ctx.author.name}", icon_url=ctx.author.avatar.url)
 		await ctx.send(embed=kick)
  
 	@commands.command()
@@ -210,8 +215,11 @@ class Mod(commands.Cog, name="Mod"):
 			title=f"{user.name}'s Stats and Information.",
 			
 		)
-		embed.set_footer(text=f"ID: {user.id}")
-		embed.set_thumbnail(url=user.display_avatar.with_static_format("png").url)
+		embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/891852099653083186/895902400416710666/greninja-frogadier.gif")
+		embed.set_image(url="https://cdn.discordapp.com/attachments/859634488593743892/891612213654192168/greninja_banner.jpg")
+		embed.set_footer(text="ID: {user.id}")
+		embed.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar.url)
+		embed.add_field(name="__**ID:**__", value=f"{user.id}")
 		embed.add_field(name="__**General information:**__", value=f"**Discord Name:** {user}\n"
 																   f"**Account created:** {user.created_at.__format__('%A %d %B %Y at %H:%M')}", inline=False)        
 		embed.add_field(name="__**Server-related information:**__", value=f"**Nickname:** {user.nick}\n"

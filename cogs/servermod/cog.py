@@ -141,6 +141,9 @@ class ServerMod(commands.Cog, name="ServerMod"):
 		colour=0xADD8E6,
 		)
 		embed.set_thumbnail(url=emoji.url)
+		embed.set_image(url="https://cdn.discordapp.com/attachments/859634488593743892/891612213654192168/greninja_banner.jpg")
+		embed.set_footer(text=f"{ctx.author.name}", icon_url=ctx.author.avatar.url)
+		embed.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar.url)
 		await ctx.send(embed=embed)
 
 

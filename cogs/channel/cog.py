@@ -171,6 +171,10 @@ class Channel(commands.Cog, name="Channel"):
 		"""
 		channel = ctx.channel
 		embed = nextcord.Embed(title=f"Stats for **{channel.name}**", description=f"{'Category: {}'.format(channel.category.name) if channel.category else 'This channel is not in a category'}",)
+		embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/891852099653083186/895902400416710666/greninja-frogadier.gif")
+		embed.set_image(url="https://cdn.discordapp.com/attachments/859634488593743892/891612213654192168/greninja_banner.jpg")
+		embed.set_footer(text=f"{ctx.author.name}", icon_url=ctx.author.avatar.url)
+		embed.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar.url)
 		embed.add_field(name="Channel Guild", value=ctx.guild.name, inline=False)
 		embed.add_field(name="Channel Id", value=channel.id, inline=False)
 		embed.add_field(name="Channel Topic", value=f"{channel.topic if channel.topic else 'No topic.'}", inline=False)
