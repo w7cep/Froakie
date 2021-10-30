@@ -79,7 +79,7 @@ class Channel(commands.Cog, name="Channel"):
 		if channel == None:
 			channel = ctx.channel
    
-		await channel.set_permissions(ctx.guild.default_role, send_messages=False, read_messages=True, view_channel=None)
+		await channel.set_permissions(ctx.guild.default_role, send_messages=False, read_messages=None, view_channel=None)
 		await channel.send(f"{channel.mention} has been locked 🔒")
 
 	@commands.command(name="unlock")
