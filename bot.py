@@ -8,6 +8,7 @@ from nextcord.ext import commands
 import config
 from config import BOT_TOKEN
 
+from dotenv import load_dotenv
 
 def main():
     # allows privledged intents for monitoring members joining, roles editing, and role assignments
@@ -15,6 +16,8 @@ def main():
 
 
     activity = nextcord.Activity(type=nextcord.ActivityType.listening, name=f"{config.PREFIX}help")
+
+    load_dotenv()
 
     bot = commands.Bot(command_prefix=config.PREFIX, intents=intents, activity=activity)
 
@@ -36,7 +39,7 @@ def main():
     bot.loop.create_task(startup())
 
     # run the bot
-    bot.run(BOT_TOKEN)
+    bot.run(os.getenv('BOT_TOKEN'))
 
 if __name__ == "__main__":
     main()
