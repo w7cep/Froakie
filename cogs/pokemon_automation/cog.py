@@ -35,6 +35,12 @@ class PkmAutomation(commands.Cog, name="PkmAutomation"):
 	async def forkbot_wiki(self, ctx):
 		await ctx.send("https://github.com/Koi-3088/ForkBot.NET/wiki")
   
+	@commands.command(name="arduino_beta")
+	@commands.guild_only()
+	async def arduino_beta(self, ctx):
+		await ctx.send(file=nextcord.File(r'F:\\DiscordBots\\Greninja Mod Bots\\Greninja\\cogs\\pokemon_automation\\beta\\PA-NativePrograms.zip'))
+		await ctx.send(file=nextcord.File(r'F:\\DiscordBots\\Greninja Mod Bots\\Greninja\\cogs\\pokemon_automation\\beta\\PA-SerialPrograms.zip'))
+  
 def setup(bot: commands.Bot):
 	bot.add_cog(PkmAutomation(bot))
 
