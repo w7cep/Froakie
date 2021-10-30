@@ -39,7 +39,7 @@ class PkmAutomation(commands.Cog, name="PkmAutomation"):
 	@commands.guild_only()
 	async def arduino_beta(self, ctx):
 		await ctx.channel.trigger_typing()
-		await ctx.send("https://github.com/w7cep/Beta")
+		await ctx.send("https://github.com/w7cep/Arduino-Beta")
   
 def setup(bot: commands.Bot):
 	bot.add_cog(PkmAutomation(bot))
