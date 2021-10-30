@@ -27,8 +27,8 @@ def main():
 
     # load all cogs
     for folder in os.listdir("cogs"):
-        if os.path.exists(os.path.join("cogs", folder, folder, "cog.py")):
-            bot.load_extension(f"cogs.{folder}.{folder}.cog")
+        if os.path.exists(os.path.join("cogs", folder, "cog.py")):
+            bot.load_extension(f"cogs.{folder}.cog")
 
     async def startup():
         bot.session = aiohttp.ClientSession()
