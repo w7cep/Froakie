@@ -16,7 +16,7 @@ def __init__(self, bot: commands.Bot):
 @Cog.listener()
 async def on_ready(self):
 		if not self.bot.ready:
-			self.log_channel = self.bot.get_channel(902420317488705587)
+			self.log_channel = self.bot.get_channel(903892893989732373)
 			self.bot.cogs_ready.ready_up("log")
 
 @Cog.listener()
