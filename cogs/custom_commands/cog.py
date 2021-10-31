@@ -104,7 +104,7 @@ class CustomCommands(commands.Cog, name="Custom_Commands"):
 			description=f"__**Commands:**__\n", 
 			colour=ctx.author.colour,
 			timestamp=ctx.message.created_at,
-		)   
+		)
 		embed.add_field(name="1", value=f"`$catch / $k` - Will 'catch' a random Pokémon with an optional (but highly recommended) cool down.\n\n"
 										f"`$tc <catch id> / $tc <link code> <catch id>` - Trade a catch. File will be moved to a backup folder just in case.\n\n"
 										f"`$tis` - Set custom trainer info via an attached .pk8 file. Type $tis, attach a file, send as one message. Bot will automatically set trainer info.\n\n"
