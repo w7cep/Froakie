@@ -22,13 +22,13 @@ async def on_user_update(self, before, after):
 	if before.name != after.name:
 		embed = Embed(title="Username change",
 					  colour=after.colour,
-       				  timestamp=datetime.utcnow())
+					  timestamp=datetime.utcnow())
 
 		fields = [("Before", before.name, False),
 						  ("After", after.name, False)]
 
 		for name, value, inline in fields:
-      			embed.add_field(name=name, value=value, inline=inline)
+				embed.add_field(name=name, value=value, inline=inline)
 
 		await self.log_channel.send(embed=embed)
 
