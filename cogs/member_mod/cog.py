@@ -46,6 +46,7 @@ class MemberMod(commands.Cog, name="Member Mod"):
 	
 	@commands.group(invoke_without_command=True)
 	@commands.guild_only()
+	@commands.has_role(829942684947841024)
 	async def member(self, ctx):
 		await ctx.send("Invalid sub-command specified")
  
