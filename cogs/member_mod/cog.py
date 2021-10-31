@@ -144,13 +144,13 @@ class MemberMod(commands.Cog, name="Member Mod"):
 		kick.set_footer(text=f"{ctx.author.name}", icon_url=ctx.author.avatar.url)
 		await ctx.channel.trigger_typing()
 		await ctx.send(embed=kick)
- 
+
 	@member.command(name="mute")
 	@commands.has_role(829942684947841024) 
 	async def mute(self, ctx, user: Sinner, reason=None):
 		"""Gives them hell."""
 		await mute(ctx, user, reason or "being sus") # uses the mute function
-		
+
 	@member.command(name="unmute")
 	@commands.has_role(829942684947841024)
 	async def unmute(self, ctx, user: Redeemed):
@@ -158,13 +158,14 @@ class MemberMod(commands.Cog, name="Member Mod"):
 		await user.remove_roles(nextcord.utils.get(ctx.guild.roles, name="Muted"))
 		await ctx.channel.trigger_typing()# removes muted role
 		await ctx.send(f"{user.mention} has been unmuted")
-  
+
 	# TODO Make: temp_mute command
-	
+	# TODO Add: """docstring to the block and unblock commands"""
+
 	@member.command(name="block")
 	@commands.has_role(829942684947841024) 
 	async def block(self, ctx, user: Sinner=None, channel: nextcord.TextChannel = None, reason = None):
-					
+
 		if not user: # checks if there is user
 			return await ctx.send("You must specify a user")
 		if channel == None:
@@ -174,16 +175,16 @@ class MemberMod(commands.Cog, name="Member Mod"):
 		await channel.set_permissions(user, send_messages=False, view_channel=True, read_message_history=True)# sets permissions for current channel
 		await ctx.channel.trigger_typing()
 		await channel.send(f"🚫{user.mention} has been blocked in {channel.mention} 🚫 for {reason}")
-	
+
 	@member.command(name="unblock")
 	@commands.has_role(829942684947841024) 
 	async def unblock(self, ctx, user: Sinner=None, channel: nextcord.TextChannel = None, reason = None):
-					
+
 		if not user: # checks if there is user
 			return await ctx.send("You must specify a user")
 		if channel == None:
 			channel = ctx.channel
-   
+
 		await channel.set_permissions(user, send_messages=None, view_channel=None, read_message_history=None) # sets permissions for current channel
 		await ctx.channel.trigger_typing()
 		await channel.send(f"✅{user.mention} has been unblocked in {channel.mention}✅")
@@ -201,7 +202,7 @@ class MemberMod(commands.Cog, name="Member Mod"):
 			await user.add_roles(role) #adds role if not already has it
 		await ctx.channel.trigger_typing()
 		await ctx.send(f"Added {role} to {user.mention}")
-			
+
 	@give_role.error
 	async def role_error(self, ctx, error):
 		if isinstance(error, MissingPermissions):
@@ -212,7 +213,7 @@ class MemberMod(commands.Cog, name="Member Mod"):
 	@commands.has_role(829942684947841024)
 	@commands.guild_only()
 	async def memberinfo(self, ctx, *, user : nextcord.Member = None):
-		
+
 		"""
 		Get information about you, or a specified user.
 		`$$ui <user>`
@@ -220,7 +221,7 @@ class MemberMod(commands.Cog, name="Member Mod"):
 		"""
 		if user is None:
 			user = ctx.author
-			
+
 		embed = nextcord.Embed(title=f"{user.name}'s Stats and Information.")
 		embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/891852099653083186/895902400416710666/greninja-frogadier.gif")
 		embed.set_image(url="https://cdn.discordapp.com/attachments/859634488593743892/891612213654192168/greninja_banner.jpg")
@@ -228,13 +229,12 @@ class MemberMod(commands.Cog, name="Member Mod"):
 		embed.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar.url)
 		embed.add_field(name="__**ID:**__", value=f"{user.id}")
 		embed.add_field(name="__**General information:**__", value=f"**Discord Name:** {user}\n"
-																   f"**Account created:** {user.created_at.__format__('%A %d %B %Y at %H:%M')}", inline=False)        
+																   f"**Account created:** {user.created_at.__format__('%A %d %B %Y at %H:%M')}", inline=False)
 		embed.add_field(name="__**Server-related information:**__", value=f"**Nickname:** {user.nick}\n"
 																		  f"**Joined server:** {user.joined_at.__format__('%A %d %B %Y at %H:%M')}\n"
 																		  f"**Roles:** {' '.join([r.mention for r in user.roles[1:]])}")
 		await ctx.channel.trigger_typing()
 		return await ctx.send(embed=embed)
-
 
 def setup(bot: commands.Bot):
 	bot.add_cog(MemberMod(bot))
