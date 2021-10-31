@@ -39,7 +39,7 @@ def main():
 		bot.session = aiohttp.ClientSession()
 
 	bot.loop.create_task(startup())
- 	send_message.start()
+	send_message.start()
 	# run the bot
 	bot.run(config.BOT_TOKEN)
 
