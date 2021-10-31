@@ -17,6 +17,10 @@ class Testing(commands.Cog, name="Testing"):
 	def __init__(self, bot: commands.Bot):
 		self.bot = bot
 
+	@commands.command(name="tic")
+	async def tic(ctx):
+		"""Starts a tic-tac-toe game with yourself."""
+		await ctx.send('Tic Tac Toe: X goes first', view=TicTacToe())
 class TicTacToeButton(nextcord.ui.Button['TicTacToe']):
 	def __init__(self, x: int, y: int):
 		# A label is required, but we don't need one so a zero-width space is used
@@ -128,15 +132,6 @@ class TicTacToe(nextcord.ui.View):
 			return self.Tie
 
 		return None
-
-
-bot = commands.Bot(command_prefix='$')
-
-
-@commands.command(name="tic")
-async def tic(ctx):
-	"""Starts a tic-tac-toe game with yourself."""
-	await ctx.send('Tic Tac Toe: X goes first', view=TicTacToe())
 
 def setup(bot: commands.Bot):
 	bot.add_cog(Testing(bot))
