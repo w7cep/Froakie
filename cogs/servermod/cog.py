@@ -16,10 +16,15 @@ class ServerMod(commands.Cog, name="ServerMod"):
 	def __init__(self, bot: commands.Bot):
 		self.bot = bot
 		self._last_member = None
-		
-	@commands.command(name="addswears", aliases=["addprofanity", "addcurses"])
+	
+	@commands.group(invoke_without_command=True)
+	@commands.guild_only()
+	async def profanity(self, ctx):
+		await ctx.send("Invalid sub-command specified")
+	
+	@profanity.command(name="add")
 	@commands.has_role(829942684947841024)
-	async def add_profanity(self, ctx, *words):
+	async def add(self, ctx, *words):
 		'''Add cuss word to file.'''
 		with open("./data/profanity.txt", "a", encoding="utf-8") as f:
 			f.write("".join([f"{w}\n" for w in words]))
@@ -28,7 +33,7 @@ class ServerMod(commands.Cog, name="ServerMod"):
 		await ctx.channel.trigger_typing()
 		await ctx.send("Action complete.")
 
-	@commands.command(name="delswears", aliases=["delprofanity", "delcurses"])
+	@profanity.command(name="del")
 	@commands.has_role(829942684947841024)
 	async def remove_profanity(self, ctx, *words):
 		'''Delete cuss word from file.'''

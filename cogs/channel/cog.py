@@ -63,14 +63,17 @@ class ChannelMod(commands.Cog, name="ChannelMod"):
 	@ch.command(name="purge")
 	@commands.guild_only()
 	@commands.has_role(829942684947841024)
-	async def purge(self, ctx, amount=5):
+	async def purge(self, ctx, amount=None):
 		"""Purge a number of messages in a channel"""
-		await ctx.channel.purge(limit=amount + 1)
-		embed = nextcord.Embed(
-			title=f"{ctx.author.name} purged: {ctx.channel.name}",
-			description=f"{amount} messages were cleared",
-		)
-		await ctx.channel.trigger_typing()
+		if amount is None:
+			await ctx.send("Please specify a number of messages to purge")
+		else:
+			await ctx.channel.purge(limit=amount + 1)
+			embed = nextcord.Embed(
+				title=f"{ctx.author.name} purged: {ctx.channel.name}",
+				description=f"{amount} messages were cleared",
+			)
+			await ctx.channel.trigger_typing()
 		await ctx.send(embed=embed, delete_after=5)
 
 	@ch.command(name="clean")
@@ -84,7 +87,7 @@ class ChannelMod(commands.Cog, name="ChannelMod"):
   	
 	@ch.command(name="lock")
 	@commands.has_permissions(manage_channels=True)
-	async def lock(self, ctx, *, channel: nextcord.TextChannel = None,reason = None):
+	async def lock(self, ctx, *, channel: nextcord.TextChannel = None):
 		"Lock the channel"
 		if channel == None:
 			channel = ctx.channel
@@ -95,7 +98,7 @@ class ChannelMod(commands.Cog, name="ChannelMod"):
 
 	@ch.command(name="unlock")
 	@commands.has_permissions(manage_channels=True)
-	async def unlock(self, ctx, *, channel: nextcord.TextChannel = None,reason = None):
+	async def unlock(self, ctx, *, channel: nextcord.TextChannel = None):
 		"""Unlock the channel"""
 		if channel == None:
 			channel = ctx.channel
