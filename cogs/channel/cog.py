@@ -55,12 +55,12 @@ class ChannelMod(commands.Cog, name="ChannelMod"):
 	@commands.group(invoke_without_command=True)
 	@commands.guild_only()
 	@commands.has_role(829942684947841024)
-	async def channel(self, ctx):
+	async def ch(self, ctx):
 		"""Channel mod commands"""
 		await ctx.channel.trigger_typing()
 		await ctx.send("Invalid sub-command passed")
 
-	@channel.command(name="purge")
+	@ch.command(name="purge")
 	@commands.guild_only()
 	@commands.has_role(829942684947841024)
 	async def purge(self, ctx, amount=5):
@@ -73,7 +73,7 @@ class ChannelMod(commands.Cog, name="ChannelMod"):
 		await ctx.channel.trigger_typing()
 		await ctx.send(embed=embed, delete_after=5)
 
-	@channel.command(name="clean")
+	@ch.command(name="clean")
 	@commands.has_role(829942684947841024)
 	async def clean(self, ctx):
 		"""Cleans the chat of the bot's messages."""
@@ -82,7 +82,7 @@ class ChannelMod(commands.Cog, name="ChannelMod"):
 		await ctx.channel.trigger_typing()
 		await ctx.message.channel.purge(limit=100, check=is_me)
   	
-	@channel.command(name="lock")
+	@ch.command(name="lock")
 	@commands.has_permissions(manage_channels=True)
 	async def lock(self, ctx, *, channel: nextcord.TextChannel = None,reason = None):
 		"Lock the channel"
@@ -93,7 +93,7 @@ class ChannelMod(commands.Cog, name="ChannelMod"):
 		await ctx.channel.trigger_typing()
 		await channel.send(f"{channel.mention} has been locked 🔒")
 
-	@channel.command(name="unlock")
+	@ch.command(name="unlock")
 	@commands.has_permissions(manage_channels=True)
 	async def unlock(self, ctx, *, channel: nextcord.TextChannel = None,reason = None):
 		"""Unlock the channel"""
@@ -104,7 +104,7 @@ class ChannelMod(commands.Cog, name="ChannelMod"):
 		await ctx.channel.trigger_typing()
 		await channel.send(f"{channel.mention} has been unlocked 🔓")
 
-	@channel.command(name="stats")
+	@ch.command(name="stats")
 	@commands.has_role(829942684947841024)
 	@commands.bot_has_guild_permissions(manage_channels=True)
 	async def stats(self, ctx):
