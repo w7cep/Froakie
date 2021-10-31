@@ -1,5 +1,4 @@
 import config
-import nextcord
 from cogs.error.friendly_error import FriendlyError
 from nextcord.ext import commands
 from utils.embedder import embed_success

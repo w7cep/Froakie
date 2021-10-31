@@ -1,14 +1,5 @@
-import asyncio
-import random
-from typing import Optional
-
-import config
-import nextcord
-from aiohttp import request
-from nextcord import Embed, Member
 from nextcord.ext import commands
-from nextcord.ext.commands import BadArgument
-import config
+
 #TODO add: """docstring""" to the PkmAutomation commands.
 class PkmAutomation(commands.Cog, name="PkmAutomation"):
 	"""Pokemon Automation Info Commands"""

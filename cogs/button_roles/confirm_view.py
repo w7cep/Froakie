@@ -1,7 +1,8 @@
-from .role_view import RoleView
-from utils.utils import custom_id
-import nextcord
 import config
+import nextcord
+from utils.utils import custom_id
+
+from .role_view import RoleView
 
 VIEW_NAME = "ConfirmView"
 

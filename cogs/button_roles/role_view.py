@@ -1,6 +1,7 @@
 from typing import List
-import nextcord
+
 import config
+import nextcord
 
 
 class RoleView(nextcord.ui.View):

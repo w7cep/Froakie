@@ -1,12 +1,10 @@
 import datetime
 from datetime import datetime
-import datetime
-import asyncio
-import nextcord
+
 from nextcord import Embed
 from nextcord.ext import commands
 from nextcord.ext.commands import Cog
-import config
+
 
 class Logging(commands.Cog, name="Logging"):
 		"""Test commands"""

@@ -1,13 +1,11 @@
-import asyncio
-import platform
 from random import choice
-from typing import Optional
 
 import config
 import nextcord
-from nextcord import Member
 from nextcord.ext import commands
-from nextcord.ext.commands import BadArgument, command
+from nextcord.ext.commands import command
+
+
 class GreetingsCog(commands.Cog, name="Greetings"):
 	"""Greeting commands"""
 	

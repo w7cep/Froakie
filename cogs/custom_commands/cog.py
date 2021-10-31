@@ -1,12 +1,5 @@
-import random
-from typing import Optional
-
 import nextcord
-from aiohttp import request
-from nextcord import Embed, Member
 from nextcord.ext import commands
-from nextcord.ext.commands import BadArgument
-
 
 class CustomCommands(commands.Cog, name="Custom_Commands"):
 	"""Test commands"""

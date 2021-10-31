@@ -1,23 +1,8 @@
-import random
-from typing import Optional
-import nextcord, datetime
+import nextcord
 import nextcord.errors
-from datetime import time
-from nextcord.ext.commands import MissingPermissions
-import asyncio
-from asyncio import sleep
-from datetime import datetime, timedelta
-from re import search
 from better_profanity import profanity
-from nextcord import Embed, Member, NotFound, Object
-from nextcord.utils import find
-from nextcord.ext.commands import Cog, Greedy, Converter
-from nextcord.ext.commands import CheckFailure, BadArgument
-from nextcord.ext.commands import command, has_permissions, bot_has_permissions
 from nextcord.ext import commands
-from db import db
-import requests
-import json
+from nextcord.ext.commands import MissingPermissions
 
 profanity.load_censor_words_from_file("./data/profanity.txt")
 

@@ -1,5 +1,4 @@
 from typing import List
-import config
 import nextcord
 from nextcord.ext import commands
 

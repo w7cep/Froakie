@@ -1,11 +1,5 @@
-from random import choice
-from typing import Optional
 import asyncio
-import platform
 import nextcord, datetime
-from nextcord import Member
-from nextcord.ext.commands import BadArgument
-from nextcord.ext.commands import command
 from nextcord.ext import commands
 from better_profanity import profanity
 

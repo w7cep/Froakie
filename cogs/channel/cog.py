@@ -1,25 +1,11 @@
-import random
-from typing import Optional
-import nextcord, datetime
+
+import nextcord
 import nextcord.errors
+from nextcord import NotFound, Object
 from nextcord.ext import commands
-from datetime import time
-from nextcord.ext.commands import MissingPermissions
-import asyncio
-from asyncio import sleep
-from datetime import datetime, timedelta
-from re import search
-from typing import Optional
-from better_profanity import profanity
-from nextcord import Embed, Member, NotFound, Object
+from nextcord.ext.commands import (BadArgument, Converter)
 from nextcord.utils import find
-from nextcord.ext.commands import Cog, Greedy, Converter
-from nextcord.ext.commands import CheckFailure, BadArgument
-from nextcord.ext.commands import command, has_permissions, bot_has_permissions
-from nextcord.ext import commands
-from db import db
-import requests
-import json
+
 
 class Sinner(commands.Converter):
 	async def convert(self, ctx, argument):

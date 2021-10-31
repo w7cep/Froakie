@@ -1,7 +1,7 @@
+import config
+import nextcord
 from cogs.button_roles.role_view import RoleView
 from utils.utils import custom_id
-import nextcord
-import config
 
 VIEW_NAME = "ColorRoleView"
 

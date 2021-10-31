@@ -2,7 +2,6 @@ import config
 import nextcord
 from cogs.button_roles.color_role_view import ColorRoleView
 from nextcord.ext import commands
-from nextcord.ext.commands import MissingPermissions
 
 from .confirm_view import ConfirmView
 from .self_role_view import SelfRoleView

@@ -1,5 +1,4 @@
 from datetime import datetime
-from nextcord.channel import TextChannel
 from nextcord.ext import commands
 import traceback
 import nextcord
