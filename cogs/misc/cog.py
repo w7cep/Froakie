@@ -29,7 +29,6 @@ class Misc(commands.Cog, name="Misc"):
 		memberCount = len(set(self.bot.get_all_members()))
 		version = "v1.1.0"
 		developer = "<@741118153299591240>"
-  
 		embed = nextcord.Embed(
 			title=f"{self.bot.user.name} Stats",
 			description="Useful stats.",
@@ -49,7 +48,7 @@ class Misc(commands.Cog, name="Misc"):
 		embed.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar.url)
 		await ctx.channel.trigger_typing()
 		await ctx.send(embed=embed)
-   
+
 	@info.command(name="wiki")
 	@commands.guild_only()
 	async def wiki(self, ctx, msg):
@@ -68,7 +67,7 @@ class Misc(commands.Cog, name="Misc"):
 	@commands.guild_only()
 	async def random(self, ctx):
 		await ctx.send("Invalid sub-command specified")
-  
+
 	@random.command()
 	async def roll(self, ctx: commands.Context, dice: str):
 		"""Rolls a given amount of dice in the form _d_
@@ -193,12 +192,12 @@ class Misc(commands.Cog, name="Misc"):
 		if isinstance(exc, BadArgument):
 			await ctx.channel.trigger_typing()
 			await ctx.send("I can't find that member.")
-   
+
 	@commands.group(invoke_without_command=True)
 	@commands.guild_only()
 	async def reaction(self, ctx):
 		await ctx.send("Invalid sub-command specified")
- 
+
 	@reaction.command(name="tableflip")
 	async def tableflip(self, ctx):
 		# I hope this unicode doesn't break
