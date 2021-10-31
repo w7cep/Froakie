@@ -1,11 +1,12 @@
 import os
-
 import aiohttp
 import nextcord
 import nextcord.ext
 from nextcord.ext import commands, tasks
-
 import config
+# TODO: Fine tune command permissions.
+# TODO: Clean up import modules on every file.
+# TODO: Delete every excess space / Convert files with space indents to tabs.
 
 def main():
 	# allows privledged intents for monitoring members joining, roles editing, and role assignments
