@@ -95,7 +95,7 @@ class CustomCommands(commands.Cog, name="Custom_Commands"):
 		await ctx.send(embed=embed)
 
 	@commands.command(name="tradecord_instructions", aliases=["tci", "tc_instructions"], hidden=True) 
-	async def sysbot_instructions(self, ctx):
+	async def tradecord_instructions(self, ctx):
 		"""A useful command that displays TradeCord instructions."""
 		version = "v1.1.0"
 
@@ -143,7 +143,7 @@ class CustomCommands(commands.Cog, name="Custom_Commands"):
 		await ctx.send(embed=embed)
 
 	@commands.command(name="raid_request_instructions", aliases=["rri"], hidden=True) 
-	async def sysbot_instructions(self, ctx):
+	async def raid_request_instructions(self, ctx):
 		"""A useful command that displays raid request instructions."""
 		version = "v1.1.0"
 
