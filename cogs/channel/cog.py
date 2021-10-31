@@ -44,7 +44,7 @@ class BannedUser(Converter):
 				return user
 			else:
 				raise BadArgument
-class Channel(commands.Cog, name="Channel"):
+class ChannelMod(commands.Cog, name="ChannelMod"):
 	"""Channel commands"""
 
 	def __init__(self, bot: commands.Bot):
@@ -207,5 +207,5 @@ class Channel(commands.Cog, name="Channel"):
 		await ctx.send(f"Hey man! I deleted {channel.name} for ya!")  
 
 def setup(bot: commands.Bot):
-	bot.add_cog(Channel(bot))
+	bot.add_cog(ChannelMod(bot))
 
