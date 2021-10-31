@@ -109,7 +109,7 @@ class Random(commands.Cog, name="Random"):
 								  colour=ctx.author.colour)
 					if image_link is not None:
 						embed.set_image(url=image_link)
-	  				await ctx.channel.trigger_typing()
+					await ctx.channel.trigger_typing()
 					await ctx.send(embed=embed)
 					await ctx.message.delete()
 
