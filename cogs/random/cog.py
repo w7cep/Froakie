@@ -25,8 +25,10 @@ class Random(commands.Cog, name="Random"):
 				roll = random.randint(1, int(die))
 				total += roll
 				rolls += f"{roll} "
+			await ctx.channel.trigger_typing()
 			await ctx.send(f"Rolls: {rolls}\nSum: {total}")
 		except ValueError:
+			await ctx.channel.trigger_typing()
 			await ctx.send("Dice must be in the format \_d\_ (example: 2d6)")
 
 	@commands.command()
@@ -37,8 +39,10 @@ class Random(commands.Cog, name="Random"):
 		"""
 		try:
 			choice = random.choice(args)
+			await ctx.channel.trigger_typing()
 			await ctx.send(choice)
 		except IndexError:
+			await ctx.channel.trigger_typing()
 			await ctx.send("You must specify at least one argument.")
 			
 	@commands.command(name="joke")
@@ -49,16 +53,19 @@ class Random(commands.Cog, name="Random"):
 			"Why did the man name his dogs Rolex and Timex? Because they were watch dogs.",
 			"My kid wants to invent a pencil with an eraser on each end, but I just don’t see the point."
 		])
+		await ctx.channel.trigger_typing()
 		await ctx.send(selectjoke)
 
 	@commands.command(name="coinflip")
 	async def coinflip(self, ctx):
 		"""Flip a coin."""
+		await ctx.channel.trigger_typing()
 		await ctx.send("Heads" if random.randint(1, 2) == 1 else "Tails")
 
 	@commands.command(name="mirror")
 	async def mirror(self, ctx, message):
 		"""Bot will mirror your message."""
+		await ctx.channel.trigger_typing()
 		await ctx.send(message)
 
 	@commands.command(name="length")
@@ -75,6 +82,7 @@ class Random(commands.Cog, name="Random"):
 				count += 1
 		word = count + 1
 		letter = i + 1
+		await ctx.channel.trigger_typing()
 		await ctx.send(f"World count : {word}, letter count : {letter}")
 
 	@commands.command(name="fact")
@@ -101,13 +109,16 @@ class Random(commands.Cog, name="Random"):
 								  colour=ctx.author.colour)
 					if image_link is not None:
 						embed.set_image(url=image_link)
+	  				await ctx.channel.trigger_typing()
 					await ctx.send(embed=embed)
 					await ctx.message.delete()
 
 				else:
+					await ctx.channel.trigger_typing()
 					await ctx.send(f"API returned a {response.status} status.")
 
 		else:
+			await ctx.channel.trigger_typing()
 			await ctx.send("No facts are available for that animal.")   
 	 
 	@commands.command(
@@ -115,12 +126,14 @@ class Random(commands.Cog, name="Random"):
 		aliases=["hit"])
 	async def slap_member(self, ctx, member: Member, *, reason: Optional[str] = "for no reason"):
 		"""Slap another member for a reason or no reason."""
+		await ctx.channel.trigger_typing()
 		await ctx.send(f"{ctx.author.display_name} slapped {member.mention} {reason}!")
 		await ctx.message.delete()
 
 	@slap_member.error
 	async def slap_member_error(self, ctx, exc):
 		if isinstance(exc, BadArgument):
+			await ctx.channel.trigger_typing()
 			await ctx.send("I can't find that member.")
 
 def setup(bot: commands.Bot):

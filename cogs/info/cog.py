@@ -36,7 +36,7 @@ class Information(commands.Cog, name="Information"):
 		embed.set_image(url="https://cdn.discordapp.com/attachments/859634488593743892/891612213654192168/greninja_banner.jpg")
 		embed.set_footer(text=f"{ctx.author.name}", icon_url=ctx.author.avatar.url)
 		embed.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar.url)
-
+		await ctx.channel.trigger_typing()
 		await ctx.send(embed=embed)
    
 	@commands.command(name="wiki")
@@ -44,11 +44,13 @@ class Information(commands.Cog, name="Information"):
 	async def wiki(self, ctx, msg):
 		"""Get info from wikipedia."""
 		url: str = f"https://wikipedia.org/wiki/{msg}"
+		await ctx.channel.trigger_typing()
 		await ctx.send(f"Here : {url}")
 
 	@commands.command(name="ping")
 	async def ping(self, ctx: commands.Context):
 		"""Checks for a response from the bot"""
+		await ctx.channel.trigger_typing()
 		await ctx.send(f"Pong! (Latency: {round(self.bot.latency * 1000)}ms)")
 
 def setup(bot: commands.Bot):

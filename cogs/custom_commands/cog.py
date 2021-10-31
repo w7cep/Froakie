@@ -37,6 +37,7 @@ class CustomCommands(commands.Cog, name="Custom_Commands"):
 		embed.add_field(name="_Reminder_", value="-Always ask for eggmoves, others will be illegal (or leave em blank when you just don't care)\n-Put brackets around the mon's name. ", inline=False)
 		embed.add_field(name="__Unlimited items__", value="-Need an extra Master Ball or 20 or any other item?\n-The bot will send a Delibird with your item!\n`$itemtrade <item name>`\n`$item <item name>`\n`$it <item name>`\n__E.G.__\n`$item Beast Ball`", inline=False)
 		embed.add_field(name="__Breeding Dittos__", value="`$dittotrade, $ditto, $dt <Stats> <Languages> <Nature>`\n\n`Stats:`\nChoosing one of these or all 3 will make that IV 0 or No Good. 6IV will always yield 31 or Best\n-ATK\n-SPA\n-SPE\n-6IV\n\nCombinations can be made, no spaces between them.\n__E.G.__\n'ATKSPE' will give you a ditto with 0 ATK & SPE\n`Language:`\nThese Locales in the games can be chosen:\n-Japanese\n-English\n-French\n-Italian\n-German\n`Nature:`\nHardy / Docile / Serious / Bashful\nQuirky / Lonely / Brave / Adamant\nNaughty / Bold / Relaxed / Impish\nLax / Modest / Mild / Quiet / Naive \nRash / Calm / Gentle / Sassy\nCareful / Timid / Hasty / Jolly\n\n__**E.G. of the full command:**__\n`$ditto ATKSPE Japanese Brave`\n-Will give you a 0 Speed Japanese Ditto with a Brave nature\n`$ditto 6IV German Timid`\n-Will give you a 6IV German Ditto with a Timid nature.", inline=False)
+		await ctx.channel.trigger_typing()
 		await ctx.send(embed=embed)
 
 	@commands.command(name="sysbot_rules", aliases=["sbr","bot_rules", "br"], hidden=True) 
@@ -54,6 +55,7 @@ class CustomCommands(commands.Cog, name="Custom_Commands"):
 		embed.set_image(url="https://cdn.discordapp.com/attachments/859634488593743892/891612213654192168/greninja_banner.jpg")
 		embed.set_footer(text=f"{ctx.author.name}", icon_url=ctx.author.avatar.url)
 		embed.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar.url)
+		await ctx.channel.trigger_typing()
 		await ctx.send(embed=embed)
 
 	@commands.command(name="rules", aliases=["server_rules", "Rules", "sr"], hidden=True) 
@@ -89,6 +91,7 @@ class CustomCommands(commands.Cog, name="Custom_Commands"):
 		embed.set_image(url="https://cdn.discordapp.com/attachments/859634488593743892/891612213654192168/greninja_banner.jpg")
 		embed.set_footer(text=f"{ctx.author.name}", icon_url=ctx.author.avatar.url)
 		embed.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar.url)
+		await ctx.channel.trigger_typing()
 		await ctx.send(embed=embed)
 
 	@commands.command(name="tradecord_instructions", aliases=["tci", "tc_instructions"], hidden=True) 
@@ -136,6 +139,7 @@ class CustomCommands(commands.Cog, name="Custom_Commands"):
 		embed.set_image(url="https://cdn.discordapp.com/attachments/859634488593743892/891612213654192168/greninja_banner.jpg")
 		embed.set_footer(text=f"{ctx.author.name}", icon_url=ctx.author.avatar.url)
 		embed.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar.url)
+		await ctx.channel.trigger_typing()
 		await ctx.send(embed=embed)
 
 	@commands.command(name="raid_request_instructions", aliases=["rri"], hidden=True) 
@@ -156,6 +160,7 @@ class CustomCommands(commands.Cog, name="Custom_Commands"):
 		embed.add_field(name="**Step 2:**", value="Use `.suggest [suggestion]` to submit a raid request", inline=False)
 		embed.add_field(name="**Step 3:**", value="Wait for raid host to get to your suggestion", inline=False)
 		embed.add_field(name="**EXAMPLE:**", value="`.suggest Den 157`")     
+		await ctx.channel.trigger_typing()
 		await ctx.send(embed=embed)
   
 	@commands.command(name="server_invite", hidden=True) 
@@ -171,6 +176,7 @@ class CustomCommands(commands.Cog, name="Custom_Commands"):
 		embed.set_image(url="https://cdn.discordapp.com/attachments/859634488593743892/891612213654192168/greninja_banner.jpg")
 		embed.set_footer(text=f"{ctx.author.name}", icon_url=ctx.author.avatar.url)
 		embed.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar.url)
+		await ctx.channel.trigger_typing()
 		await ctx.send(embed=embed)
 
 def setup(bot: commands.Bot):

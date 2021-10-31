@@ -6,83 +6,83 @@ Mozilla Public License Version 2.0
 --------------
 
 1.1. "Contributor"
-    means each individual or legal entity that creates, contributes to
-    the creation of, or owns Covered Software.
+	means each individual or legal entity that creates, contributes to
+	the creation of, or owns Covered Software.
 
 1.2. "Contributor Version"
-    means the combination of the Contributions of others (if any) used
-    by a Contributor and that particular Contributor's Contribution.
+	means the combination of the Contributions of others (if any) used
+	by a Contributor and that particular Contributor's Contribution.
 
 1.3. "Contribution"
-    means Covered Software of a particular Contributor.
+	means Covered Software of a particular Contributor.
 
 1.4. "Covered Software"
-    means Source Code Form to which the initial Contributor has attached
-    the notice in Exhibit A, the Executable Form of such Source Code
-    Form, and Modifications of such Source Code Form, in each case
-    including portions thereof.
+	means Source Code Form to which the initial Contributor has attached
+	the notice in Exhibit A, the Executable Form of such Source Code
+	Form, and Modifications of such Source Code Form, in each case
+	including portions thereof.
 
 1.5. "Incompatible With Secondary Licenses"
-    means
+	means
 
-    (a) that the initial Contributor has attached the notice described
-        in Exhibit B to the Covered Software; or
+	(a) that the initial Contributor has attached the notice described
+		in Exhibit B to the Covered Software; or
 
-    (b) that the Covered Software was made available under the terms of
-        version 1.1 or earlier of the License, but not also under the
-        terms of a Secondary License.
+	(b) that the Covered Software was made available under the terms of
+		version 1.1 or earlier of the License, but not also under the
+		terms of a Secondary License.
 
 1.6. "Executable Form"
-    means any form of the work other than Source Code Form.
+	means any form of the work other than Source Code Form.
 
 1.7. "Larger Work"
-    means a work that combines Covered Software with other material, in
-    a separate file or files, that is not Covered Software.
+	means a work that combines Covered Software with other material, in
+	a separate file or files, that is not Covered Software.
 
 1.8. "License"
-    means this document.
+	means this document.
 
 1.9. "Licensable"
-    means having the right to grant, to the maximum extent possible,
-    whether at the time of the initial grant or subsequently, any and
-    all of the rights conveyed by this License.
+	means having the right to grant, to the maximum extent possible,
+	whether at the time of the initial grant or subsequently, any and
+	all of the rights conveyed by this License.
 
 1.10. "Modifications"
-    means any of the following:
+	means any of the following:
 
-    (a) any file in Source Code Form that results from an addition to,
-        deletion from, or modification of the contents of Covered
-        Software; or
+	(a) any file in Source Code Form that results from an addition to,
+		deletion from, or modification of the contents of Covered
+		Software; or
 
-    (b) any new file in Source Code Form that contains any Covered
-        Software.
+	(b) any new file in Source Code Form that contains any Covered
+		Software.
 
 1.11. "Patent Claims" of a Contributor
-    means any patent claim(s), including without limitation, method,
-    process, and apparatus claims, in any patent Licensable by such
-    Contributor that would be infringed, but for the grant of the
-    License, by the making, using, selling, offering for sale, having
-    made, import, or transfer of either its Contributions or its
-    Contributor Version.
+	means any patent claim(s), including without limitation, method,
+	process, and apparatus claims, in any patent Licensable by such
+	Contributor that would be infringed, but for the grant of the
+	License, by the making, using, selling, offering for sale, having
+	made, import, or transfer of either its Contributions or its
+	Contributor Version.
 
 1.12. "Secondary License"
-    means either the GNU General Public License, Version 2.0, the GNU
-    Lesser General Public License, Version 2.1, the GNU Affero General
-    Public License, Version 3.0, or any later versions of those
-    licenses.
+	means either the GNU General Public License, Version 2.0, the GNU
+	Lesser General Public License, Version 2.1, the GNU Affero General
+	Public License, Version 3.0, or any later versions of those
+	licenses.
 
 1.13. "Source Code Form"
-    means the form of the work preferred for making modifications.
+	means the form of the work preferred for making modifications.
 
 1.14. "You" (or "Your")
-    means an individual or a legal entity exercising rights under this
-    License. For legal entities, "You" includes any entity that
-    controls, is controlled by, or is under common control with You. For
-    purposes of this definition, "control" means (a) the power, direct
-    or indirect, to cause the direction or management of such entity,
-    whether by contract or otherwise, or (b) ownership of more than
-    fifty percent (50%) of the outstanding shares or beneficial
-    ownership of such entity.
+	means an individual or a legal entity exercising rights under this
+	License. For legal entities, "You" includes any entity that
+	controls, is controlled by, or is under common control with You. For
+	purposes of this definition, "control" means (a) the power, direct
+	or indirect, to cause the direction or management of such entity,
+	whether by contract or otherwise, or (b) ownership of more than
+	fifty percent (50%) of the outstanding shares or beneficial
+	ownership of such entity.
 
 2. License Grants and Conditions
 --------------------------------
@@ -93,14 +93,14 @@ Each Contributor hereby grants You a world-wide, royalty-free,
 non-exclusive license:
 
 (a) under intellectual property rights (other than patent or trademark)
-    Licensable by such Contributor to use, reproduce, make available,
-    modify, display, perform, distribute, and otherwise exploit its
-    Contributions, either on an unmodified basis, with Modifications, or
-    as part of a Larger Work; and
+	Licensable by such Contributor to use, reproduce, make available,
+	modify, display, perform, distribute, and otherwise exploit its
+	Contributions, either on an unmodified basis, with Modifications, or
+	as part of a Larger Work; and
 
 (b) under Patent Claims of such Contributor to make, use, sell, offer
-    for sale, have made, import, and otherwise transfer either its
-    Contributions or its Contributor Version.
+	for sale, have made, import, and otherwise transfer either its
+	Contributions or its Contributor Version.
 
 2.2. Effective Date
 
@@ -117,15 +117,15 @@ Notwithstanding Section 2.1(b) above, no patent license is granted by a
 Contributor:
 
 (a) for any code that a Contributor has removed from Covered Software;
-    or
+	or
 
 (b) for infringements caused by: (i) Your and any other third party's
-    modifications of Covered Software, or (ii) the combination of its
-    Contributions with other software (except as part of its Contributor
-    Version); or
+	modifications of Covered Software, or (ii) the combination of its
+	Contributions with other software (except as part of its Contributor
+	Version); or
 
 (c) under Patent Claims infringed by Covered Software in the absence of
-    its Contributions.
+	its Contributions.
 
 This License does not grant any rights in the trademarks, service marks,
 or logos of any Contributor (except as may be necessary to comply with
@@ -173,15 +173,15 @@ Form.
 If You distribute Covered Software in Executable Form then:
 
 (a) such Covered Software must also be made available in Source Code
-    Form, as described in Section 3.1, and You must inform recipients of
-    the Executable Form how they can obtain a copy of such Source Code
-    Form by reasonable means in a timely manner, at a charge no more
-    than the cost of distribution to the recipient; and
+	Form, as described in Section 3.1, and You must inform recipients of
+	the Executable Form how they can obtain a copy of such Source Code
+	Form by reasonable means in a timely manner, at a charge no more
+	than the cost of distribution to the recipient; and
 
 (b) You may distribute such Executable Form under the terms of this
-    License, or sublicense it under different terms, provided that the
-    license for the Executable Form does not attempt to limit or alter
-    the recipients' rights in the Source Code Form under this License.
+	License, or sublicense it under different terms, provided that the
+	license for the Executable Form does not attempt to limit or alter
+	the recipients' rights in the Source Code Form under this License.
 
 3.3. Distribution of a Larger Work
 
@@ -387,184 +387,193 @@ from utils import fuzzy
 
 
 class SphinxObjectFileReader:
-    # Inspired by Sphinx's InventoryFileReader
-    BUFSIZE = 16 * 1024
+	# Inspired by Sphinx's InventoryFileReader
+	BUFSIZE = 16 * 1024
 
-    def __init__(self, buffer):
-        self.stream = io.BytesIO(buffer)
+	def __init__(self, buffer):
+		self.stream = io.BytesIO(buffer)
 
-    def readline(self):
-        return self.stream.readline().decode("utf-8")
+	def readline(self):
+		return self.stream.readline().decode("utf-8")
 
-    def skipline(self):
-        self.stream.readline()
+	def skipline(self):
+		self.stream.readline()
 
-    def read_compressed_chunks(self):
-        decompressor = zlib.decompressobj()
-        while True:
-            chunk = self.stream.read(self.BUFSIZE)
-            if len(chunk) == 0:
-                break
-            yield decompressor.decompress(chunk)
-        yield decompressor.flush()
+	def read_compressed_chunks(self):
+		decompressor = zlib.decompressobj()
+		while True:
+			chunk = self.stream.read(self.BUFSIZE)
+			if len(chunk) == 0:
+				break
+			yield decompressor.decompress(chunk)
+		yield decompressor.flush()
 
-    def read_compressed_lines(self):
-        buf = b""
-        for chunk in self.read_compressed_chunks():
-            buf += chunk
-            pos = buf.find(b"\n")
-            while pos != -1:
-                yield buf[:pos].decode("utf-8")
-                buf = buf[pos + 1 :]
-                pos = buf.find(b"\n")
+	def read_compressed_lines(self):
+		buf = b""
+		for chunk in self.read_compressed_chunks():
+			buf += chunk
+			pos = buf.find(b"\n")
+			while pos != -1:
+				yield buf[:pos].decode("utf-8")
+				buf = buf[pos + 1 :]
+				pos = buf.find(b"\n")
 
 
 class Rtfm(commands.Cog):
-    """Commands for fetching Python library documentation"""
+	"""Commands for fetching Python library documentation"""
 
-    # full credit to https://github.com/Rapptz/RoboDanny
-    def __init__(self, bot):
-        self.bot = bot
+	# full credit to https://github.com/Rapptz/RoboDanny
+	def __init__(self, bot):
+		self.bot = bot
 
-    def parse_object_inv(self, stream: SphinxObjectFileReader, url: str) -> Dict:
-        result = {}
-        inv_version = stream.readline().rstrip()
+	def parse_object_inv(self, stream: SphinxObjectFileReader, url: str) -> Dict:
+		result = {}
+		inv_version = stream.readline().rstrip()
 
-        if inv_version != "# Sphinx inventory version 2":
-            raise RuntimeError("Invalid objects.inv file version.")
+		if inv_version != "# Sphinx inventory version 2":
+			raise RuntimeError("Invalid objects.inv file version.")
 
-        projname = stream.readline().rstrip()[11:]
-        stream.readline().rstrip()[11:]  # version line is not needed
+		projname = stream.readline().rstrip()[11:]
+		stream.readline().rstrip()[11:]  # version line is not needed
 
-        line = stream.readline()
-        if "zlib" not in line:
-            raise RuntimeError("Invalid objects.inv file, not z-lib compatible.")
+		line = stream.readline()
+		if "zlib" not in line:
+			raise RuntimeError("Invalid objects.inv file, not z-lib compatible.")
 
-        entry_regex = re.compile(r"(?x)(.+?)\s+(\S*:\S*)\s+(-?\d+)\s+(\S+)\s+(.*)")
-        for line in stream.read_compressed_lines():
-            match = entry_regex.match(line.rstrip())
-            if not match:
-                continue
+		entry_regex = re.compile(r"(?x)(.+?)\s+(\S*:\S*)\s+(-?\d+)\s+(\S+)\s+(.*)")
+		for line in stream.read_compressed_lines():
+			match = entry_regex.match(line.rstrip())
+			if not match:
+				continue
 
-            name, directive, prio, location, dispname = match.groups()
-            domain, _, subdirective = directive.partition(":")
-            if directive == "py:module" and name in result:
-                continue
+			name, directive, prio, location, dispname = match.groups()
+			domain, _, subdirective = directive.partition(":")
+			if directive == "py:module" and name in result:
+				continue
 
-            if directive == "std:doc":
-                subdirective = "label"
+			if directive == "std:doc":
+				subdirective = "label"
 
-            if location.endswith("$"):
-                location = location[:-1] + name
+			if location.endswith("$"):
+				location = location[:-1] + name
 
-            key = name if dispname == "-" else dispname
-            prefix = f"{subdirective}:" if domain == "std" else ""
+			key = name if dispname == "-" else dispname
+			prefix = f"{subdirective}:" if domain == "std" else ""
 
-            if projname == "nextcord":
-                key = key.replace("nextcord.ext.commands.", "").replace("nextcord.", "")
+			if projname == "nextcord":
+				key = key.replace("nextcord.ext.commands.", "").replace("nextcord.", "")
 
-            result[f"{prefix}{key}"] = os.path.join(url, location)
+			result[f"{prefix}{key}"] = os.path.join(url, location)
 
-        return result
+		return result
 
-    async def build_rtfm_lookup_table(self, page_types):
-        cache = {}
-        for key, page in page_types.items():
-            sub = cache[key] = {}
-            async with self.bot.session.get(page + "/objects.inv") as resp:
-                if resp.status != 200:
-                    raise RuntimeError(
-                        "Cannot build rtfm lookup table, try again later."
-                    )
+	async def build_rtfm_lookup_table(self, page_types):
+		cache = {}
+		for key, page in page_types.items():
+			sub = cache[key] = {}
+			async with self.bot.session.get(page + "/objects.inv") as resp:
+				if resp.status != 200:
+					raise RuntimeError(
+						"Cannot build rtfm lookup table, try again later."
+					)
 
-                stream = SphinxObjectFileReader(await resp.read())
-                cache[key] = self.parse_object_inv(stream, page)
+				stream = SphinxObjectFileReader(await resp.read())
+				cache[key] = self.parse_object_inv(stream, page)
 
-        self._rtfm_cache = cache
+		self._rtfm_cache = cache
 
-    async def do_rtfm(self, ctx, key, obj):
-        page_types = {
-            "python": "https://docs.python.org/3",
-            "nextcord": "https://nextcord.readthedocs.io/en/latest",
-            "dpy": "https://discordpy.readthedocs.io/en/latest",
-            "dpy2": "https://discordpy.readthedocs.io/en/master",
-            "pycord": "https://pycord.readthedocs.io/en/latest",
-            "edpy": "https://enhanced-dpy.readthedocs.io/en/latest",
-            "disnake": "https://disnake.readthedocs.io/en/latest",
-        }
+	async def do_rtfm(self, ctx, key, obj):
+		page_types = {
+			"python": "https://docs.python.org/3",
+			"nextcord": "https://nextcord.readthedocs.io/en/latest",
+			"dpy": "https://discordpy.readthedocs.io/en/latest",
+			"dpy2": "https://discordpy.readthedocs.io/en/master",
+			"pycord": "https://pycord.readthedocs.io/en/latest",
+			"edpy": "https://enhanced-dpy.readthedocs.io/en/latest",
+			"disnake": "https://disnake.readthedocs.io/en/latest",
+		}
 
-        if obj is None:
-            await ctx.send(page_types[key])
-            return
+		if obj is None:
+			await ctx.send(page_types[key])
+			return
 
-        if not hasattr(self, "_rtfm_cache"):
-            await ctx.trigger_typing()
-            await self.build_rtfm_lookup_table(page_types)
+		if not hasattr(self, "_rtfm_cache"):
+			await ctx.trigger_typing()
+			await self.build_rtfm_lookup_table(page_types)
 
-        obj = re.sub(r"^(?:discord\.(?:ext\.)?)?(?:commands\.)?(.+)", r"\1", obj)
-        obj = re.sub(r"^(?:nextcord\.(?:ext\.)?)?(?:commands\.)?(.+)", r"\1", obj)
+		obj = re.sub(r"^(?:discord\.(?:ext\.)?)?(?:commands\.)?(.+)", r"\1", obj)
+		obj = re.sub(r"^(?:nextcord\.(?:ext\.)?)?(?:commands\.)?(.+)", r"\1", obj)
 
-        if key.startswith("master"):
-            # point the abc.Messageable types properly:
-            q = obj.lower()
-            for name in dir(discord.abc.Messageable):
-                if name[0] == "_":
-                    continue
-                if q == name:
-                    obj = f"abc.Messageable.{name}"
-                    break
+		if key.startswith("master"):
+			# point the abc.Messageable types properly:
+			q = obj.lower()
+			for name in dir(discord.abc.Messageable):
+				if name[0] == "_":
+					continue
+				if q == name:
+					obj = f"abc.Messageable.{name}"
+					break
 
-        cache = list(self._rtfm_cache[key].items())
+		cache = list(self._rtfm_cache[key].items())
 
-        matches = fuzzy.finder(obj, cache, key=lambda t: t[0], lazy=False)[:8]
+		matches = fuzzy.finder(obj, cache, key=lambda t: t[0], lazy=False)[:8]
 
-        e = discord.Embed(colour=discord.Colour.blurple())
-        if len(matches) == 0:
-            return await ctx.send("Could not find anything. Sorry.")
+		e = discord.Embed(colour=discord.Colour.blurple())
+		if len(matches) == 0:
+			return await ctx.send("Could not find anything. Sorry.")
 
-        e.description = "\n".join(f"[`{key}`]({url})" for key, url in matches)
-        ref = ctx.message.reference
-        refer = None
-        if ref and isinstance(ref.resolved, discord.Message):
-            refer = ref.resolved.to_reference()
-        await ctx.send(embed=e, reference=refer)
+		e.description = "\n".join(f"[`{key}`]({url})" for key, url in matches)
+		ref = ctx.message.reference
+		refer = None
+		if ref and isinstance(ref.resolved, discord.Message):
+			refer = ref.resolved.to_reference()
+		await ctx.channel.trigger_typing()
+		await ctx.send(embed=e, reference=refer)
 
-    @commands.group(name="rtfm", aliases=["rtfd"], invoke_without_command=True, hidden=True)
-    async def rtfm_group(self, ctx: commands.Context, *, obj: str = None):
-        """Retrieve documentation on Python libraries"""
-        await self.do_rtfm(ctx, "nextcord", obj)
+	@commands.group(name="rtfm", aliases=["rtfd"], invoke_without_command=True, hidden=True)
+	async def rtfm_group(self, ctx: commands.Context, *, obj: str = None):
+		"""Retrieve documentation on Python libraries"""
+		await ctx.channel.trigger_typing()
+		await self.do_rtfm(ctx, "nextcord", obj)
 
-    @rtfm_group.command(name="python", aliases=["py"])
-    async def rtfm_python_cmd(self, ctx: commands.Context, *, obj: str = None):
-        await self.do_rtfm(ctx, "python", obj)
+	@rtfm_group.command(name="python", aliases=["py"])
+	async def rtfm_python_cmd(self, ctx: commands.Context, *, obj: str = None):
+		await ctx.channel.trigger_typing()
+		await self.do_rtfm(ctx, "python", obj)
 
-    @rtfm_group.command(name="dpy")
-    async def rtfm_dpy_cmd(self, ctx: commands.Context, *, obj: str = None):
-        await self.do_rtfm(ctx, "dpy", obj)
+	@rtfm_group.command(name="dpy")
+	async def rtfm_dpy_cmd(self, ctx: commands.Context, *, obj: str = None):
+		await ctx.channel.trigger_typing()
+		await self.do_rtfm(ctx, "dpy", obj)
 
-    @rtfm_group.command(name="dpy2")
-    async def rtfm_dpy_cmd(self, ctx: commands.Context, *, obj: str = None):
-        await self.do_rtfm(ctx, "dpy2", obj)
+	@rtfm_group.command(name="dpy2")
+	async def rtfm_dpy_cmd(self, ctx: commands.Context, *, obj: str = None):
+		await ctx.channel.trigger_typing()
+		await self.do_rtfm(ctx, "dpy2", obj)
 
-    @rtfm_group.command(name="pycord")
-    async def rtfm_pycord_cmd(self, ctx: commands.Context, *, obj: str = None):
-        await self.do_rtfm(ctx, "pycord", obj)
+	@rtfm_group.command(name="pycord")
+	async def rtfm_pycord_cmd(self, ctx: commands.Context, *, obj: str = None):
+		await ctx.channel.trigger_typing()
+		await self.do_rtfm(ctx, "pycord", obj)
 
-    @rtfm_group.command(name="edpy")
-    async def rtfm_edpy_cmd(self, ctx: commands.Context, *, obj: str = None):
-        await self.do_rtfm(ctx, "edpy", obj)
+	@rtfm_group.command(name="edpy")
+	async def rtfm_edpy_cmd(self, ctx: commands.Context, *, obj: str = None):
+		await ctx.channel.trigger_typing()
+		await self.do_rtfm(ctx, "edpy", obj)
 
-    @rtfm_group.command(name="disnake")
-    async def rtfm_disnake_cmd(self, ctx: commands.Context, *, obj: str = None):
-        await self.do_rtfm(ctx, "disnake", obj)
+	@rtfm_group.command(name="disnake")
+	async def rtfm_disnake_cmd(self, ctx: commands.Context, *, obj: str = None):
+		await ctx.channel.trigger_typing()
+		await self.do_rtfm(ctx, "disnake", obj)
 
-    @commands.command(help="delete cache of rtfm", aliases=["purge-rtfm", "delrtfm"], hidden=True)
-    @commands.is_owner()
-    async def rtfmcache(self, ctx: commands.Context):
-        del self._rtfm_cache
-        embed = discord.Embed(title="Purged rtfm cache.", color=discord.Color.blurple())
-        await ctx.send(embed=embed)
+	@commands.command(help="delete cache of rtfm", aliases=["purge-rtfm", "delrtfm"], hidden=True)
+	@commands.is_owner()
+	async def rtfmcache(self, ctx: commands.Context):
+		del self._rtfm_cache
+		embed = discord.Embed(title="Purged rtfm cache.", color=discord.Color.blurple())
+		await ctx.channel.trigger_typing()
+		await ctx.send(embed=embed)
 
 
 def setup(bot):
-    bot.add_cog(Rtfm(bot))
+	bot.add_cog(Rtfm(bot))

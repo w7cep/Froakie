@@ -76,6 +76,7 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 		embed.set_image(url="https://cdn.discordapp.com/attachments/859634488593743892/891612213654192168/greninja_banner.jpg")
 		embed.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar.url)
 		embed.set_footer(text="Bot is running v1.0.0")
+		await ctx.channel.trigger_typing()
 		await ctx.send(embed=embed, view=ConfirmView())
 
 	@commands.command(name="sysbot_rules_access", hidden=True)
@@ -94,6 +95,7 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 		embed.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar.url)
 		embed.set_image(url="https://cdn.discordapp.com/attachments/859634488593743892/891612213654192168/greninja_banner.jpg")
 		embed.set_footer(text=f"Bot is running {version}")
+		await ctx.channel.trigger_typing()
 		await ctx.send(embed=embed, view=SysBotRuleView())
 		  
 	@commands.command(name="access_roles", hidden=True)
@@ -115,6 +117,7 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 		embed.add_field(name="__*Gender Roles*__", value=	f"**Female**: 🚺\n"
 				  											f"**Male**: 🚹\n"
 							 								f"**Other**: 🚻", inline=False)
+		await ctx.channel.trigger_typing()
 		await ctx.send(embed=embed, view=SelfRoleView())
 
 	@commands.command(name="color_roles", hidden=True)
@@ -137,7 +140,7 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 														f"*Brown*:  🟤\n"
 														f"*White*:  ⚪\n"
 											   			f"*Maroon*: 🔴", inline=True)
-
+		await ctx.channel.trigger_typing()
 		await ctx.send(embed=embed, view=ColorRoleView())
    
 	@commands.command(name="sysbot_embed", hidden=True)
@@ -151,7 +154,8 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 		embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/891852099653083186/895902400416710666/greninja-frogadier.gif")
 		embed.set_image(url="https://cdn.discordapp.com/attachments/859634488593743892/891612213654192168/greninja_banner.jpg")
 		embed.set_author(name="Greninja Mod", icon_url="https://cdn.discordapp.com/avatars/892620195342987274/cb32b40409c7df4d147c400582f939ac.webp?size=128")
-		embed.set_footer(text="Bot is running v1.0.0")  
+		embed.set_footer(text="Bot is running v1.0.0") 
+		await ctx.channel.trigger_typing() 
 		await ctx.send(embed=embed)
   
 # setup functions for bot

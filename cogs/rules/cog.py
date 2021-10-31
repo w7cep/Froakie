@@ -32,6 +32,7 @@ class Rules(commands.Cog, name="Rules"):
 			),
 		)
 		# confirmation
+		await ctx.channel.trigger_typing()
 		await ctx.send(embed=embed_success("Rules have been successfully updated. 🎉"))
   
 def setup(bot: commands.Bot):

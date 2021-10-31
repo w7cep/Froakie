@@ -44,7 +44,8 @@ class Redeemed(commands.Converter):
 # Checks if there is a muted role on the server and creates one if there isn't
 async def mute(ctx, user, reason):
 	role = nextcord.utils.get(ctx.guild.roles, name="Muted") # retrieves muted role returns none if there isn't 
-	await user.add_roles(role) # adds already existing muted role
+	await user.add_roles(role)
+ 	await ctx.channel.trigger_typing()# adds already existing muted role
 	await ctx.send(f"{user.mention} has been muted for {reason}")
 
 class Mod(commands.Cog, name="Mod"):
@@ -75,7 +76,7 @@ class Mod(commands.Cog, name="Mod"):
 		ban.set_thumbnail(url=user.avatar.url)
 		ban.set_image(url="https://cdn.discordapp.com/attachments/859634488593743892/891612213654192168/greninja_banner.jpg")
 		ban.set_footer(text=f"{ctx.author.name}", icon_url=ctx.author.avatar.url)
-
+		await ctx.channel.trigger_typing()
 		await ctx.send(embed=ban)
 
 	@commands.command(name="softban")
@@ -96,6 +97,7 @@ class Mod(commands.Cog, name="Mod"):
 		softban.set_footer(text=f"{ctx.author.name}", icon_url=ctx.author.avatar.url)
 		await ctx.guild.ban(user)
 		await ctx.guild.unban(user)
+		await ctx.channel.trigger_typing()
 		await ctx.send(embed=softban)
 	
 	@commands.command(name="unban")
@@ -115,7 +117,7 @@ class Mod(commands.Cog, name="Mod"):
 		unban.set_thumbnail(url=user.avatar.url)
 		unban.set_image(url="https://cdn.discordapp.com/attachments/859634488593743892/891612213654192168/greninja_banner.jpg")
 		unban.set_footer(text=f"{ctx.author.name}", icon_url=ctx.author.avatar.url)
-
+		await ctx.channel.trigger_typing()
 		await ctx.send(embed=unban)
 
 	@commands.command(name="kick")
@@ -135,6 +137,7 @@ class Mod(commands.Cog, name="Mod"):
 		kick.set_thumbnail(url=user.avatar.url)
 		kick.set_image(url="https://cdn.discordapp.com/attachments/859634488593743892/891612213654192168/greninja_banner.jpg")
 		kick.set_footer(text=f"{ctx.author.name}", icon_url=ctx.author.avatar.url)
+		await ctx.channel.trigger_typing()
 		await ctx.send(embed=kick)
  
 	@commands.command(name="mute")
@@ -147,7 +150,8 @@ class Mod(commands.Cog, name="Mod"):
 	@commands.has_role(829942684947841024)
 	async def unmute(self, ctx, user: Redeemed):
 		"""Unmutes a muted user"""
-		await user.remove_roles(nextcord.utils.get(ctx.guild.roles, name="Muted")) # removes muted role
+		await user.remove_roles(nextcord.utils.get(ctx.guild.roles, name="Muted"))
+		await ctx.channel.trigger_typing()# removes muted role
 		await ctx.send(f"{user.mention} has been unmuted")
   
 	# TODO Make: temp_mute command
@@ -162,7 +166,8 @@ class Mod(commands.Cog, name="Mod"):
 			channel = ctx.channel
 		if reason == None:
 			reason = "no reason"
-		await channel.set_permissions(user, send_messages=False, view_channel=True, read_message_history=True) # sets permissions for current channel
+		await channel.set_permissions(user, send_messages=False, view_channel=True, read_message_history=True)# sets permissions for current channel
+		await ctx.channel.trigger_typing()
 		await channel.send(f"🚫{user.mention} has been blocked in {channel.mention} 🚫 for {reason}")
 	
 	@commands.command(name="unblock")
@@ -175,6 +180,7 @@ class Mod(commands.Cog, name="Mod"):
 			channel = ctx.channel
    
 		await channel.set_permissions(user, send_messages=None, view_channel=None, read_message_history=None) # sets permissions for current channel
+		await ctx.channel.trigger_typing()
 		await channel.send(f"✅{user.mention} has been unblocked in {channel.mention}✅")
 
 	@commands.command(name="addrole")
@@ -188,11 +194,13 @@ class Mod(commands.Cog, name="Mod"):
 			await ctx.send(f"Removed {role} from {user.mention}") 
 		else:
 			await user.add_roles(role) #adds role if not already has it
-			await ctx.send(f"Added {role} to {user.mention}")
+		await ctx.channel.trigger_typing()
+		await ctx.send(f"Added {role} to {user.mention}")
 			
 	@give_role.error
 	async def role_error(self, ctx, error):
 		if isinstance(error, MissingPermissions):
+			await ctx.channel.trigger_typing()
 			await ctx.send('**:x: | You do not have permission to use this command!**')
 
 	@commands.command(name="userinfo", aliases=["ui"]) 
@@ -219,6 +227,7 @@ class Mod(commands.Cog, name="Mod"):
 		embed.add_field(name="__**Server-related information:**__", value=f"**Nickname:** {user.nick}\n"
 																		  f"**Joined server:** {user.joined_at.__format__('%A %d %B %Y at %H:%M')}\n"
 																		  f"**Roles:** {' '.join([r.mention for r in user.roles[1:]])}")
+		await ctx.channel.trigger_typing()
 		return await ctx.send(embed=embed)
 
 

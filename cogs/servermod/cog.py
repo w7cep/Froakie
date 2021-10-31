@@ -25,6 +25,7 @@ class ServerMod(commands.Cog, name="ServerMod"):
 			f.write("".join([f"{w}\n" for w in words]))
 
 		profanity.load_censor_words_from_file("./data/profanity.txt")
+		await ctx.channel.trigger_typing()
 		await ctx.send("Action complete.")
 
 	@commands.command(name="delswears", aliases=["delprofanity", "delcurses"])
@@ -38,6 +39,7 @@ class ServerMod(commands.Cog, name="ServerMod"):
 			f.write("".join([f"{w}\n" for w in stored if w not in words]))
 
 		profanity.load_censor_words_from_file("./data/profanity.txt")
+		await ctx.channel.trigger_typing()
 		await ctx.send("Action complete.")
 
 	@commands.Cog.listener()
@@ -56,6 +58,7 @@ class ServerMod(commands.Cog, name="ServerMod"):
 	async def say(self, ctx, channel:nextcord.TextChannel, *, message):
 		"""Make the bot say something in the specified channel."""
 		if channel is not None:
+			await ctx.channel.trigger_typing()
 			await channel.send(message)
 
 	@commands.command(name="say_embed")
@@ -68,6 +71,7 @@ class ServerMod(commands.Cog, name="ServerMod"):
 			embed.set_image(url="https://cdn.discordapp.com/attachments/901687898452131860/902400527621566504/greninja_banner.jpg")
 			embed.set_footer(text=f"{ctx.author.name}", icon_url=ctx.author.avatar.url)
 			embed.set_author(name=f"Greninja Mod", icon_url="https://cdn.discordapp.com/avatars/892620195342987274/cb32b40409c7df4d147c400582f939ac.webp?size=128")
+		await ctx.channel.trigger_typing()
 		await channel.send(embed=embed)
 
 	@commands.command(name="echo")
@@ -79,6 +83,7 @@ class ServerMod(commands.Cog, name="ServerMod"):
 			title="Please tell me what you want me to repeat!",
 			description="This request will timeout after 1 minute.",
 		)
+		await ctx.channel.trigger_typing()
 		sent = await ctx.send(embed=embed)
 
 		try:
@@ -91,9 +96,11 @@ class ServerMod(commands.Cog, name="ServerMod"):
 			if msg:
 				await sent.delete()
 				await msg.delete()
+				await ctx.channel.trigger_typing()
 				await ctx.send(msg.content)
 		except asyncio.TimeoutError:
 			await sent.delete()
+   			await ctx.channel.trigger_typing()
 			await ctx.send("Cancelling", delete_after=10)
 
 	@commands.command(name="emojiinfo", aliases=["ei"])
@@ -106,6 +113,7 @@ class ServerMod(commands.Cog, name="ServerMod"):
 		try:
 					emoji = await emoji.guild.fetch_emoji(emoji.id)
 		except nextcord.NotFound:
+	  				await ctx.channel.trigger_typing()
 					await ctx.send("I could not find this emoji in the given guild.")
 
 		is_managed = "Yes" if emoji.managed else "No"
@@ -144,6 +152,7 @@ class ServerMod(commands.Cog, name="ServerMod"):
 		embed.set_image(url="https://cdn.discordapp.com/attachments/859634488593743892/891612213654192168/greninja_banner.jpg")
 		embed.set_footer(text=f"{ctx.author.name}", icon_url=ctx.author.avatar.url)
 		embed.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar.url)
+		await ctx.channel.trigger_typing()
 		await ctx.send(embed=embed)
 
 

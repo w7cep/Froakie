@@ -18,16 +18,19 @@ class PkmAutomation(commands.Cog, name="PkmAutomation"):
 	@commands.group(invoke_without_command=True)
 	@commands.guild_only()
 	async def arduino(self, ctx):
+		await ctx.channel.trigger_typing()
 		await ctx.send("Invalid sub-command passed")
  
 	@arduino.command(name="release")
 	@commands.guild_only()
 	async def release(self, ctx):
+		await ctx.channel.trigger_typing()
 		await ctx.send("https://github.com/PokemonAutomation/SwSh-Arduino/releases")
 	
 	@arduino.command(name="wiki")
 	@commands.guild_only()
 	async def wiki(self, ctx):
+		await ctx.channel.trigger_typing()
 		await ctx.send("https://github.com/PokemonAutomation/SwSh-Arduino/wiki")
 
 	@arduino.command(name="beta")
@@ -39,16 +42,19 @@ class PkmAutomation(commands.Cog, name="PkmAutomation"):
 	@commands.group(invoke_without_command=True)
 	@commands.guild_only()
 	async def forkbot(self, ctx):
+		await ctx.channel.trigger_typing()
 		await ctx.send("Invalid sub-command passed")
   
 	@forkbot.command(name="release")
 	@commands.guild_only()
 	async def _release(self, ctx):
+		await ctx.channel.trigger_typing()
 		await ctx.send("https://dev.azure.com/koigithub3088/SysBot_KoiFork/_build?definitionId=2&_a=summary")
 	
 	@forkbot.command(name="wiki")
 	@commands.guild_only()
 	async def _wiki(self, ctx):
+		await ctx.channel.trigger_typing()
 		await ctx.send("https://github.com/Koi-3088/ForkBot.NET/wiki")
 
 def setup(bot: commands.Bot):
