@@ -25,4 +25,4 @@ Bot for the Greninja's Grotto server.
 
 Be one of the first to join the server!
 
-[![Discord](https://img.shields.io/discord/829558837609889804?color=%23738BD7&label=&logo=discord&logoColor=white&style=for-the-badge)](https://discord.gg/dm7gSAT68d)
+[<img src="https://canary.discordapp.com/api/guilds/695809740428673034/widget.png?style=banner2">](https://discord.gg/dm7gSAT68d)
