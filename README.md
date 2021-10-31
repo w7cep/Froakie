@@ -34,4 +34,4 @@ GUILD_ID=829558837609889804
 
 Be one of the first to join the server!
 
-[<img src="https://canary.discordapp.com/api/guilds/829558837609889804/widget.png?style=banner4">](https://discord.gg/dm7gSAT68d)
+[<img src="https://canary.discordapp.com/api/guilds/829558837609889804/widget.png?style=banner3">](https://discord.gg/dm7gSAT68d)
