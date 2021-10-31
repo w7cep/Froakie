@@ -58,7 +58,7 @@ class Misc(commands.Cog, name="Misc"):
 		await ctx.channel.trigger_typing()
 		await ctx.send(f"Here : {url}")
 
-	@info.command(name="ping")
+	@commands.command(name="ping")
 	async def ping(self, ctx: commands.Context):
 		"""Checks for a response from the bot"""
 		await ctx.channel.trigger_typing()
