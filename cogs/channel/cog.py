@@ -56,6 +56,7 @@ class Channel(commands.Cog, name="Channel"):
 	@commands.guild_only()
 	@commands.has_role(829942684947841024)
 	async def channel(self, ctx):
+		"""Channel mod commands"""
 		await ctx.channel.trigger_typing()
 		await ctx.send("Invalid sub-command passed")
 
@@ -84,7 +85,7 @@ class Channel(commands.Cog, name="Channel"):
 	@channel.command(name="lock")
 	@commands.has_permissions(manage_channels=True)
 	async def lock(self, ctx, *, channel: nextcord.TextChannel = None,reason = None):
-
+		"Lock the channel"
 		if channel == None:
 			channel = ctx.channel
    
@@ -95,7 +96,7 @@ class Channel(commands.Cog, name="Channel"):
 	@channel.command(name="unlock")
 	@commands.has_permissions(manage_channels=True)
 	async def unlock(self, ctx, *, channel: nextcord.TextChannel = None,reason = None):
-
+		"""Unlock the channel"""
 		if channel == None:
 			channel = ctx.channel
    
@@ -126,7 +127,7 @@ class Channel(commands.Cog, name="Channel"):
 		embed.add_field(name="Channel Creation Time", value=channel.created_at, inline=False)
 		embed.add_field(name="Channel Hash", value=hash(channel), inline=False)
 		#!FIXME: embed.add_field(name="Channel Permissions Synced", value=channel.permissions_synced, inline=False)
-		await ctx.channel.trigger_typing()		
+		await ctx.channel.trigger_typing()
 		await ctx.send(embed=embed)
 
 	'''	@lock.error
