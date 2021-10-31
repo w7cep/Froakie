@@ -45,7 +45,7 @@ class Redeemed(commands.Converter):
 async def mute(ctx, user, reason):
 	role = nextcord.utils.get(ctx.guild.roles, name="Muted") # retrieves muted role returns none if there isn't 
 	await user.add_roles(role)
- 	await ctx.channel.trigger_typing()# adds already existing muted role
+	await ctx.channel.trigger_typing()# adds already existing muted role
 	await ctx.send(f"{user.mention} has been muted for {reason}")
 
 class Mod(commands.Cog, name="Mod"):
