@@ -100,7 +100,7 @@ class ServerMod(commands.Cog, name="ServerMod"):
 				await ctx.send(msg.content)
 		except asyncio.TimeoutError:
 			await sent.delete()
-   			await ctx.channel.trigger_typing()
+			await ctx.channel.trigger_typing()
 			await ctx.send("Cancelling", delete_after=10)
 
 	@commands.command(name="emojiinfo", aliases=["ei"])
@@ -113,7 +113,7 @@ class ServerMod(commands.Cog, name="ServerMod"):
 		try:
 					emoji = await emoji.guild.fetch_emoji(emoji.id)
 		except nextcord.NotFound:
-	  				await ctx.channel.trigger_typing()
+					await ctx.channel.trigger_typing()
 					await ctx.send("I could not find this emoji in the given guild.")
 
 		is_managed = "Yes" if emoji.managed else "No"
