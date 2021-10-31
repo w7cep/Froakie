@@ -21,29 +21,22 @@ class Sinner(commands.Converter):
 
 class Testing(commands.Cog, name="Testing"):
 	"""Test commands"""
-	def __init__(self, bot: commands.Bot):
+	def __init__(self, bot: commands.Bot, *args, **kwargs):
+		super().__init__(bot, *args, **kwargs)
 		self.bot = bot
-	
-	@commands.command(name="raid_request", hidden=True)
-	@commands.guild_only()
-	@commands.has_role(829942684947841024)
-	@commands.bot_has_guild_permissions(manage_channels=True)
-	async def raid_request(self, ctx, reason = None):
-		suggestion_channel = await ctx.guild.fetch_channel(config.SUGGESTION_CHANNEL_ID)
-		if reason is None:
-			await ctx.send("You must suggest a den number!")
-		if ctx.channel.id == 875571213844488223:
-			user = ctx.author
-			supem = nextcord.Embed(title=f"{user} REQUESTED:", description=f"**{reason}**", color=0x00ff00)
-			supem.set_thumbnail(url="https://cdn.discordapp.com/attachments/891852099653083186/895902400416710666/greninja-frogadier.gif")
-			supem.set_image(url="https://cdn.discordapp.com/attachments/901687898452131860/902400527621566504/greninja_banner.jpg")
-			supem.set_footer(text=f"{ctx.author.name}", icon_url=ctx.author.avatar.url)
-			supem.set_author(name=f"Greninja Mod", icon_url="https://cdn.discordapp.com/avatars/892620195342987274/cb32b40409c7df4d147c400582f939ac.webp?size=128")
-			supem.add_field(name=f"Thanks for the suggestion!", value="Staff will get to your suggestion soon...")
-			await suggestion_channel.send(embed=supem)
-   
-		elif ctx.channel.id != 875571213844488223:
-			await ctx.send("❌ You can't use this command here!")
- 
+
+		# create the background task and run it in the background
+		self.bg_task = self.loop.create_task(self.my_background_task())
+
+
+	async def my_background_task(self):
+		await self.wait_until_ready()
+		counter = 0
+		channel = self.get_channel(891852099653083186) # channel ID goes here
+		while not self.is_closed():
+			counter += 1
+			await channel.send(counter)
+			await asyncio.sleep(60) # task runs every 60 seconds
+
 def setup(bot: commands.Bot):
 	bot.add_cog(Testing(bot))
