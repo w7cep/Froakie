@@ -145,8 +145,8 @@ class MemberMod(commands.Cog, name="Member Mod"):
 		await ctx.channel.trigger_typing()# removes muted role
 		await ctx.send(f"{user.mention} has been unmuted")
 
-	# TODO Make: temp_mute command
-	# TODO Add: """docstring to the block and unblock commands"""
+	# TODO #4 Make: temp_mute command
+	# TODO #5 Add: """docstring to the block and unblock commands"""
 
 	@member.command(name="block")
 	@commands.has_role(829942684947841024) 

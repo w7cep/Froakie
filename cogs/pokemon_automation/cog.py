@@ -1,6 +1,6 @@
 from nextcord.ext import commands
 
-#TODO add: """docstring""" to the PkmAutomation commands.
+#TODO #6 add: """docstring""" to the PkmAutomation commands.
 class PkmAutomation(commands.Cog, name="PkmAutomation"):
 	"""Pokemon Automation Info Commands"""
 	def __init__(self, bot: commands.Bot):

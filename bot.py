@@ -7,8 +7,8 @@ from nextcord.ext import commands, tasks
 
 import config
 
-# TODO: Fine tune command permissions.
-# TODO: Delete every excess space / Convert files with space indents to tabs.
+# TODO: #1 Fine tune command permissions.
+# TODO: #2 Delete every excess space / Convert files with space indents to tabs.
 
 def main():
 	# allows privledged intents for monitoring members joining, roles editing, and role assignments
