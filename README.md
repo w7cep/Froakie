@@ -26,4 +26,4 @@ Bot for the Greninja's Grotto server.
 Be one of the first to join the server!
 
 
-[![Discord Banner 3](https://discordapp.com/api/guilds/[SERVER ID]/widget.png?style=banner3)](https://discord.gg/dm7gSAT68d)
+[![Discord Banner 3](https://discordapp.com/api/guilds/[829558837609889804]/widget.png?style=banner3)](https://discord.gg/dm7gSAT68d)
