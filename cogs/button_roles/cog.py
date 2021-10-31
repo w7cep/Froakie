@@ -28,7 +28,7 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 		self.__bot.persistent_views_added = True
 		print("Button views added")
 
-	@commands.command(name="sysbot_roles", hidden=True)
+	@commands.command(name="sysbot_roles")
 	@commands.is_owner()
 	async def sysbot_roles(self, ctx: commands.Context, message_id: str):
 		"""Starts a bot role view aka bot access role"""
@@ -36,7 +36,7 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 		message = await bot_rules_channel.fetch_message(message_id)
 		await message.edit(view=SysBotRuleView())
 
-	@commands.command(name="add_confirm", hidden=True)
+	@commands.command(name="add_confirm")
 	@commands.is_owner()
 	async def add_confirm(self, ctx: commands.Context, message_id: str):
 		"""Starts a confirm view aka default role button"""
@@ -44,7 +44,7 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 		message = await rules_channel.fetch_message(message_id)
 		await message.edit(view=ConfirmView())
 
-	@commands.command(name="server_rules_access", hidden=True)
+	@commands.command(name="server_rules_access")
 	@commands.is_owner()
 	@commands.guild_only()
 	async def server_rules_access(self, ctx):
@@ -78,7 +78,7 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 		await ctx.channel.trigger_typing()
 		await ctx.send(embed=embed, view=ConfirmView())
 
-	@commands.command(name="sysbot_rules_access", hidden=True)
+	@commands.command(name="sysbot_rules_access")
 	@commands.is_owner()
 	@commands.guild_only()
 	async def sysbot_rules_access(self, ctx):
@@ -97,7 +97,7 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 		await ctx.channel.trigger_typing()
 		await ctx.send(embed=embed, view=SysBotRuleView())
 		  
-	@commands.command(name="access_roles", hidden=True)
+	@commands.command(name="access_roles")
 	@commands.is_owner()
 	async def access_roles(self, ctx: commands.Context):
 		"""Starts a access role view"""
@@ -119,7 +119,7 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 		await ctx.channel.trigger_typing()
 		await ctx.send(embed=embed, view=SelfRoleView())
 
-	@commands.command(name="color_roles", hidden=True)
+	@commands.command(name="color_roles")
 	@commands.is_owner()
 	async def color_roles(self, ctx: commands.Context):
 		"""Color role embed"""
@@ -142,7 +142,7 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 		await ctx.channel.trigger_typing()
 		await ctx.send(embed=embed, view=ColorRoleView())
    
-	@commands.command(name="sysbot_embed", hidden=True)
+	@commands.command(name="sysbot_embed")
 	@commands.is_owner()
 	async def sysbot_embed(self, ctx):
 		"""Sysbot access embed."""
