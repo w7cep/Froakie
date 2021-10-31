@@ -1,9 +1,18 @@
-# Greninja Discord Bot
+# Greninja's Grotto Discord Bot
 
 
 [![Powered by Nextcord](https://custom-icon-badges.herokuapp.com/badge/-Powered%20by%20Nextcord-0d1620?logo=nextcord)](https://github.com/nextcord/nextcord "Powered by Nextcord Python API Wrapper")
 
-Bot for the Greninja's Grotto server.
+* Add .env file to the main file.
+* Start the bot with bot.py by running it in idle.
+```
+**Example:**
+BOT_TOKEN="ODkyNjIwMGs4GSU6OTg3Mjc0.YVPjVg.WBwPsIWbl46LwWLAgbaPqxEOH1Q"
+PREFIX="!"
+BOT_NAME="Greninja"
+#GUILD ID
+GUILD_ID=829558837609889804
+```
 
 ## Features
 
