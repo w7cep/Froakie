@@ -133,7 +133,7 @@ class TicTacToe(nextcord.ui.View):
 bot = commands.Bot(command_prefix='$')
 
 
-@bot.command()
+@commands.command(name="tic")
 async def tic(ctx):
 	"""Starts a tic-tac-toe game with yourself."""
 	await ctx.send('Tic Tac Toe: X goes first', view=TicTacToe())
