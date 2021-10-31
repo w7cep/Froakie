@@ -48,7 +48,7 @@ async def mute(ctx, user, reason):
 	await ctx.channel.trigger_typing()# adds already existing muted role
 	await ctx.send(f"{user.mention} has been muted for {reason}")
 
-class Mod(commands.Cog, name="Mod"):
+class MemberMod(commands.Cog, name="Member Mod"):
 	"""Moderation commands"""
 	def __init__(self, bot: commands.Bot):
 		self.bot = bot
@@ -58,8 +58,13 @@ class Mod(commands.Cog, name="Mod"):
 	async def __error(self, ctx, error):
 		if isinstance(error, commands.BadArgument):
 				await ctx.send(error)
-		
-	@commands.command(name="ban")
+	
+	@commands.group(invoke_without_command=True)
+	@commands.guild_only()
+	async def member(self, ctx):
+		await ctx.send("Invalid sub-command specified")
+ 
+	@member.command(name="ban")
 	@commands.has_role(829942684947841024)
 	async def ban(self, ctx, id: int):
 		"""Ban a user from the server."""
@@ -79,7 +84,7 @@ class Mod(commands.Cog, name="Mod"):
 		await ctx.channel.trigger_typing()
 		await ctx.send(embed=ban)
 
-	@commands.command(name="softban")
+	@member.command(name="softban")
 	@commands.has_role(829942684947841024) 
 	async def softban(self, ctx, id: int):
 		"""Softban a user from the server."""
@@ -100,7 +105,7 @@ class Mod(commands.Cog, name="Mod"):
 		await ctx.channel.trigger_typing()
 		await ctx.send(embed=softban)
 	
-	@commands.command(name="unban")
+	@member.command(name="unban")
 	@commands.has_role(829942684947841024)
 	async def unban(self, ctx, id: int):
 		"""Unban a user from the server."""
@@ -120,7 +125,7 @@ class Mod(commands.Cog, name="Mod"):
 		await ctx.channel.trigger_typing()
 		await ctx.send(embed=unban)
 
-	@commands.command(name="kick")
+	@member.command(name="kick")
 	@commands.has_role(829942684947841024)
 	async def kick(self, ctx, id: int):
 		"""Kick a user from the server."""
@@ -140,13 +145,13 @@ class Mod(commands.Cog, name="Mod"):
 		await ctx.channel.trigger_typing()
 		await ctx.send(embed=kick)
  
-	@commands.command(name="mute")
+	@member.command(name="mute")
 	@commands.has_role(829942684947841024) 
 	async def mute(self, ctx, user: Sinner, reason=None):
 		"""Gives them hell."""
 		await mute(ctx, user, reason or "being sus") # uses the mute function
 		
-	@commands.command(name="unmute")
+	@member.command(name="unmute")
 	@commands.has_role(829942684947841024)
 	async def unmute(self, ctx, user: Redeemed):
 		"""Unmutes a muted user"""
@@ -156,7 +161,7 @@ class Mod(commands.Cog, name="Mod"):
   
 	# TODO Make: temp_mute command
 	
-	@commands.command(name="block")
+	@member.command(name="block")
 	@commands.has_role(829942684947841024) 
 	async def block(self, ctx, user: Sinner=None, channel: nextcord.TextChannel = None, reason = None):
 					
@@ -170,7 +175,7 @@ class Mod(commands.Cog, name="Mod"):
 		await ctx.channel.trigger_typing()
 		await channel.send(f"🚫{user.mention} has been blocked in {channel.mention} 🚫 for {reason}")
 	
-	@commands.command(name="unblock")
+	@member.command(name="unblock")
 	@commands.has_role(829942684947841024) 
 	async def unblock(self, ctx, user: Sinner=None, channel: nextcord.TextChannel = None, reason = None):
 					
@@ -183,7 +188,7 @@ class Mod(commands.Cog, name="Mod"):
 		await ctx.channel.trigger_typing()
 		await channel.send(f"✅{user.mention} has been unblocked in {channel.mention}✅")
 
-	@commands.command(name="addrole")
+	@member.command(name="addrole")
 	@commands.is_owner() #permissions
 	async def give_role(self, ctx, user : nextcord.Member, *, role : nextcord.Role):
 		"""Give role to member."""
@@ -203,7 +208,7 @@ class Mod(commands.Cog, name="Mod"):
 			await ctx.channel.trigger_typing()
 			await ctx.send('**:x: | You do not have permission to use this command!**')
 
-	@commands.command(name="userinfo", aliases=["ui"]) 
+	@member.command(name="info") 
 	@commands.has_role(829942684947841024)
 	@commands.guild_only()
 	async def memberinfo(self, ctx, *, user : nextcord.Member = None):
@@ -232,5 +237,5 @@ class Mod(commands.Cog, name="Mod"):
 
 
 def setup(bot: commands.Bot):
-	bot.add_cog(Mod(bot))
+	bot.add_cog(MemberMod(bot))
 	
