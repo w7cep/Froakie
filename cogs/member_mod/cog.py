@@ -225,7 +225,7 @@ class MemberMod(commands.Cog, name="Member Mod"):
 		embed = nextcord.Embed(title=f"{user.name}'s Stats and Information.")
 		embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/891852099653083186/895902400416710666/greninja-frogadier.gif")
 		embed.set_image(url="https://cdn.discordapp.com/attachments/859634488593743892/891612213654192168/greninja_banner.jpg")
-		embed.set_footer(text="ID: {user.id}")
+		embed.set_footer(text=f"ID: {user.id}")
 		embed.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar.url)
 		embed.add_field(name="__**ID:**__", value=f"{user.id}")
 		embed.add_field(name="__**General information:**__", value=f"**Discord Name:** {user}\n"
