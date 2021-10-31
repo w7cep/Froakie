@@ -52,7 +52,14 @@ class Channel(commands.Cog, name="Channel"):
 		
 		self.url_regex = r"(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'\".,<>?«»“”‘’]))"
 
-	@commands.command(name="purge")
+	@commands.group(invoke_without_command=True)
+	@commands.guild_only()
+	@commands.has_role(829942684947841024)
+	async def channel(self, ctx):
+		await ctx.channel.trigger_typing()
+		await ctx.send("Invalid sub-command passed")
+
+	@channel.command(name="purge")
 	@commands.guild_only()
 	@commands.has_role(829942684947841024)
 	async def purge(self, ctx, amount=5):
@@ -65,7 +72,7 @@ class Channel(commands.Cog, name="Channel"):
 		await ctx.channel.trigger_typing()
 		await ctx.send(embed=embed, delete_after=5)
 
-	@commands.command(name="clean")
+	@channel.command(name="clean")
 	@commands.has_role(829942684947841024)
 	async def clean(self, ctx):
 		"""Cleans the chat of the bot's messages."""
@@ -74,7 +81,7 @@ class Channel(commands.Cog, name="Channel"):
 		await ctx.channel.trigger_typing()
 		await ctx.message.channel.purge(limit=100, check=is_me)
   	
-	@commands.command(name="lock")
+	@channel.command(name="lock")
 	@commands.has_permissions(manage_channels=True)
 	async def lock(self, ctx, *, channel: nextcord.TextChannel = None,reason = None):
 
@@ -85,7 +92,7 @@ class Channel(commands.Cog, name="Channel"):
 		await ctx.channel.trigger_typing()
 		await channel.send(f"{channel.mention} has been locked 🔒")
 
-	@commands.command(name="unlock")
+	@channel.command(name="unlock")
 	@commands.has_permissions(manage_channels=True)
 	async def unlock(self, ctx, *, channel: nextcord.TextChannel = None,reason = None):
 
@@ -95,7 +102,33 @@ class Channel(commands.Cog, name="Channel"):
 		await channel.set_permissions(ctx.guild.default_role, send_messages=None, read_messages=None, view_channel=None)
 		await ctx.channel.trigger_typing()
 		await channel.send(f"{channel.mention} has been unlocked 🔓")
-  
+
+	@channel.command(name="stats")
+	@commands.has_role(829942684947841024)
+	@commands.bot_has_guild_permissions(manage_channels=True)
+	async def stats(self, ctx):
+		"""
+		Sends a nice fancy embed with some channel stats
+		"""
+		channel = ctx.channel
+		embed = nextcord.Embed(title=f"Stats for **{channel.name}**", description=f"{'Category: {}'.format(channel.category.name) if channel.category else 'This channel is not in a category'}",)
+		embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/891852099653083186/895902400416710666/greninja-frogadier.gif")
+		embed.set_image(url="https://cdn.discordapp.com/attachments/859634488593743892/891612213654192168/greninja_banner.jpg")
+		embed.set_footer(text=f"{ctx.author.name}", icon_url=ctx.author.avatar.url)
+		embed.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar.url)
+		embed.add_field(name="Channel Guild", value=ctx.guild.name, inline=False)
+		embed.add_field(name="Channel Id", value=channel.id, inline=False)
+		embed.add_field(name="Channel Topic", value=f"{channel.topic if channel.topic else 'No topic.'}", inline=False)
+		embed.add_field(name="Channel Position", value=channel.position, inline=False)
+		embed.add_field(name="Channel Slowmode Delay", value=channel.slowmode_delay, inline=False)
+		embed.add_field(name="Channel is nsfw?", value=channel.is_nsfw(), inline=False)
+		embed.add_field(name="Channel is news?", value=channel.is_news(), inline=False)
+		embed.add_field(name="Channel Creation Time", value=channel.created_at, inline=False)
+		embed.add_field(name="Channel Hash", value=hash(channel), inline=False)
+		#!FIXME: embed.add_field(name="Channel Permissions Synced", value=channel.permissions_synced, inline=False)
+		await ctx.channel.trigger_typing()		
+		await ctx.send(embed=embed)
+
 	'''	@lock.error
 	async def lock_error(ctx, error):
 		if isinstance(error,commands.CheckFailure):
@@ -171,32 +204,6 @@ class Channel(commands.Cog, name="Channel"):
 		await channel.delete(reason=reason)
 		await ctx.channel.trigger_typing()
 		await ctx.send(f"Hey man! I deleted {channel.name} for ya!")  
-
-	@commands.command(aliases=['cs'], hidden=True)
-	@commands.has_role(829942684947841024)
-	@commands.bot_has_guild_permissions(manage_channels=True)
-	async def channelstats(self, ctx):
-		"""
-		Sends a nice fancy embed with some channel stats
-		"""
-		channel = ctx.channel
-		embed = nextcord.Embed(title=f"Stats for **{channel.name}**", description=f"{'Category: {}'.format(channel.category.name) if channel.category else 'This channel is not in a category'}",)
-		embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/891852099653083186/895902400416710666/greninja-frogadier.gif")
-		embed.set_image(url="https://cdn.discordapp.com/attachments/859634488593743892/891612213654192168/greninja_banner.jpg")
-		embed.set_footer(text=f"{ctx.author.name}", icon_url=ctx.author.avatar.url)
-		embed.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar.url)
-		embed.add_field(name="Channel Guild", value=ctx.guild.name, inline=False)
-		embed.add_field(name="Channel Id", value=channel.id, inline=False)
-		embed.add_field(name="Channel Topic", value=f"{channel.topic if channel.topic else 'No topic.'}", inline=False)
-		embed.add_field(name="Channel Position", value=channel.position, inline=False)
-		embed.add_field(name="Channel Slowmode Delay", value=channel.slowmode_delay, inline=False)
-		embed.add_field(name="Channel is nsfw?", value=channel.is_nsfw(), inline=False)
-		embed.add_field(name="Channel is news?", value=channel.is_news(), inline=False)
-		embed.add_field(name="Channel Creation Time", value=channel.created_at, inline=False)
-		embed.add_field(name="Channel Hash", value=hash(channel), inline=False)
-		#!FIXME: embed.add_field(name="Channel Permissions Synced", value=channel.permissions_synced, inline=False)
-		await ctx.channel.trigger_typing()		
-		await ctx.send(embed=embed)
 
 def setup(bot: commands.Bot):
 	bot.add_cog(Channel(bot))
