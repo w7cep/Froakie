@@ -1,6 +1,6 @@
 # Greninja Discord Bot
 
-[![Discord](https://img.shields.io/discord/829558837609889804?color=%23738BD7&label=&logo=discord&logoColor=white&style=for-the-badge)](https://discord.gg/dm7gSAT68d)
+[![Discord](https://img.shields.io/discord/829558837609889804?color=7289DA&logo=discord&logoColor=white)](https://discord.gg/dm7gSAT68d "Greninja's Grotto Server")
 [![Powered by Nextcord](https://custom-icon-badges.herokuapp.com/badge/-Powered%20by%20Nextcord-0d1620?logo=nextcord)](https://github.com/nextcord/nextcord "Powered by Nextcord Python API Wrapper")
 
 Bot for the Greninja's Grotto server.
@@ -25,5 +25,4 @@ Bot for the Greninja's Grotto server.
 
 Be one of the first to join the server!
 
-
-[![Discord Banner 3](https://discordapp.com/api/guilds/[829558837609889804]/widget.png?style=banner3)](https://discord.gg/dm7gSAT68d)
+[![Discord](https://img.shields.io/discord/829558837609889804?color=%23738BD7&label=&logo=discord&logoColor=white&style=for-the-badge)](https://discord.gg/dm7gSAT68d)
