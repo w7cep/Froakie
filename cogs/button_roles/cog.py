@@ -73,7 +73,7 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 	   	)
 		embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/891852099653083186/895902400416710666/greninja-frogadier.gif")
 		embed.set_image(url="https://cdn.discordapp.com/attachments/859634488593743892/891612213654192168/greninja_banner.jpg")
-		embed.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar.url)
+
 		embed.set_footer(text="Bot is running v1.0.0")
 		await ctx.channel.trigger_typing()
 		await ctx.send(embed=embed, view=ConfirmView())
