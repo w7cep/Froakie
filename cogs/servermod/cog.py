@@ -82,7 +82,7 @@ class ServerMod(commands.Cog, name="ServerMod"):
 			embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/891852099653083186/895902400416710666/greninja-frogadier.gif")
 			embed.set_image(url="https://cdn.discordapp.com/attachments/901687898452131860/902400527621566504/greninja_banner.jpg")
 			embed.set_footer(text=f"{ctx.author.name}", icon_url=ctx.author.avatar.url)
-			embed.set_author(name=f"Greninja Mod", icon_url="https://cdn.discordapp.com/avatars/892620195342987274/cb32b40409c7df4d147c400582f939ac.webp?size=128")
+			embed.set_author(name=f"Frogadier Mod", icon_url="https://cdn.discordapp.com/avatars/892620195342987274/cb32b40409c7df4d147c400582f939ac.webp?size=128")
 		await ctx.channel.trigger_typing()
 		await channel.send(embed=embed)
 
