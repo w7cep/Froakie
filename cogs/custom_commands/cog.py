@@ -172,5 +172,10 @@ class CustomCommands(commands.Cog, name="Custom_Commands"):
 		await ctx.channel.trigger_typing()
 		await ctx.send(embed=embed)
 
+	@commands.command(name="pkhex")
+	@commands.guild_only()
+	@commands.has_role(829942684947841024)
+	async def pkhex(self, ctx):
+		await ctx.send("https://docs.google.com/document/d/1b3z8qCQ2mM4dfhbyGlkak6H0b0zuEaeQKy5mTHwdnug/edit?usp=sharing")
 def setup(bot: commands.Bot):
 	bot.add_cog(CustomCommands(bot))
