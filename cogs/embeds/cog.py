@@ -1,7 +1,6 @@
 import nextcord
 from nextcord.ext import commands
-import nextcord.ext
-
+from nextcord.ext.commands import command
 
 class Embeds(commands.Cog, name="Embeds"):
 	"""Server Embed commands"""
