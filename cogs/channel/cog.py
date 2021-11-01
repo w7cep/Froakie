@@ -49,7 +49,7 @@ class ChannelMod(commands.Cog, name="ChannelMod"):
 	@ch.command(name="purge")
 	@commands.guild_only()
 	@commands.has_role(829942684947841024)
-	async def purge(self, ctx, amount=None):
+	async def purge(self, ctx, amount=5):
 		"""Purge a number of messages in a channel"""
 		if amount is None:
 			await ctx.send("Please specify a number of messages to purge")
