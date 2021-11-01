@@ -1,6 +1,6 @@
 import nextcord
 from nextcord.ext import commands
-from nextcord.ext.commands import command
+
 
 class Embeds(commands.Cog, name="Embeds"):
 	"""Server Embed commands"""
@@ -8,7 +8,7 @@ class Embeds(commands.Cog, name="Embeds"):
 	def __init__(self, bot: commands.Bot):
 		self.bot = bot
 
-		@commands.commands(name="forkbot_embed")
+		@commands.command(name="forkbot_embed")
 		@commands.guild_only()
 		@commands.has_role(829942684947841024)
 		async def forkbot_embed(self, ctx):
