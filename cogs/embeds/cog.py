@@ -1,6 +1,6 @@
 import nextcord
 from nextcord.ext import commands
-
+import nextcord.ext
 
 
 class Embeds(commands.Cog, name="Embeds"):
