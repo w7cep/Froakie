@@ -20,5 +20,17 @@ class Embeds(commands.Cog, name="Embeds"):
 		forkbot.set_author(name=f"Greninja Mod", icon_url="https://cdn.discordapp.com/avatars/892620195342987274/cb32b40409c7df4d147c400582f939ac.webp?size=128")
 		await ctx.send(embed=forkbot)
 
+	@commands.command(name="server_navigation")
+	@commands.guild_only()
+	@commands.has_role(829942684947841024)
+	async def server_navigation(self, ctx):
+		navigation = nextcord.Embed(
+		title="__Navigating the server__")
+		navigation.set_thumbnail(url="https://cdn.discordapp.com/attachments/891852099653083186/895902400416710666/greninja-frogadier.gif")
+		navigation.set_image(url="https://cdn.discordapp.com/attachments/859634488593743892/891612213654192168/greninja_banner.jpg")
+		navigation.add_field(name="__**Rules**__", value="#📃rules📃     \n• First channel you see, right after #👋welcome👋. \n• To get out and view the whole server, react to the rules with :thumbsup:", inline=False)
+		navigation.add_field(name="__**Roles**__", value="#📡get-roles📡 \n• Pick up any roles you'd like, first category is the only that will receive pings. \n• Other categories are optional, not obligatory. \n• Pronouns are to be respected", inline=False)
+		navigation.add_field(name="__**Bot Rules**__", value="#🧾bot-rules🧾   \n• The rules of #🤖greninja-bot🤖 . \n• React with either 🤖 or 🎁  in #🧾bot-rules🧾 for access")
+		await ctx.send(embed=navigation)
 def setup(bot: commands.Bot):
 	bot.add_cog(Embeds(bot))
