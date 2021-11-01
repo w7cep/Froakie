@@ -25,9 +25,9 @@ class Embeds(commands.Cog, name="Embeds"):
 		navigation = nextcord.Embed(title="__Navigating the server__")
 		navigation.set_thumbnail(url="https://cdn.discordapp.com/attachments/891852099653083186/895902400416710666/greninja-frogadier.gif")
 		navigation.set_image(url="https://cdn.discordapp.com/attachments/859634488593743892/891612213654192168/greninja_banner.jpg")
-		navigation.add_field(name="__**Rules**__", value="#📃rules📃     \n• First channel you see, right after #👋welcome👋. \n• To get out and view the whole server, react to the rules with :thumbsup:", inline=False)
-		navigation.add_field(name="__**Roles**__", value="#📡get-roles📡 \n• Pick up any roles you'd like, first category is the only that will receive pings. \n• Other categories are optional, not obligatory. \n• Pronouns are to be respected", inline=False)
-		navigation.add_field(name="__**Bot Rules**__", value="#🧾bot-rules🧾   \n• The rules of #🤖greninja-bot🤖 . \n• React with either 🤖 or 🎁  in #🧾bot-rules🧾 for access")
+		navigation.add_field(name="#📃rules📃", value="• First channel you see, right after #👋welcome👋. \n• To get out and view the whole server, react to the rules with :thumbsup:", inline=False)
+		navigation.add_field(name="#📡get-roles📡", value="• Pick up any roles you'd like, first category is the only that will receive pings. \n• Other categories are optional, not obligatory. \n• Pronouns are to be respected", inline=False)
+		navigation.add_field(name="#🧾bot-rules🧾", value="• The rules of #🤖greninja-bot🤖 . \n• React with either 🤖 or 🎁  in #🧾bot-rules🧾 for access")
 		await ctx.send(embed=navigation)
 def setup(bot: commands.Bot):
 	bot.add_cog(Embeds(bot))
