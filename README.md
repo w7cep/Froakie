@@ -7,7 +7,7 @@
 * Start the bot with bot.py by running it in idle.
 ```
 **Example:**
-BOT_TOKEN="ODkyNjIwMGs4GSU6OTg3Mjc0.YVPjVg.WBwPsIWbl46LwWLAgbaPqxEOH1Q"
+BOT_TOKEN="RHFyNjIwMGs4GSU6OTg3Mjc0.YVPjVg.FJwPsIWbl46LwWLAgbaPqxEOH1Q"
 PREFIX="!"
 BOT_NAME="Frogadier"
 #GUILD ID
