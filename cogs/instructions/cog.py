@@ -1,7 +1,7 @@
 import nextcord
 from nextcord.ext import commands
 
-class CustomCommands(commands.Cog, name="Custom_Commands"):
+class Instructions(commands.Cog, name="Instructions"):
 	"""Test commands"""
 	def __init__(self, bot: commands.Bot):
 		self.bot = bot
@@ -115,4 +115,4 @@ class CustomCommands(commands.Cog, name="Custom_Commands"):
 		await ctx.send(embed=embed)
 
 def setup(bot: commands.Bot):
-	bot.add_cog(CustomCommands(bot))
+	bot.add_cog(Instructions(bot))
