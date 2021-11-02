@@ -35,7 +35,7 @@ class HelpCog(commands.Cog, name="Help"):
 		embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/891852099653083186/895902400416710666/greninja-frogadier.gif")
 		embed.set_image(url="https://cdn.discordapp.com/attachments/859634488593743892/891612213654192168/greninja_banner.jpg")
 		embed.set_footer(text=f"{ctx.author.name}", icon_url=ctx.author.avatar.url)
-		embed.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar.url)
+		embed.set_author(name="Frogadier", icon_url="https://cdn.discordapp.com/attachments/891852099653083186/904941718200283146/Frogadier_Avatar.png")
 		await ctx.channel.trigger_typing()
 		await channel.send(embed=embed)
 
