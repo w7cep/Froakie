@@ -124,7 +124,7 @@ class ChannelMod(commands.Cog, name="ChannelMod"):
 		if isinstance(error,commands.CheckFailure):
 			await ctx.send('You do not have permission to use this command!')'''
    
-	@commands.group(invoke_without_command=True)
+	@ch.group(invoke_without_command=True)
 	@commands.guild_only()
 	@commands.has_role(829942684947841024)
 	@commands.bot_has_guild_permissions(manage_channels=True)
@@ -164,7 +164,7 @@ class ChannelMod(commands.Cog, name="ChannelMod"):
 		await ctx.channel.trigger_typing()
 		await ctx.send(f"Hey dude, I made {channel.name} for ya!")
 
-	@commands.group(invoke_without_command=True)
+	@ch.group(invoke_without_command=True)
 	@commands.guild_only()
 	@commands.has_role(829942684947841024)
 	@commands.bot_has_guild_permissions(manage_channels=True)
