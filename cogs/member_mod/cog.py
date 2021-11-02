@@ -1,7 +1,7 @@
-import nextcord
+import nextcord, datetime
 import nextcord.errors
 from better_profanity import profanity
-from nextcord.ext import commands
+from nextcord.ext import commands, tasks
 from nextcord.ext.commands import MissingPermissions
 
 profanity.load_censor_words_from_file("./data/profanity.txt")
@@ -37,12 +37,9 @@ class MemberMod(commands.Cog, name="Member Mod"):
 	"""Moderation commands"""
 	def __init__(self, bot: commands.Bot):
 		self.bot = bot
+		self.bot_reminder.start()
 
 		self.url_regex = r"(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'\".,<>?«»“”‘’]))"
-
-	async def __error(self, ctx, error):
-		if isinstance(error, commands.BadArgument):
-				await ctx.send(error)
 	
 	@commands.group(invoke_without_command=True)
 	@commands.guild_only()
@@ -221,6 +218,270 @@ class MemberMod(commands.Cog, name="Member Mod"):
 																		  f"**Roles:** {' '.join([r.mention for r in user.roles[1:]])}")
 		await ctx.channel.trigger_typing()
 		return await ctx.send(embed=embed)
+
+	@tasks.loop(hours=8)  # you can even use hours and minutes
+	async def bot_reminder(self):
+		print("Sending message")
+		channel = self.bot.get_channel(843271842931933224)
+		await channel.send("**Reminder**\n\nUsing the bot is fun, to keep it fun for everyone, please complete your trade with the bot. Even when making a mistake and you've started the trade, complete it.\nSee it as a free item and fodder you don't have to catch.\n\nPlease don't delete messages. Even when it's a mistake.\nMakes trouble-shooting difficult.\n\nBot access will be revoked for multiple offenders.")
+
+	@bot_reminder.before_loop
+	async def before_bot_reminder(self):
+		print('waiting...')
+		await self.bot.wait_until_ready()
+
+	@commands.group(invoke_without_command=True)
+	@commands.guild_only()
+	@commands.has_role(829942684947841024)
+	async def profanity(self, ctx):
+		await ctx.send("Invalid sub-command specified")
+	
+	@profanity.command(name="add")
+	@commands.has_role(829942684947841024)
+	async def add(self, ctx, *words):
+		'''Add cuss word to file.'''
+		with open("./data/profanity.txt", "a", encoding="utf-8") as f:
+			f.write("".join([f"{w}\n" for w in words]))
+
+		profanity.load_censor_words_from_file("./data/profanity.txt")
+		await ctx.channel.trigger_typing()
+		await ctx.send("Action complete.")
+
+	@profanity.command(name="del")
+	@commands.has_role(829942684947841024)
+	async def remove_profanity(self, ctx, *words):
+		'''Delete cuss word from file.'''
+		with open("./data/profanity.txt", "r", encoding="utf-8") as f:
+			stored = [w.strip() for w in f.readlines()]
+
+		with open("./data/profanity.txt", "w", encoding="utf-8") as f:
+			f.write("".join([f"{w}\n" for w in stored if w not in words]))
+
+		profanity.load_censor_words_from_file("./data/profanity.txt")
+		await ctx.channel.trigger_typing()
+		await ctx.send("Action complete.")
+
+	@commands.Cog.listener()
+	async def on_message(self, message):
+		def _check(m):
+			return (m.author == message.author
+					and len(m.mentions)
+					and (datetime.utcnow()-m.created_at).seconds < 60)
+
+		if profanity.contains_profanity(message.content):
+			await message.delete()
+			await message.channel.send("You can't use that word here.", delete_after=10)
+
+	@commands.group(invoke_without_command=True)
+	@commands.guild_only()
+	@commands.has_role(829942684947841024)
+	async def embed(self, ctx):
+		await ctx.send("Invalid sub-command specified")
+
+	@embed.command(name="sysbot_access")
+	@commands.is_owner()
+	async def sysbot_access(self, ctx):
+		"""Sysbot access embed."""
+		embed=nextcord.Embed(title="__**Sysbot Access**__", 
+							description=f"Check out <#868914000572846120> for access to the sysbot.\n")
+		embed.add_field(name="__**Reminder**__", value="Don't delete messages in the bot channel. It makes it harder to trouble shoot problems with the bot.")
+	   
+		embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/891852099653083186/895902400416710666/greninja-frogadier.gif")
+		embed.set_image(url="https://cdn.discordapp.com/attachments/859634488593743892/891612213654192168/greninja_banner.jpg")
+		embed.set_author(name="Frogadier Mod", icon_url="https://cdn.discordapp.com/avatars/892620195342987274/cb32b40409c7df4d147c400582f939ac.webp?size=128")
+		embed.set_footer(text="Bot is running v1.0.0") 
+		await ctx.channel.trigger_typing() 
+		await ctx.send(embed=embed)
+
+	@embed.command(name="forkbot_release")
+	@commands.guild_only()
+	@commands.has_role(829942684947841024)
+	async def forkbot_release(self, ctx):
+		forkbot = nextcord.Embed(title=f"__ForkBot.NET Release__", url="https://dev.azure.com/koigithub3088/SysBot_KoiFork/_build?definitionId=2&_a=summary", description="sys-botbase client for remote control automation of Nintendo Switch consoles. - Home · Koi-3088/ForkBot.NET Wiki")
+		forkbot.set_thumbnail(url="https://cdn.mee6.xyz/guild-images/829558837609889804/ab3f13c97f829fe30ddcb9d8d4a9da4c7d17e2ebedf54ff60d51eb95947084b4.gif")
+		forkbot.set_image(url="https://cdn-longterm.mee6.xyz/guild-images/829558837609889804/3edbea766c12a30e4540cb729a5bb50608a8866dbdcd18c55e25458d188c9784.png")
+		forkbot.set_author(name=f"Frogadier Mod", icon_url="https://cdn.discordapp.com/avatars/892620195342987274/cb32b40409c7df4d147c400582f939ac.webp?size=128")
+		await ctx.send(embed=forkbot)
+
+	@embed.command(name="server_navigation")
+	@commands.guild_only()
+	@commands.has_role(829942684947841024)
+	async def server_navigation(self, ctx):
+		version = "1.1.0"
+		navigation = nextcord.Embed(title="__Navigating the server__")
+		navigation.set_footer(text=f"{version}")
+		navigation.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar.url)
+		navigation.set_thumbnail(url="https://cdn.discordapp.com/attachments/891852099653083186/895902400416710666/greninja-frogadier.gif")
+		navigation.set_image(url="https://cdn.discordapp.com/attachments/859634488593743892/891612213654192168/greninja_banner.jpg")
+		navigation.add_field(name="#📃rules📃", value="• First channel you see, right after #👋welcome👋. \n• To get out and view the whole server, react to the rules with :thumbsup:", inline=False)
+		navigation.add_field(name="#📡get-roles📡", value="• Pick up any roles you'd like, first category is the only that will receive pings. \n• Other categories are optional, not obligatory. \n• Pronouns are to be respected", inline=False)
+		navigation.add_field(name="#🧾bot-rules🧾", value="• The rules of #🤖greninja-bot🤖 . \n• React with either 🤖 or 🎁  in #🧾bot-rules🧾 for access", inline=False)
+		navigation.add_field(name="#tradecord", value="• Instructions: `!tci` / #❓tradecord-instructions❓.\n• Our version of Pokécord",inline=False)
+		navigation.add_field(name="#🤖greninja-bot🤖", value="• Prefix:`$`.\n• Instructions: #❓greninja-bot-instructions❓.\n• Generate any Pokémon in SwSh, illegals won't work (List of illegals `!illegal`.", inline=False)
+		navigation.add_field(name="#📥request-a-mon📥", value="• Request any Pokémon, we'll provide a PK8 file asap", inline=False)
+		navigation.add_field(name="#🛰auto-hosting🛰", value="• Where the host will post their raid info.\n\n#💭host-request💭  \n•Use `.suggest  <Your suggestion here>` to suggest a shiny den or max lair path.", inline=False)
+		navigation.add_field(name="#💭host-request💭", value="• Use `!request <Your suggestion here>` to request a Den or Max Lair Path.", inline=False)
+		navigation.add_field(name="__**Support**__", value="• Use `!support` to open a support channel\n• An @💪Admin💪 or @💪Moderator💪 will be with you shortly.")
+		await ctx.send(embed=navigation)
+
+	@commands.group(invoke_without_command=True)
+	@commands.guild_only()
+	@commands.has_role(829942684947841024)
+	async def ch(self, ctx):
+		"""Channel mod commands"""
+		await ctx.channel.trigger_typing()
+		await ctx.send("Invalid sub-command passed")
+
+	@ch.command(name="purge")
+	@commands.guild_only()
+	@commands.has_role(829942684947841024)
+	async def purge(self, ctx, amount=5):
+		"""Purge a number of messages in a channel"""
+		if amount is None:
+			await ctx.send("Please specify a number of messages to purge")
+		else:
+			await ctx.channel.purge(limit=amount + 1)
+			embed = nextcord.Embed(
+				title=f"{ctx.author.name} purged: {ctx.channel.name}",
+				description=f"{amount} messages were cleared",
+			)
+			await ctx.channel.trigger_typing()
+		await ctx.send(embed=embed, delete_after=5)
+
+	@ch.command(name="clean")
+	@commands.has_role(829942684947841024)
+	async def clean(self, ctx):
+		"""Cleans the chat of the bot's messages."""
+		def is_me(m):
+			return m.author == self.bot.user
+		await ctx.channel.trigger_typing()
+		await ctx.message.channel.purge(limit=100, check=is_me)
+  	
+	@ch.command(name="lock")
+	@commands.has_permissions(manage_channels=True)
+	async def lock(self, ctx, *, channel: nextcord.TextChannel = None):
+		"Lock the channel"
+		if channel == None:
+			channel = ctx.channel
+   
+		await channel.set_permissions(ctx.guild.default_role, send_messages=False, read_messages=None, view_channel=False)
+		await ctx.channel.trigger_typing()
+		await channel.send(f"{channel.mention} has been locked 🔒")
+
+	@ch.command(name="unlock")
+	@commands.has_permissions(manage_channels=True)
+	async def unlock(self, ctx, *, channel: nextcord.TextChannel = None):
+		"""Unlock the channel"""
+		if channel == None:
+			channel = ctx.channel
+   
+		await channel.set_permissions(ctx.guild.default_role, send_messages=None, read_messages=None, view_channel=False)
+		await ctx.channel.trigger_typing()
+		await channel.send(f"{channel.mention} has been unlocked 🔓")
+
+	@ch.command(name="stats")
+	@commands.has_role(829942684947841024)
+	@commands.bot_has_guild_permissions(manage_channels=True)
+	async def stats(self, ctx):
+		"""
+		Sends a nice fancy embed with some channel stats
+		"""
+		channel = ctx.channel
+		embed = nextcord.Embed(title=f"Stats for **{channel.name}**", description=f"{'Category: {}'.format(channel.category.name) if channel.category else 'This channel is not in a category'}",)
+		embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/891852099653083186/895902400416710666/greninja-frogadier.gif")
+		embed.set_image(url="https://cdn.discordapp.com/attachments/859634488593743892/891612213654192168/greninja_banner.jpg")
+		embed.set_footer(text=f"{ctx.author.name}", icon_url=ctx.author.avatar.url)
+		embed.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar.url)
+		embed.add_field(name="Channel Guild", value=ctx.guild.name, inline=False)
+		embed.add_field(name="Channel Id", value=channel.id, inline=False)
+		embed.add_field(name="Channel Topic", value=f"{channel.topic if channel.topic else 'No topic.'}", inline=False)
+		embed.add_field(name="Channel Position", value=channel.position, inline=False)
+		embed.add_field(name="Channel Slowmode Delay", value=channel.slowmode_delay, inline=False)
+		embed.add_field(name="Channel is nsfw?", value=channel.is_nsfw(), inline=False)
+		embed.add_field(name="Channel is news?", value=channel.is_news(), inline=False)
+		embed.add_field(name="Channel Creation Time", value=channel.created_at, inline=False)
+		embed.add_field(name="Channel Hash", value=hash(channel), inline=False)
+		#!FIX: #3 embed.add_field(name="Channel Permissions Synced", value=channel.permissions_synced, inline=False)
+		await ctx.channel.trigger_typing()
+		await ctx.send(embed=embed)
+
+	@lock.error
+	async def lock_error(ctx, error):
+		if isinstance(error,commands.CheckFailure):
+			await ctx.send('You do not have permission to use this command!')
+   
+	@ch.group(invoke_without_command=True)
+	@commands.guild_only()
+	@commands.has_role(829942684947841024)
+	@commands.bot_has_guild_permissions(manage_channels=True)
+	async def new(self, ctx):
+		"""Create new channels and categories.
+		($$new category @role "name of category")
+		($$new channel @role "name of channel")
+		"""
+		await ctx.channel.trigger_typing()
+		await ctx.send("Invalid sub-command passed.")
+
+	@new.command()
+	@commands.guild_only()
+	@commands.has_role(829942684947841024)
+	@commands.bot_has_guild_permissions(manage_channels=True)
+	async def category(self, ctx, role: nextcord.Role, *, name):
+		overwrites = {
+		ctx.guild.default_role: nextcord.PermissionOverwrite(read_messages=False),
+		ctx.guild.me: nextcord.PermissionOverwrite(read_messages=True),
+		role: nextcord.PermissionOverwrite(read_messages=True)
+		}
+		category = await ctx.guild.create_category(name=name, overwrites=overwrites)
+		await ctx.channel.trigger_typing()
+		await ctx.send(f"Hey dude, I made {category.name} for ya!")
+
+	@new.command()
+	@commands.guild_only()
+	@commands.has_role(829942684947841024)
+	@commands.bot_has_guild_permissions(manage_channels=True)
+	async def channel(self, ctx, role: nextcord.Role, *, name):
+		overwrites = {
+		ctx.guild.default_role: nextcord.PermissionOverwrite(read_messages=False),
+		ctx.guild.me: nextcord.PermissionOverwrite(read_messages=True),
+		role: nextcord.PermissionOverwrite(read_messages=True)
+		}
+		channel = await ctx.guild.create_text_channel(name=name, overwrites=overwrites, category=self.bot.get_channel(709002944879656960))
+		await ctx.channel.trigger_typing()
+		await ctx.send(f"Hey dude, I made {channel.name} for ya!")
+
+	@ch.group(invoke_without_command=True)
+	@commands.guild_only()
+	@commands.has_role(829942684947841024)
+	@commands.bot_has_guild_permissions(manage_channels=True)
+	async def delete(self, ctx):
+		"""Delete channels and categories.
+		($$delete category @role "name of category")
+		($$delete channel @role "name of channel")
+		"""   
+		await ctx.channel.trigger_typing()
+		await ctx.send("Invalid sub-command passed.")
+
+	@delete.command(name='category')
+	@commands.guild_only()
+	@commands.has_role(829942684947841024)
+	@commands.bot_has_guild_permissions(manage_channels=True)
+	async def _category(self, ctx, category: nextcord.CategoryChannel, *, reason=None):
+		await category.delete(reason=reason)
+		await ctx.channel.trigger_typing()
+		await ctx.send(f"Hey man! I deleted {category.name} for ya!")
+
+	@delete.command(name='channel')
+	@commands.guild_only()
+	@commands.has_role(829942684947841024)
+	@commands.bot_has_guild_permissions(manage_channels=True)
+	async def _channel(self, ctx, channel: nextcord.TextChannel=None, *, reason=None):
+		channel = channel or ctx.channel
+		await channel.delete(reason=reason)
+		await ctx.channel.trigger_typing()
+		await ctx.send(f"Hey man! I deleted {channel.name} for ya!")  
+
+
 
 def setup(bot: commands.Bot):
 	bot.add_cog(MemberMod(bot))
