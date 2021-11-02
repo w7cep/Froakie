@@ -39,6 +39,12 @@ class HelpCog(commands.Cog, name="Help"):
 		await ctx.channel.trigger_typing()
 		await channel.send(embed=embed)
 
+	@commands.command(name="ping")
+	async def ping(self, ctx: commands.Context):
+		"""Checks for a response from the bot"""
+		await ctx.channel.trigger_typing()
+		await ctx.send(f"Pong! (Latency: {round(self.bot.latency * 1000)}ms)")
+
 # setup functions for bot
 def setup(bot: commands.Bot):
 	bot.add_cog(HelpCog(bot))

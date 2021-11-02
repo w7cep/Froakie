@@ -33,7 +33,7 @@ async def mute(ctx, user, reason):
 	await ctx.channel.trigger_typing()# adds already existing muted role
 	await ctx.send(f"{user.mention} has been muted for {reason}")
 
-class MemberMod(commands.Cog, name="Member Mod"):
+class Moderation(commands.Cog, name="Moderation"):
 	"""Moderation commands"""
 	def __init__(self, bot: commands.Bot):
 		self.bot = bot
@@ -481,8 +481,6 @@ class MemberMod(commands.Cog, name="Member Mod"):
 		await ctx.channel.trigger_typing()
 		await ctx.send(f"Hey man! I deleted {channel.name} for ya!")  
 
-
-
 def setup(bot: commands.Bot):
-	bot.add_cog(MemberMod(bot))
+	bot.add_cog(Moderation(bot))
 	
