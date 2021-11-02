@@ -115,7 +115,7 @@ class ChannelMod(commands.Cog, name="ChannelMod"):
 		embed.add_field(name="Channel is news?", value=channel.is_news(), inline=False)
 		embed.add_field(name="Channel Creation Time", value=channel.created_at, inline=False)
 		embed.add_field(name="Channel Hash", value=hash(channel), inline=False)
-		#!FIXME: #3 embed.add_field(name="Channel Permissions Synced", value=channel.permissions_synced, inline=False)
+		#!FIX: #3 embed.add_field(name="Channel Permissions Synced", value=channel.permissions_synced, inline=False)
 		await ctx.channel.trigger_typing()
 		await ctx.send(embed=embed)
 

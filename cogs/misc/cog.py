@@ -2,6 +2,7 @@ import platform
 import random
 from typing import Optional
 
+import config
 import nextcord
 from aiohttp import request
 from nextcord import Embed, Member
@@ -56,6 +57,58 @@ class Misc(commands.Cog, name="Misc"):
 		url: str = f"https://wikipedia.org/wiki/{msg}"
 		await ctx.channel.trigger_typing()
 		await ctx.send(f"Here : {url}")
+
+	@info.command(name="emoji")
+	@commands.has_role(829942684947841024)
+	async def emoji(self, ctx, emoji: nextcord.Emoji = None):
+		"""Display information about an emoji in the server."""
+		if not emoji:
+					await ctx.invoke(self.bot.get_command("help"), entity="emojiinfo")
+
+		try:
+					emoji = await emoji.guild.fetch_emoji(emoji.id)
+		except nextcord.NotFound:
+					await ctx.channel.trigger_typing()
+					await ctx.send("I could not find this emoji in the given guild.")
+
+		is_managed = "Yes" if emoji.managed else "No"
+		is_animated = "Yes" if emoji.animated else "No"
+		requires_colons = "Yes" if emoji.require_colons else "No"
+		creation_time = emoji.created_at.strftime("%I:%M %p %B %d, %Y")
+		can_use_emoji = (
+			"Everyone"
+			if not emoji.roles
+			else " ".join(role.name for role in emoji.roles)
+		)
+
+		description = f"""
+		**General:**
+		**- Name:** {emoji.name}
+		**- Id:** {emoji.id}
+		**- URL:** [Link To Emoji]({emoji.url})
+		**- Author:** {emoji.user.name}
+		**- Time Created:** {creation_time}
+		**- Usable by:** {can_use_emoji}
+		
+		**Other:**
+		**- Animated:** {is_animated}
+		**- Managed:** {is_managed}
+		**- Requires Colons:** {requires_colons}
+		**- Guild Name:** {emoji.guild.name}
+		**- Guild Id:** {emoji.guild.id}
+		"""
+
+		embed = nextcord.Embed(
+		title=f"**Emoji Information for:** `{emoji.name}`",
+		description=description,
+		colour=0xADD8E6,
+		)
+		embed.set_thumbnail(url=emoji.url)
+		embed.set_image(url="https://cdn.discordapp.com/attachments/859634488593743892/891612213654192168/greninja_banner.jpg")
+		embed.set_footer(text=f"{ctx.author.name}", icon_url=ctx.author.avatar.url)
+		embed.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar.url)
+		await ctx.channel.trigger_typing()
+		await ctx.send(embed=embed)
 
 	@commands.command(name="ping")
 	async def ping(self, ctx: commands.Context):
@@ -264,6 +317,23 @@ class Misc(commands.Cog, name="Misc"):
 		"""Pokemon type advantages."""
 		await ctx.channel.trigger_typing()
 		await ctx.send(file=nextcord.File("assets/imgs/info/weakness.jpg"))
+
+	@pokemon.command(name="request")
+	async def request(self, ctx, *, reason = None):
+		bot = self.bot.user
+		user = ctx.author
+		channel = await ctx.guild.fetch_channel(config.SUGGESTION_CHANNEL_ID)
+		if reason is None:
+			await ctx.send("Please suggest a 'Den' or 'Max Lair Path'.")
+		else:
+			embed = nextcord.Embed(title=f"{user} requested support.", description= "An admin will be with you shortly...", color=0x00ff00)
+			embed.add_field(name="Suggestion", value=f"{reason}")
+			embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/891852099653083186/895902400416710666/greninja-frogadier.gif")
+			embed.set_image(url="https://cdn.discordapp.com/attachments/859634488593743892/891612213654192168/greninja_banner.jpg")
+			embed.set_footer(text=f"{user.name}{user.discriminator}--ID:{user.id}", icon_url=user.avatar.url)
+			embed.set_author(name=bot.name, icon_url=bot.avatar.url)
+			await ctx.channel.trigger_typing()
+			await channel.send(embed=embed)
 
 def setup(bot: commands.Bot):
 	bot.add_cog(Misc(bot))

@@ -65,108 +65,57 @@ class ServerMod(commands.Cog, name="ServerMod"):
 			await message.delete()
 			await message.channel.send("You can't use that word here.", delete_after=10)
 
-	@commands.command(name="say")
-	@commands.is_owner()
-	async def say(self, ctx, channel:nextcord.TextChannel, *, message):
-		"""Make the bot say something in the specified channel."""
-		if channel is not None:
-			await ctx.channel.trigger_typing()
-			await channel.send(message)
-
-	@commands.command(name="say_embed")
-	@commands.is_owner()
-	async def say_embed(self, ctx, channel:nextcord.TextChannel, *, message):
-		"""Make the bot say something in the specified channel as an embed."""
-		if channel is not None:
-			embed= nextcord.Embed(description=f"{message}")
-			embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/891852099653083186/895902400416710666/greninja-frogadier.gif")
-			embed.set_image(url="https://cdn.discordapp.com/attachments/901687898452131860/902400527621566504/greninja_banner.jpg")
-			embed.set_footer(text=f"{ctx.author.name}", icon_url=ctx.author.avatar.url)
-			embed.set_author(name=f"Frogadier Mod", icon_url="https://cdn.discordapp.com/avatars/892620195342987274/cb32b40409c7df4d147c400582f939ac.webp?size=128")
-		await ctx.channel.trigger_typing()
-		await channel.send(embed=embed)
-
-	@commands.command(name="echo")
+	@commands.group(invoke_without_command=True)
+	@commands.guild_only()
 	@commands.has_role(829942684947841024)
-	async def echo(self, ctx):
-		"""Have the bot echo something and hide the evidence."""
-		await ctx.message.delete()
-		embed = nextcord.Embed(
-			title="Please tell me what you want me to repeat!",
-			description="This request will timeout after 1 minute.",
-		)
-		await ctx.channel.trigger_typing()
-		sent = await ctx.send(embed=embed)
+	async def embed(self, ctx):
+		await ctx.send("Invalid sub-command specified")
 
-		try:
-			msg = await self.bot.wait_for(
-				"message",
-				timeout=60,
-				check=lambda message: message.author == ctx.author
-				and message.channel == ctx.channel,
-			)
-			if msg:
-				await sent.delete()
-				await msg.delete()
-				await ctx.channel.trigger_typing()
-				await ctx.send(msg.content)
-		except asyncio.TimeoutError:
-			await sent.delete()
-			await ctx.channel.trigger_typing()
-			await ctx.send("Cancelling", delete_after=10)
-
-	@commands.command(name="emojiinfo", aliases=["ei"])
-	@commands.has_role(829942684947841024)
-	async def emoji_info(self, ctx, emoji: nextcord.Emoji = None):
-		"""Display information about an emoji in the server."""
-		if not emoji:
-					await ctx.invoke(self.bot.get_command("help"), entity="emojiinfo")
-
-		try:
-					emoji = await emoji.guild.fetch_emoji(emoji.id)
-		except nextcord.NotFound:
-					await ctx.channel.trigger_typing()
-					await ctx.send("I could not find this emoji in the given guild.")
-
-		is_managed = "Yes" if emoji.managed else "No"
-		is_animated = "Yes" if emoji.animated else "No"
-		requires_colons = "Yes" if emoji.require_colons else "No"
-		creation_time = emoji.created_at.strftime("%I:%M %p %B %d, %Y")
-		can_use_emoji = (
-			"Everyone"
-			if not emoji.roles
-			else " ".join(role.name for role in emoji.roles)
-		)
-
-		description = f"""
-		**General:**
-		**- Name:** {emoji.name}
-		**- Id:** {emoji.id}
-		**- URL:** [Link To Emoji]({emoji.url})
-		**- Author:** {emoji.user.name}
-		**- Time Created:** {creation_time}
-		**- Usable by:** {can_use_emoji}
-		
-		**Other:**
-		**- Animated:** {is_animated}
-		**- Managed:** {is_managed}
-		**- Requires Colons:** {requires_colons}
-		**- Guild Name:** {emoji.guild.name}
-		**- Guild Id:** {emoji.guild.id}
-		"""
-
-		embed = nextcord.Embed(
-		title=f"**Emoji Information for:** `{emoji.name}`",
-		description=description,
-		colour=0xADD8E6,
-		)
-		embed.set_thumbnail(url=emoji.url)
+	@embed.command(name="sysbot_access")
+	@commands.is_owner()
+	async def sysbot_access(self, ctx):
+		"""Sysbot access embed."""
+		embed=nextcord.Embed(title="__**Sysbot Access**__", 
+							description=f"Check out <#868914000572846120> for access to the sysbot.\n")
+		embed.add_field(name="__**Reminder**__", value="Don't delete messages in the bot channel. It makes it harder to trouble shoot problems with the bot.")
+	   
+		embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/891852099653083186/895902400416710666/greninja-frogadier.gif")
 		embed.set_image(url="https://cdn.discordapp.com/attachments/859634488593743892/891612213654192168/greninja_banner.jpg")
-		embed.set_footer(text=f"{ctx.author.name}", icon_url=ctx.author.avatar.url)
-		embed.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar.url)
-		await ctx.channel.trigger_typing()
+		embed.set_author(name="Frogadier Mod", icon_url="https://cdn.discordapp.com/avatars/892620195342987274/cb32b40409c7df4d147c400582f939ac.webp?size=128")
+		embed.set_footer(text="Bot is running v1.0.0") 
+		await ctx.channel.trigger_typing() 
 		await ctx.send(embed=embed)
 
+	@embed.command(name="forkbot_release")
+	@commands.guild_only()
+	@commands.has_role(829942684947841024)
+	async def forkbot_release(self, ctx):
+		forkbot = nextcord.Embed(title=f"__ForkBot.NET Release__", url="https://dev.azure.com/koigithub3088/SysBot_KoiFork/_build?definitionId=2&_a=summary", description="sys-botbase client for remote control automation of Nintendo Switch consoles. - Home · Koi-3088/ForkBot.NET Wiki")
+		forkbot.set_thumbnail(url="https://cdn.mee6.xyz/guild-images/829558837609889804/ab3f13c97f829fe30ddcb9d8d4a9da4c7d17e2ebedf54ff60d51eb95947084b4.gif")
+		forkbot.set_image(url="https://cdn-longterm.mee6.xyz/guild-images/829558837609889804/3edbea766c12a30e4540cb729a5bb50608a8866dbdcd18c55e25458d188c9784.png")
+		forkbot.set_author(name=f"Frogadier Mod", icon_url="https://cdn.discordapp.com/avatars/892620195342987274/cb32b40409c7df4d147c400582f939ac.webp?size=128")
+		await ctx.send(embed=forkbot)
+
+	@embed.command(name="server_navigation")
+	@commands.guild_only()
+	@commands.has_role(829942684947841024)
+	async def server_navigation(self, ctx):
+		version = "1.1.0"
+		navigation = nextcord.Embed(title="__Navigating the server__")
+		navigation.set_footer(text=f"{version}")
+		navigation.set_author(name=self.bot.user.name, icon_url=self.bot.user.avatar.url)
+		navigation.set_thumbnail(url="https://cdn.discordapp.com/attachments/891852099653083186/895902400416710666/greninja-frogadier.gif")
+		navigation.set_image(url="https://cdn.discordapp.com/attachments/859634488593743892/891612213654192168/greninja_banner.jpg")
+		navigation.add_field(name="#📃rules📃", value="• First channel you see, right after #👋welcome👋. \n• To get out and view the whole server, react to the rules with :thumbsup:", inline=False)
+		navigation.add_field(name="#📡get-roles📡", value="• Pick up any roles you'd like, first category is the only that will receive pings. \n• Other categories are optional, not obligatory. \n• Pronouns are to be respected", inline=False)
+		navigation.add_field(name="#🧾bot-rules🧾", value="• The rules of #🤖greninja-bot🤖 . \n• React with either 🤖 or 🎁  in #🧾bot-rules🧾 for access", inline=False)
+		navigation.add_field(name="#tradecord", value="• Instructions: `!tci` / #❓tradecord-instructions❓.\n• Our version of Pokécord",inline=False)
+		navigation.add_field(name="#🤖greninja-bot🤖", value="• Prefix:`$`.\n• Instructions: #❓greninja-bot-instructions❓.\n• Generate any Pokémon in SwSh, illegals won't work (List of illegals `!illegal`.", inline=False)
+		navigation.add_field(name="#📥request-a-mon📥", value="• Request any Pokémon, we'll provide a PK8 file asap", inline=False)
+		navigation.add_field(name="#🛰auto-hosting🛰", value="• Where the host will post their raid info.\n\n#💭host-request💭  \n•Use `.suggest  <Your suggestion here>` to suggest a shiny den or max lair path.", inline=False)
+		navigation.add_field(name="#💭host-request💭", value="• Use `!request <Your suggestion here>` to request a Den or Max Lair Path.", inline=False)
+		navigation.add_field(name="__**Support**__", value="• Use `!support` to open a support channel\n• An @💪Admin💪 or @💪Moderator💪 will be with you shortly.")
+		await ctx.send(embed=navigation)
 
 def setup(bot: commands.Bot):
 	bot.add_cog(ServerMod(bot))

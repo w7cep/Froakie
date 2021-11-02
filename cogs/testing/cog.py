@@ -1,29 +1,63 @@
 from typing import List
 import nextcord
 from nextcord.ext import commands
-import config
+import asyncio
 
 class Testing(commands.Cog, name="Testing"):
 	"""Test commands"""
 	def __init__(self, bot: commands.Bot):
 		self.bot = bot
 
-	@commands.command(name="request")
-	async def request(self, ctx, *, reason = None):
-		bot = self.bot.user
-		user = ctx.author
-		channel = await ctx.guild.fetch_channel(config.SUGGESTION_CHANNEL_ID)
-		if reason is None:
-			await ctx.send("Please suggest a 'Den' or 'Max Lair Path'.")
-		else:
-			embed = nextcord.Embed(title=f"{user} requested support.", description= "An admin will be with you shortly...", color=0x00ff00)
-			embed.add_field(name="Suggestion", value=f"{reason}")
-			embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/891852099653083186/895902400416710666/greninja-frogadier.gif")
-			embed.set_image(url="https://cdn.discordapp.com/attachments/859634488593743892/891612213654192168/greninja_banner.jpg")
-			embed.set_footer(text=f"{user.name}{user.discriminator}--ID:{user.id}", icon_url=user.avatar.url)
-			embed.set_author(name=bot.name, icon_url=bot.avatar.url)
+	@commands.command(name="say", hidden=True)
+	@commands.is_owner()
+	async def say(self, ctx, channel:nextcord.TextChannel, *, message):
+		"""Make the bot say something in the specified channel."""
+		if channel is not None:
 			await ctx.channel.trigger_typing()
-			await channel.send(embed=embed)
+			await channel.send(message)
+
+	@commands.command(name="say_embed", hidden=True)
+	@commands.is_owner()
+	async def say_embed(self, ctx, channel:nextcord.TextChannel, *, message):
+		"""Make the bot say something in the specified channel as an embed."""
+		if channel is not None:
+			embed= nextcord.Embed(description=f"{message}")
+			embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/891852099653083186/895902400416710666/greninja-frogadier.gif")
+			embed.set_image(url="https://cdn.discordapp.com/attachments/901687898452131860/902400527621566504/greninja_banner.jpg")
+			embed.set_footer(text=f"{ctx.author.name}", icon_url=ctx.author.avatar.url)
+			embed.set_author(name=f"Frogadier Mod", icon_url="https://cdn.discordapp.com/avatars/892620195342987274/cb32b40409c7df4d147c400582f939ac.webp?size=128")
+		await ctx.channel.trigger_typing()
+		await channel.send(embed=embed)
+
+	@commands.command(name="echo", hidden=True)
+	@commands.has_role(829942684947841024)
+	async def echo(self, ctx):
+		"""Have the bot echo something and hide the evidence."""
+		await ctx.message.delete()
+		embed = nextcord.Embed(
+			title="Please tell me what you want me to repeat!",
+			description="This request will timeout after 1 minute.",
+		)
+		await ctx.channel.trigger_typing()
+		sent = await ctx.send(embed=embed)
+
+		try:
+			msg = await self.bot.wait_for(
+				"message",
+				timeout=60,
+				check=lambda message: message.author == ctx.author
+				and message.channel == ctx.channel,
+			)
+			if msg:
+				await sent.delete()
+				await msg.delete()
+				await ctx.channel.trigger_typing()
+				await ctx.send(msg.content)
+		except asyncio.TimeoutError:
+			await sent.delete()
+			await ctx.channel.trigger_typing()
+			await ctx.send("Cancelling", delete_after=10)
+
 
 def setup(bot: commands.Bot):
 	bot.add_cog(Testing(bot))
