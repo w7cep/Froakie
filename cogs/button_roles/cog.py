@@ -28,7 +28,13 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 		self.__bot.persistent_views_added = True
 		print("Button views added")
 
-	@commands.command(name="sysbot_roles")
+	@commands.group(invoke_without_command=True)
+	@commands.guild_only()
+	@commands.has_role(829942684947841024)
+	async def view(self, ctx):
+		await ctx.send("Invalid sub-command specified")
+  
+	@view.command(name="sysbot_roles")
 	@commands.is_owner()
 	async def sysbot_roles(self, ctx: commands.Context, message_id: str):
 		"""Starts a bot role view aka bot access role"""
@@ -36,7 +42,7 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 		message = await bot_rules_channel.fetch_message(message_id)
 		await message.edit(view=SysBotRuleView())
 
-	@commands.command(name="add_confirm")
+	@view.command(name="add_confirm")
 	@commands.is_owner()
 	async def add_confirm(self, ctx: commands.Context, message_id: str):
 		"""Starts a confirm view aka default role button"""
@@ -44,10 +50,16 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 		message = await rules_channel.fetch_message(message_id)
 		await message.edit(view=ConfirmView())
 
-	@commands.command(name="server_rules_access")
+	@commands.group(invoke_without_command=True)
+	@commands.guild_only()
+	@commands.has_role(829942684947841024)
+	async def access(self, ctx):
+		await ctx.send("Invalid sub-command specified")
+
+	@access.command(name="server_rules")
 	@commands.is_owner()
 	@commands.guild_only()
-	async def server_rules_access(self, ctx):
+	async def server_rules(self, ctx):
 		"""Server Rules. with reaction role"""
 		embed= nextcord.Embed(	
             title="__**Frogadier's Grotto Rules**__", 
@@ -78,10 +90,10 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 		await ctx.channel.trigger_typing()
 		await ctx.send(embed=embed, view=ConfirmView())
 
-	@commands.command(name="sysbot_rules_access")
+	@access.command(name="sysbot_rules")
 	@commands.is_owner()
 	@commands.guild_only()
-	async def sysbot_rules_access(self, ctx):
+	async def sysbot_rules(self, ctx):
 		"""SysBot Rules. with reaction role"""
 		version = "v1.1.0"
 
@@ -97,9 +109,9 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 		await ctx.channel.trigger_typing()
 		await ctx.send(embed=embed, view=SysBotRuleView())
 		  
-	@commands.command(name="access_roles")
+	@access.command(name="get_roles")
 	@commands.is_owner()
-	async def access_roles(self, ctx: commands.Context):
+	async def get_roles(self, ctx: commands.Context):
 		"""Starts a access role view"""
 		embed=nextcord.Embed(
 			title="__**Access Roles**__",
@@ -119,7 +131,7 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 		await ctx.channel.trigger_typing()
 		await ctx.send(embed=embed, view=SelfRoleView())
 
-	@commands.command(name="color_roles")
+	@access.command(name="color_roles")
 	@commands.is_owner()
 	async def color_roles(self, ctx: commands.Context):
 		"""Color role embed"""
@@ -142,20 +154,7 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 		await ctx.channel.trigger_typing()
 		await ctx.send(embed=embed, view=ColorRoleView())
    
-	@commands.command(name="sysbot_embed")
-	@commands.is_owner()
-	async def sysbot_embed(self, ctx):
-		"""Sysbot access embed."""
-		embed=nextcord.Embed(title="__**Sysbot Access**__", 
-							description=f"Check out <#868914000572846120> for access to the sysbot.\n")
-		embed.add_field(name="__**Reminder**__", value="Don't delete messages in the bot channel. It makes it harder to trouble shoot problems with the bot.")
-	   
-		embed.set_thumbnail(url="https://cdn.discordapp.com/attachments/891852099653083186/895902400416710666/greninja-frogadier.gif")
-		embed.set_image(url="https://cdn.discordapp.com/attachments/859634488593743892/891612213654192168/greninja_banner.jpg")
-		embed.set_author(name="Frogadier Mod", icon_url="https://cdn.discordapp.com/avatars/892620195342987274/cb32b40409c7df4d147c400582f939ac.webp?size=128")
-		embed.set_footer(text="Bot is running v1.0.0") 
-		await ctx.channel.trigger_typing() 
-		await ctx.send(embed=embed)
+
   
 # setup functions for bot
 def setup(bot):
