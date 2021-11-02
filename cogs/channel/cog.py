@@ -78,7 +78,7 @@ class ChannelMod(commands.Cog, name="ChannelMod"):
 		if channel == None:
 			channel = ctx.channel
    
-		await channel.set_permissions(ctx.guild.default_role, send_messages=False, read_messages=None, view_channel=None)
+		await channel.set_permissions(ctx.guild.default_role, send_messages=False, read_messages=None, view_channel=False)
 		await ctx.channel.trigger_typing()
 		await channel.send(f"{channel.mention} has been locked 🔒")
 
@@ -89,7 +89,7 @@ class ChannelMod(commands.Cog, name="ChannelMod"):
 		if channel == None:
 			channel = ctx.channel
    
-		await channel.set_permissions(ctx.guild.default_role, send_messages=None, read_messages=None, view_channel=None)
+		await channel.set_permissions(ctx.guild.default_role, send_messages=None, read_messages=None, view_channel=False)
 		await ctx.channel.trigger_typing()
 		await channel.send(f"{channel.mention} has been unlocked 🔓")
 
