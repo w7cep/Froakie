@@ -357,7 +357,7 @@ class Moderation(commands.Cog, name="Moderation"):
 		await ctx.channel.trigger_typing()
 		await ctx.message.channel.purge(limit=100, check=is_me)
   	
-	@ch.command(name="lock")
+	@ch.command(name="lockdown")
 	@commands.has_permissions(manage_channels=True)
 	async def lock(self, ctx, *, channel: nextcord.TextChannel = None):
 		"Lock the channel"
@@ -367,7 +367,7 @@ class Moderation(commands.Cog, name="Moderation"):
 		await ctx.channel.trigger_typing()
 		await channel.send(f"{channel.mention} has been locked 🔒")
 
-	@ch.command(name="unlock")
+	@ch.command(name="unlockdown")
 	@commands.has_permissions(manage_channels=True)
 	async def unlock(self, ctx, *, channel: nextcord.TextChannel = None):
 		"""Unlock the channel"""
@@ -377,7 +377,7 @@ class Moderation(commands.Cog, name="Moderation"):
 		await ctx.channel.trigger_typing()
 		await channel.send(f"{channel.mention} has been unlocked 🔓")
 
-	@commands.command(name="lockdown")
+	@commands.command(name="lock")
 	@commands.guild_only()
 	@commands.has_permissions(manage_channels=True)
 	async def lockdown(self, ctx, channel : nextcord.TextChannel = None, setting = None):
@@ -391,9 +391,9 @@ class Moderation(commands.Cog, name="Moderation"):
 		if setting == '--server':
 			for channel in ctx.guild.channels:
 				await channel.set_permissions(ctx.guild.default_role, reason=f"{ctx.author.name} locked {channel.name} with --server", send_messages=False, read_messages=None, view_channel=None)
-			await ctx.send('locked down server')
+			await ctx.send('locked down server 🔒')
 
-	@commands.command(name="unlockdown")
+	@commands.command(name="unlock")
 	@commands.guild_only()
 	@commands.has_permissions(manage_channels=True)
 	async def unlockdown(self, ctx, channel : nextcord.TextChannel = None, setting = None):
@@ -407,7 +407,7 @@ class Moderation(commands.Cog, name="Moderation"):
 		if setting == '--server':
 			for channel in ctx.guild.channels:
 				await channel.set_permissions(ctx.guild.default_role, reason=f"{ctx.author.name} unlocked {channel.name} with --server", send_messages=None, read_messages=None, view_channel=None)
-			await ctx.send('unlocked server')
+			await ctx.send('unlocked server 🔒')
 
 	@ch.command(name="stats")
 	@commands.has_role(829942684947841024)
