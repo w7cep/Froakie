@@ -364,7 +364,7 @@ class Moderation(commands.Cog, name="Moderation"):
 		if channel == None:
 			channel = ctx.channel
    
-		await channel.set_permissions(ctx.guild.default_role, send_messages=False, read_messages=None, view_channel=False)
+		await channel.set_permissions(ctx.guild.default_role, send_messages=False, read_messages_history=True, view_channel=True)
 		await ctx.channel.trigger_typing()
 		await channel.send(f"{channel.mention} has been locked 🔒")
 
@@ -375,9 +375,36 @@ class Moderation(commands.Cog, name="Moderation"):
 		if channel == None:
 			channel = ctx.channel
    
-		await channel.set_permissions(ctx.guild.default_role, send_messages=None, read_messages=None, view_channel=False)
+		await channel.set_permissions(ctx.guild.default_role, send_messages=True, read_messages_history=True, view_channel=True)
 		await ctx.channel.trigger_typing()
 		await channel.send(f"{channel.mention} has been unlocked 🔓")
+
+	@commands.command
+	@commands.guild_only()
+	@commands.has_permissions(manage_channels=True)
+	async def lockdown(self, ctx, channel : nextcord.TextChannel=None, setting = None):
+		if setting == '--server':
+			for channel in ctx.guild.channels:
+				await channel.set_permissions(ctx.guild.default_role, reason=f"{ctx.author.name} locked {channel.name} with --server", send_messages=False)
+			await ctx.send('locked down server')
+		if channel is None:
+			channel = ctx.message.channel
+		await channel.set_permissions(ctx.guild.default_role, reason=f"{ctx.author.name} locked {channel.name}", send_messages=False)
+		await ctx.send('locked channel down')
+
+	@commands.command
+	@commands.guild_only()
+	@commands.has_permissions(manage_channels=True)
+	async def unlockdown(self, ctx, channel : nextcord.TextChannel=None, setting = None):
+		if setting == '--server':
+			for channel in ctx.guild.channels:
+				await channel.set_permissions(ctx.guild.default_role, reason=f"{ctx.author.name} unlocked {channel.name} with --server", send_messages=True, read_messages_history=True, view_channel=True)
+			await ctx.send('unlocked server')
+		if channel is None:
+			channel = ctx.message.channel
+		await channel.set_permissions(ctx.guild.default_role, reason=f"{ctx.author.name} unlocked {channel.name}", send_messages=True, read_messages_history=True, view_channel=True)
+		await ctx.send('unlocked channel')
+
 
 	@ch.command(name="stats")
 	@commands.has_role(829942684947841024)
