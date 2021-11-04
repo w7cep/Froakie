@@ -362,9 +362,8 @@ class Moderation(commands.Cog, name="Moderation"):
 	async def lock(self, ctx, *, channel: nextcord.TextChannel = None):
 		"Lock the channel"
 		if channel == None:
-			channel = ctx.channel
-   
-		await channel.set_permissions(ctx.guild.default_role, send_messages=False, read_messages=None, view_channel=None)
+			channel = ctx.message.channel
+		await channel.set_permissions(ctx.guild.default_role, reason=f"{ctx.author.name} locked {channel.name} with --server", send_messages=False, read_messages=None, view_channel=None)
 		await ctx.channel.trigger_typing()
 		await channel.send(f"{channel.mention} has been locked 🔒")
 
@@ -373,9 +372,8 @@ class Moderation(commands.Cog, name="Moderation"):
 	async def unlock(self, ctx, *, channel: nextcord.TextChannel = None):
 		"""Unlock the channel"""
 		if channel == None:
-			channel = ctx.channel
-   
-		await channel.set_permissions(ctx.guild.default_role, send_messages=None, read_messages=None, view_channel=None)
+			channel = ctx.message.channel
+		await channel.set_permissions(ctx.guild.default_role, reason=f"{ctx.author.name} unlocked {channel.name}", send_messages=None, read_messages=None, view_channel=None)
 		await ctx.channel.trigger_typing()
 		await channel.send(f"{channel.mention} has been unlocked 🔓")
 
@@ -383,28 +381,29 @@ class Moderation(commands.Cog, name="Moderation"):
 	@commands.guild_only()
 	@commands.has_permissions(manage_channels=True)
 	async def lockdown(self, ctx, channel : nextcord.TextChannel = None, setting = None):
-     
+
 		if channel == None:
-    			channel = ctx.message.channel
-		await channel.set_permissions(ctx.guild.default_role, reason=f"{ctx.author.name} locked {channel.name}", send_messages=False, read_messages=None, view_channel=None)
-		await ctx.send('locked channel down')
-     
+			channel = ctx.message.channel
+		await channel.set_permissions(ctx.guild.default_role, reason=f"{ctx.author.name} locked {channel.name} with --server", send_messages=False, read_messages=None, view_channel=None)
+		await ctx.channel.trigger_typing()
+		await channel.send(f"{channel.mention} has been locked 🔒")
+  
 		if setting == '--server':
 			for channel in ctx.guild.channels:
 				await channel.set_permissions(ctx.guild.default_role, reason=f"{ctx.author.name} locked {channel.name} with --server", send_messages=False, read_messages=None, view_channel=None)
 			await ctx.send('locked down server')
 
-
 	@commands.command(name="unlockdown")
 	@commands.guild_only()
 	@commands.has_permissions(manage_channels=True)
 	async def unlockdown(self, ctx, channel : nextcord.TextChannel = None, setting = None):
-     
+
 		if channel == None:
 			channel = ctx.message.channel
 		await channel.set_permissions(ctx.guild.default_role, reason=f"{ctx.author.name} unlocked {channel.name}", send_messages=None, read_messages=None, view_channel=None)
-		await ctx.send('unlocked channel')
-  
+		await ctx.channel.trigger_typing()
+		await channel.send(f"{channel.mention} has been unlocked 🔓")
+
 		if setting == '--server':
 			for channel in ctx.guild.channels:
 				await channel.set_permissions(ctx.guild.default_role, reason=f"{ctx.author.name} unlocked {channel.name} with --server", send_messages=None, read_messages=None, view_channel=None)
