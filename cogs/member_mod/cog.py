@@ -379,7 +379,7 @@ class Moderation(commands.Cog, name="Moderation"):
 		await ctx.channel.trigger_typing()
 		await channel.send(f"{channel.mention} has been unlocked 🔓")
 
-	@commands.command
+	@commands.command(name="lockdown")
 	@commands.guild_only()
 	@commands.has_permissions(manage_channels=True)
 	async def lockdown(self, ctx, channel : nextcord.TextChannel=None, setting = None):
@@ -392,7 +392,7 @@ class Moderation(commands.Cog, name="Moderation"):
 		await channel.set_permissions(ctx.guild.default_role, reason=f"{ctx.author.name} locked {channel.name}", send_messages=False)
 		await ctx.send('locked channel down')
 
-	@commands.command
+	@commands.command(name="unlockdown")
 	@commands.guild_only()
 	@commands.has_permissions(manage_channels=True)
 	async def unlockdown(self, ctx, channel : nextcord.TextChannel=None, setting = None):
