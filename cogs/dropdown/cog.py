@@ -12,6 +12,5 @@ async def lang(self, ctx):
 	view = DropdownView()
 	await ctx.send('choose a language!')
 
-
 def setup(bot: commands.Bot):
 	bot.add_cog(DropDown(bot))
