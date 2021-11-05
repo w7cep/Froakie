@@ -3,12 +3,12 @@ import nextcord
 from nextcord.ext import commands
 import asyncio
 
-class Testing(commands.Cog, name="Testing"):
+class RandD(commands.Cog, name="R&D"):
 	"""Test commands"""
 	def __init__(self, bot: commands.Bot):
 		self.bot = bot
 
-	@commands.command(name="say", hidden=True)
+	@commands.command(name="say")
 	@commands.is_owner()
 	async def say(self, ctx, channel:nextcord.TextChannel, *, message):
 		"""Make the bot say something in the specified channel."""
@@ -16,7 +16,7 @@ class Testing(commands.Cog, name="Testing"):
 			await ctx.channel.trigger_typing()
 			await channel.send(message)
 
-	@commands.command(name="say_embed", hidden=True)
+	@commands.command(name="say_embed")
 	@commands.is_owner()
 	async def say_embed(self, ctx, channel:nextcord.TextChannel, *, message):
 		"""Make the bot say something in the specified channel as an embed."""
@@ -29,7 +29,7 @@ class Testing(commands.Cog, name="Testing"):
 		await ctx.channel.trigger_typing()
 		await channel.send(embed=embed)
 
-	@commands.command(name="echo", hidden=True)
+	@commands.command(name="echo")
 	@commands.has_role(829942684947841024)
 	async def echo(self, ctx):
 		"""Have the bot echo something and hide the evidence."""
@@ -60,4 +60,4 @@ class Testing(commands.Cog, name="Testing"):
 
 
 def setup(bot: commands.Bot):
-	bot.add_cog(Testing(bot))
+	bot.add_cog(RandD(bot))

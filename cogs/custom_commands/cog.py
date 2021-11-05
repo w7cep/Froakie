@@ -6,7 +6,7 @@ class CustomCommands(commands.Cog, name="Custom_Commands"):
 	def __init__(self, bot: commands.Bot):
 		self.bot = bot
 
-	@commands.command(name="server_invite", hidden=True) 
+	@commands.command(name="server_invite") 
 	async def server_invite(self, ctx):
 		"""A useful command that displays a permanent invite link."""
 		embed = nextcord.Embed(

@@ -12,7 +12,7 @@ class Rules(commands.Cog, name="Rules"):
 		self.bot = bot
 
 
-	@commands.command(name="update_rules", hidden=True)
+	'''@commands.command(name="update_rules")
 	@commands.has_guild_permissions(manage_roles=True)
 	async def update_rules(self, ctx: commands.Context, *, args=None):
 		"""Checks for a response from the bot"""
@@ -33,16 +33,16 @@ class Rules(commands.Cog, name="Rules"):
 		)
 		# confirmation
 		await ctx.channel.trigger_typing()
-		await ctx.send(embed=embed_success("Rules have been successfully updated. 🎉"))
-  
+		await ctx.send(embed=embed_success("Rules have been successfully updated. 🎉"))'''
+
 	@commands.group()
 	@commands.guild_only()
 	@commands.has_role(829942684947841024)
 	async def rules(self, ctx):
 		await ctx.send("Invalid sub-command passed.")
   
-	@rules.command(name="sysbot_rules", aliases=["sbr","bot_rules", "br"], hidden=True) 
-	async def sysbot_rules(self, ctx):
+	@rules.command(name="sysbot") 
+	async def sysbot(self, ctx):
 		"""A useful command that displays sysbot rules."""
 		version = "v1.1.0"
 
