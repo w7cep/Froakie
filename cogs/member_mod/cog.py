@@ -513,24 +513,25 @@ class Moderation(commands.Cog, name="Moderation"):
 		await ctx.channel.trigger_typing()
 		await ctx.send(f"Hey man! I deleted {channel.name} for ya!")  
 
-	@ch.command()
+	@commands.command()
 	@commands.guild_only()
 	@commands.has_role(829942684947841024)
-	async def eadd(ctx, url:str, *, name):
-		guild = ctx. guild
-		async with aiohttp.ClientSession() as ses:
-			async with ses.get(url) as r:
-				try:
-					imgOrGif = BytesIO(await r.read())
-					bValue = imgOrGif.getvalue()
-					if r.status in range(200, 299):
-						emoji = await guild.create_custom_emoji(image=bValue, name=name)
-						await ctx.send('emoji added!')
-						await ses.close()
-					else:
-						await ctx.send(f'this did not work ._. | {r.status}')
-				except nextcord.HTTPException:
-					await ctx.send('the file is too thicc')
+	async def toggle(self, ctx, *, command):
+		command = commands.get_command(command)
+		if command == None:
+			await ctx.send('couldnt find that command ._.')
+		elif ctx.command == command:
+			await ctx.send('you can not disable this command._.')
+		else:
+			command.enabled = not command.enabled
+			ternary = "enabled" if command.enabled else "disabled"
+			await ctx.send(f'command {command.qualified_name} has been {ternary}')
+
+	@commands.cog.listener()
+	async def on_command_error(self, ctx, error):
+		if isinstance(error, commands.DisabledCommand):
+			await ctx.send('command is disabled ._.')
+			return
 
 def setup(bot: commands.Bot):
 	bot.add_cog(Moderation(bot))
