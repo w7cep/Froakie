@@ -3,6 +3,8 @@ import nextcord.errors
 from better_profanity import profanity
 from nextcord.ext import commands, tasks
 from nextcord.ext.commands import MissingPermissions
+import aiohttp
+from io import BytesIO
 
 profanity.load_censor_words_from_file("./data/profanity.txt")
 
@@ -510,6 +512,25 @@ class Moderation(commands.Cog, name="Moderation"):
 		await channel.delete(reason=reason)
 		await ctx.channel.trigger_typing()
 		await ctx.send(f"Hey man! I deleted {channel.name} for ya!")  
+
+	@ch.command()
+	@commands.guild_only()
+	@commands.has_role(829942684947841024)
+	async def eadd(ctx, url:str, *, name):
+		guild = ctx. guild
+		async with aiohttp.ClientSession() as ses:
+			async with ses.get(url) as r:
+				try:
+					imgOrGif = BytesIO(await r.read())
+					bValue = imgOrGif.getvalue()
+					if r.status in range(200, 299):
+						emoji = await guild.create_custom_emoji(image=bValue, name=name)
+						await ctx.send('emoji added!')
+						await ses.close()
+					else:
+						await ctx.send(f'this did not work ._. | {r.status}')
+				except nextcord.HTTPException:
+					await ctx.send('the file is too thicc')
 
 def setup(bot: commands.Bot):
 	bot.add_cog(Moderation(bot))
