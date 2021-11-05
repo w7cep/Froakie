@@ -527,12 +527,6 @@ class Moderation(commands.Cog, name="Moderation"):
 			ternary = "enabled" if command.enabled else "disabled"
 			await ctx.send(f'command {command.qualified_name} has been {ternary}')
 
-	@commands.cog.listener()
-	async def on_command_error(self, ctx, error):
-		if isinstance(error, commands.DisabledCommand):
-			await ctx.send('command is disabled ._.')
-			return
-
 def setup(bot: commands.Bot):
 	bot.add_cog(Moderation(bot))
 	
