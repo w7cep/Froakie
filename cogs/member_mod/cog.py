@@ -39,7 +39,7 @@ class Moderation(commands.Cog, name="Moderation"):
 	"""Moderation commands"""
 	def __init__(self, bot: commands.Bot):
 		self.bot = bot
-		self.bot_reminder.start()
+		'''self.bot_reminder.start()'''
 
 		self.url_regex = r"(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'\".,<>?«»“”‘’]))"
 	
@@ -221,7 +221,7 @@ class Moderation(commands.Cog, name="Moderation"):
 		await ctx.channel.trigger_typing()
 		return await ctx.send(embed=embed)
 
-	@tasks.loop(hours=8)  # you can even use hours and minutes
+	'''@tasks.loop(hours=8)  # you can even use hours and minutes
 	async def bot_reminder(self):
 		print("Sending message")
 		channel = self.bot.get_channel(843271842931933224)
@@ -230,7 +230,7 @@ class Moderation(commands.Cog, name="Moderation"):
 	@bot_reminder.before_loop
 	async def before_bot_reminder(self):
 		print('waiting...')
-		await self.bot.wait_until_ready()
+		await self.bot.wait_until_ready()'''
 
 	@commands.group(invoke_without_command=True)
 	@commands.guild_only()
