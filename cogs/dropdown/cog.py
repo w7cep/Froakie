@@ -1,6 +1,6 @@
 import nextcord
 from nextcord.ext import commands
-from dropdown_view import DropdownView
+from .dropdown_view import DropdownView
 
 class DropDown(commands.Cog, name="DropDown"):
 	"""Test commands"""
