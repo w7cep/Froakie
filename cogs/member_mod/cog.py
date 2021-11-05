@@ -515,7 +515,7 @@ class Moderation(commands.Cog, name="Moderation"):
 
 	@commands.command()
 	@commands.guild_only()
-	@commands.has_role(829942684947841024)
+	@commands.has_role(881434748222857216)
 	async def toggle(self, ctx, *, command):
 		command = self.bot.get_command(command)
 		if command == None:
