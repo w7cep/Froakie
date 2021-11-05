@@ -517,7 +517,7 @@ class Moderation(commands.Cog, name="Moderation"):
 	@commands.guild_only()
 	@commands.has_role(829942684947841024)
 	async def toggle(self, ctx, *, command):
-		command = commands.get_command(command)
+		command = self.bot.get_command(command)
 		if command == None:
 			await ctx.send('couldnt find that command ._.')
 		elif ctx.command == command:
