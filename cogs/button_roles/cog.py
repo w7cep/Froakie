@@ -6,7 +6,7 @@ from nextcord.ext import commands
 from .confirm_view import ConfirmView
 from .self_role_view import SelfRoleView
 from .sysbot_role_view import SysBotRuleView
-
+from .dropdown_view import DropdownView
 
 class ButtonRolesCog(commands.Cog, name="Roles"):
 	"""Give and remove roles based on button presses"""
@@ -62,7 +62,7 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 	async def server_rules(self, ctx):
 		"""Server Rules. with reaction role"""
 		embed= nextcord.Embed(	
-            title="__**Frogadier's Grotto Rules**__", 
+			title="__**Frogadier's Grotto Rules**__", 
 			description=f"\n<:Switch:865465921040678932> __**The Rules**__ <:Switch:865465921040678932>\n\n"
 						f"1. Full compliance to Discord's ToS.\n"
 						f"2. Absolutely no drama.\n"
@@ -153,8 +153,18 @@ class ButtonRolesCog(commands.Cog, name="Roles"):
 											   			f"*Maroon*: 🔴", inline=True)
 		await ctx.channel.trigger_typing()
 		await ctx.send(embed=embed, view=ColorRoleView())
-   
 
+	@commands.group(invoke_without_command=True)
+	@commands.guild_only()
+	@commands.has_role(829942684947841024)
+	async def dropdown(self, ctx):
+		await ctx.send("Invalid sub-command specified")
+
+	@dropdown.command(name="lang")
+	async def lang(self, ctx):
+		"""lang test command"""
+		view = DropdownView()
+		await ctx.send('choose a language!', view=view)
   
 # setup functions for bot
 def setup(bot):

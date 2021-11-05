@@ -1,6 +1,3 @@
-from typing import List
-
-import config
 import nextcord
 
 class Dropdown(nextcord.ui.Select):
