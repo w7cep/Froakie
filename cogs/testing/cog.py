@@ -63,7 +63,7 @@ class RandD(commands.Cog, name="R&D"):
 
 	@commands.command(name="berry")
 	@commands.guild_only()
-	async def berry(self, ctx, *, Name=None):
+	async def berry(self, ctx, Name=None):
 		if Name is None:
 			await ctx.send("please specify a berry name")
 		else:
