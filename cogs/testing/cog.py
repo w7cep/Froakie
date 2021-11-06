@@ -73,7 +73,7 @@ class RandD(commands.Cog, name="R&D"):
 	@commands.command(name="pkm")
 	async def pkm(self, ctx, pokemon: str):
 		"""Gives you a fact for these animals: "dog", "cat", "panda", "fox", "bird", "koala"."""
-		if (pokemon := pokemon.lower()) in (""):
+		if pokemon != None:
 			fact_url = f"https://pokeapi.co/api/v2/pokemon/{pokemon}"
 			image_url = f"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{pokemon}"
 
