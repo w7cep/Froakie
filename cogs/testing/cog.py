@@ -90,7 +90,7 @@ class RandD(commands.Cog, name="R&D"):
 					data = await response.json()
 
 					embed = Embed(title=f"{pokemon.title()} fact",
-								  description=data["fact"],
+								  description=data,
 								  colour=ctx.author.colour)
 					if image_link is not None:
 						embed.set_image(url=image_link)
