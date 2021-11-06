@@ -144,12 +144,11 @@ class Moderation(commands.Cog, name="Moderation"):
 		await ctx.send(f"{user.mention} has been unmuted")
 
 	# TODO #4 Make: temp_mute command
-	# TODO #5 Add: """docstring to the block and unblock commands"""
 
 	@member.command(name="block")
 	@commands.has_role(829942684947841024) 
 	async def block(self, ctx, user: Sinner=None, channel: nextcord.TextChannel = None, reason = None):
-
+		"""Block a user from the channel."""
 		if not user: # checks if there is user
 			return await ctx.send("You must specify a user")
 		if channel == None:
@@ -163,7 +162,7 @@ class Moderation(commands.Cog, name="Moderation"):
 	@member.command(name="unblock")
 	@commands.has_role(829942684947841024) 
 	async def unblock(self, ctx, user: Sinner=None, channel: nextcord.TextChannel = None, reason = None):
-
+		"""Unblock a user from the channel."""
 		if not user: # checks if there is user
 			return await ctx.send("You must specify a user")
 		if channel == None:
