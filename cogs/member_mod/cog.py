@@ -509,7 +509,7 @@ class Moderation(commands.Cog, name="Moderation"):
 	async def toggle(self, ctx, *, command):
 		command = self.bot.get_command(command)
 		if command == None:
-			await ctx.send('couldnt find that command ._.')
+			await ctx.send("couldn't find that command ._.")
 		elif ctx.command == command:
 			await ctx.send('you can not disable this command._.')
 		else:
