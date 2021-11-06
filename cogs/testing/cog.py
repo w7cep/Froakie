@@ -3,7 +3,7 @@ import nextcord
 from nextcord import Embed
 from nextcord.ext import commands
 import asyncio
-import pokebase as pb
+import pokepy
 from aiohttp import request
 
 class RandD(commands.Cog, name="R&D"):
@@ -11,6 +11,8 @@ class RandD(commands.Cog, name="R&D"):
 	def __init__(self, bot: commands.Bot):
 		self.bot = bot
 
+	dex = pokepy.V2Client()
+ 
 	@commands.command(name="say")
 	@commands.is_owner()
 	async def say(self, ctx, channel:nextcord.TextChannel, *, message):
@@ -61,50 +63,24 @@ class RandD(commands.Cog, name="R&D"):
 			await ctx.channel.trigger_typing()
 			await ctx.send("Cancelling", delete_after=10)
 
-	@commands.command(name="berry")
+	'''	@commands.command(name="berry")
 	@commands.guild_only()
 	async def berry(self, ctx, Name=None):
 		if Name is None:
 			await ctx.send("please specify a berry name")
 		else:
 			berry = pb.APIResource('berry', f'{Name}')
-			await ctx.send(f"Name:{berry.name}\nNatural Gift Type:{berry.flavor.name}")
+			await ctx.send(f"Name:{berry.name}\nNatural Gift Type:{berry.flavor.name}")'''
 
 	@commands.command(name="pkm")
 	async def pkm(self, ctx, pokemon: str):
-		"""Gives you a fact for these animals: "dog", "cat", "panda", "fox", "bird", "koala"."""
-		if pokemon != None:
-			fact_url = f"https://pokeapi.co/api/v2/pokemon/{pokemon}"
-			image_url = f"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{pokemon}"
+		""""""
+		pkm = pokepy.V2Client().get_pokemon({pokemon})
 
-			async with request("GET", image_url, headers={}) as response:
-				if response.status == 200:
-					data = await response.json()
-					image_link = data["link"]
+		embed = nextcord.Embed(title=f"{pkm.name}")
+		
+		await ctx.send(embed=embed)
 
-				else:
-					image_link = None
-
-			async with request("GET", fact_url, headers={}) as response:
-				if response.status == 200:
-					data = await response.json()
-
-					embed = Embed(title=f"{pokemon.title()} fact",
-								  description=data,
-								  colour=ctx.author.colour)
-					if image_link is not None:
-						embed.set_image(url=image_link)
-					await ctx.channel.trigger_typing()
-					await ctx.send(embed=embed)
-					await ctx.message.delete()
-
-				else:
-					await ctx.channel.trigger_typing()
-					await ctx.send(f"API returned a {response.status} status.")
-
-		else:
-			await ctx.channel.trigger_typing()
-			await ctx.send("No facts are available for that pokemon.")   
 
 def setup(bot: commands.Bot):
 	bot.add_cog(RandD(bot))
