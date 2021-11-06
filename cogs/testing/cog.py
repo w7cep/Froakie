@@ -1,7 +1,10 @@
 from typing import List
 import nextcord
+from nextcord import Embed
 from nextcord.ext import commands
 import asyncio
+import pokebase as pb
+from aiohttp import request
 
 class RandD(commands.Cog, name="R&D"):
 	"""Test commands"""
@@ -58,6 +61,14 @@ class RandD(commands.Cog, name="R&D"):
 			await ctx.channel.trigger_typing()
 			await ctx.send("Cancelling", delete_after=10)
 
+	@commands.command(name="berry")
+	@commands.guild_only()
+	async def berry(self, ctx, *, Name=None):
+		if Name is None:
+			await ctx.send("please specify a berry name")
+		else:
+			berry = pb.APIResource('berry', f'{Name}')
+			await ctx.send(f"{berry.name}")
 
 def setup(bot: commands.Bot):
 	bot.add_cog(RandD(bot))
