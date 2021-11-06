@@ -70,7 +70,7 @@ class RandD(commands.Cog, name="R&D"):
 			await ctx.send("please specify a pokemon name")
 		else:
 			pkm = pb.APIResource('pokemon', f'{Name}')
-			await ctx.send(f"Name:{pkm.name}\nWeight: {pkm.weight}\n")
+			await ctx.send(f"Name:{pkm.name}\nWeight:")
 
 	'''@commands.command(name="pkm")
 	async def pkm(self, ctx, pokemon: int):
