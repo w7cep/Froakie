@@ -10,7 +10,7 @@ from .dropdown_view import DropdownView
 
 class ButtonRolesCog(commands.Cog, name="Roles"):
 	"""Give and remove roles based on button presses"""
-
+	COG_EMOJI="🔘"
 	def __init__(self, bot: commands.Bot):
 		self.__bot = bot
 	
