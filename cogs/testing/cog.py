@@ -68,7 +68,7 @@ class RandD(commands.Cog, name="R&D"):
 			await ctx.send("please specify a berry name")
 		else:
 			berry = pb.APIResource('berry', f'{Name}')
-			await ctx.send(f"Name:{berry.name}\nNatural Gift Type:{berry.natural_gift_type.name}")
+			await ctx.send(f"Name:{berry.name}\nNatural Gift Type:{berry.flavor.name}")
 
 def setup(bot: commands.Bot):
 	bot.add_cog(RandD(bot))
