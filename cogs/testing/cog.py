@@ -70,5 +70,41 @@ class RandD(commands.Cog, name="R&D"):
 			berry = pb.APIResource('berry', f'{Name}')
 			await ctx.send(f"Name:{berry.name}\nNatural Gift Type:{berry.flavor.name}")
 
+	@commands.command(name="pkm")
+	async def pkm(self, ctx, pokemon: str):
+		"""Gives you a fact for these animals: "dog", "cat", "panda", "fox", "bird", "koala"."""
+		if (pokemon := pokemon.lower()) in (""):
+			fact_url = f"https://pokeapi.co/api/v2/pokemon/{pokemon}"
+			image_url = f"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/{pokemon}"
+
+			async with request("GET", image_url, headers={}) as response:
+				if response.status == 200:
+					data = await response.json()
+					image_link = data["link"]
+
+				else:
+					image_link = None
+
+			async with request("GET", fact_url, headers={}) as response:
+				if response.status == 200:
+					data = await response.json()
+
+					embed = Embed(title=f"{pokemon.title()} fact",
+								  description=data["fact"],
+								  colour=ctx.author.colour)
+					if image_link is not None:
+						embed.set_image(url=image_link)
+					await ctx.channel.trigger_typing()
+					await ctx.send(embed=embed)
+					await ctx.message.delete()
+
+				else:
+					await ctx.channel.trigger_typing()
+					await ctx.send(f"API returned a {response.status} status.")
+
+		else:
+			await ctx.channel.trigger_typing()
+			await ctx.send("No facts are available for that pokemon.")   
+
 def setup(bot: commands.Bot):
 	bot.add_cog(RandD(bot))
