@@ -14,3 +14,4 @@ python-nmap
 asyncio
 aiohttp==3.7.4
 psycopg2==2.8.5
+pokebase
