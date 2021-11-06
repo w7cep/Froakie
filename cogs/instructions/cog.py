@@ -16,7 +16,7 @@ class Instructions(commands.Cog, name="Instructions"):
 	@commands.guild_only()
 	@commands.has_role(829942684947841024)
 	async def pkhex(self, ctx):
-		await ctx.send("https://docs.google.com/document/d/1b3z8qCQ2mM4dfhbyGlkak6H0b0zuEaeQKy5mTHwdnug/edit?usp=sharing")
+		await ctx.send("Havokx#3700 guide to pkhex\nhttps://docs.google.com/document/d/1b3z8qCQ2mM4dfhbyGlkak6H0b0zuEaeQKy5mTHwdnug/edit?usp=sharing")
 
 	@instructions.command(name="sysbot") 
 	async def sysbot(self, ctx):

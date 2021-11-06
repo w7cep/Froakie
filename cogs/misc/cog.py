@@ -12,7 +12,7 @@ from nextcord.ext.commands import BadArgument
 
 class Misc(commands.Cog, name="Misc"):
 	"""Misc. Commands"""
-
+	COG_EMOJI = "🎲"
 	def __init__(self, bot: commands.Bot):
 		self.bot = bot
 
