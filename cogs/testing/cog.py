@@ -73,7 +73,7 @@ class RandD(commands.Cog, name="R&D"):
 			await ctx.send(f"Name:{berry.name}\nNatural Gift Type:{berry.flavor.name}")'''
 
 	@commands.command(name="pkm")
-	async def pkm(self, ctx, pokemon: str):
+	async def pkm(self, ctx, pokemon: int):
 		""""""
 		pkm = pokepy.V2Client().get_pokemon({pokemon})
 
