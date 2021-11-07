@@ -12,9 +12,9 @@ class GreetingsCog(commands.Cog, name="Greetings"):
 	def __init__(self, bot: commands.Bot):
 		self.bot = bot
 		self._last_member = None
-		'''self.bot_reminder.start()'''
+		'''self.bot_reminder.start()
   
-	'''@commands.Cog.listener()
+	@commands.Cog.listener()
 	async def on_member_join(self, member: nextcord.Member):
 		"""Welcome members when they join"""
 		guild = self.bot.get_guild(config.GUILD_ID)
@@ -38,9 +38,9 @@ class GreetingsCog(commands.Cog, name="Greetings"):
 		outro_channel = guild.get_channel(config.OUTRO_CHANNEL_ID)
 		if member.bot or guild != member.guild:
 			return
-		await outro_channel.send(f"Peace! :middle_finger: {member.mention}")'''
+		await outro_channel.send(f"Peace! :middle_finger: {member.mention}")
 
-	'''@tasks.loop(hours=8)  # you can even use hours and minutes
+	@tasks.loop(hours=8)  # you can even use hours and minutes
 	async def bot_reminder(self):
 		print("Sending message")
 		channel = self.bot.get_channel(843271842931933224)
