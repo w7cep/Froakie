@@ -23,14 +23,12 @@ def main():
 
 	@bot.event
 	async def on_ready():
-		print(f"{bot.user.name} has connected to Discord.")
-		print()
 		member_count = 0
 		guild_string = ""
 		for g in bot.guilds:
 			guild_string += f"{g.name} - {g.id} - Members: {g.member_count}\n"
 			member_count += g.member_count
-		print(f"Bot: '{bot.user.name}' has connected, active on {len(bot.guilds)} guilds:\n{guild_string}")
+		print(f"Bot: '{bot.user.name}' has connected to Discord, active on {len(bot.guilds)} guilds:\n{guild_string}")
 		print(f"nextcord API version: {nextcord.__version__}")
 		print(f"Python version: {platform.python_version()}")
 		print(f"Running on: {platform.system()} {platform.release()} ({os.name})")
@@ -38,9 +36,8 @@ def main():
 	# load all cogs
 	for folder in os.listdir("cogs"):
 		if os.path.exists(os.path.join("cogs", folder, "cog.py")):
-			print(f"Loading cog {folder}")
 			bot.load_extension(f"cogs.{folder}.cog")
-			print(f"Loaded cog {folder}")
+
 	async def startup():
 		bot.session = aiohttp.ClientSession()
 
