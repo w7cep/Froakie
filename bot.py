@@ -14,7 +14,7 @@ def main():
 	# allows privledged intents for monitoring members joining, roles editing, and role assignments
 	intents = nextcord.Intents.all()
 
-	activity = nextcord.Activity(type=nextcord.ActivityType.listening, name=f"{config.PREFIX}help | discord.gg/dm7gSAT68d")
+	activity = nextcord.Activity(type=nextcord.ActivityType.listening, name=f"{config.BOT_STATUS}")
 
 	bot = commands.Bot(command_prefix=config.PREFIX, intents=intents, activity=activity)
 
