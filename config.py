@@ -19,7 +19,7 @@ BOT_LOG_CHANNEL_ID = int(os.getenv("BOT_LOG_CHANNEL_ID", ""))
 BOT_RULES_CHANNEL_ID = int(os.getenv("BOT_RULES_CHANNEL_ID", ""))
 OUTRO_CHANNEL_ID = int(os.getenv("OUTRO_CHANNEL_ID", ""))
 SUGGESTION_CHANNEL_ID = int(os.getenv("SUGGESTION_CHANNEL_ID", ""))
-
+BOT_START_CHANNEL_ID = int(os.getenv("BOT_START_CHANNEL_ID", ""))
 # Discord Role IDs
 FROGADIER_ROLE_ID = int(os.getenv("FROGADIER_ROLE_ID", ""))
 TRADECORD_ROLE_ID = int(os.getenv("TRADECORD_ROLE_ID", ""))

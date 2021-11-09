@@ -61,5 +61,7 @@ class GreetingsCog(commands.Cog, name="Greetings"):
 		"""Say bye to the bot and it will say bye back."""
 		await ctx.send(f"{choice(('Bye', 'Peace', 'See Ya', 'Later'))} {ctx.author.mention}!")
 
+
+	
 def setup(bot: commands.Bot):
 	bot.add_cog(GreetingsCog(bot))

@@ -32,7 +32,7 @@ def main():
 		print(f"nextcord API version: {nextcord.__version__}")
 		print(f"Python version: {platform.python_version()}")
 		print(f"Running on: {platform.system()} {platform.release()} ({os.name})")
-
+		await bot.get_channel("907496711872729128").send("bot is online")
 	# load all cogs
 	for folder in os.listdir("cogs"):
 		if os.path.exists(os.path.join("cogs", folder, "cog.py")):
