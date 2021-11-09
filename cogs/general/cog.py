@@ -6,6 +6,7 @@ from nextcord.ext.commands import MissingPermissions
 import aiohttp
 from io import BytesIO
 import asyncio
+import config
 profanity.load_censor_words_from_file("./data/profanity.txt")
 
 # This prevents staff members from being punished 
@@ -43,7 +44,7 @@ class General(commands.Cog, name="General"):
 	@commands.command(name="suggest")
 	async def suggest(self, ctx, *, suggestion):
 		await ctx.channel.purge(limit=1) # purge
-		channel = nextcord.utils.get(ctx.guild.text_channel, name="suggestion")
+		channel = await ctx.guild.fetch_channel(config.SUGGESTION_CHANNEL_ID)
 		suggest = nextcord.Embed(title='New Suggestion!', description=f'{ctx.author.name} has suggested `{suggestion}`.')
 		sugg = await channel.send(embed=suggest)
 		await channel.send(f'^^ Suggestion ID: {sugg.id}')
@@ -54,7 +55,7 @@ class General(commands.Cog, name="General"):
 	async def approve(self, ctx, id:int=None, *, reason=None):
 		if id is None:
 			return
-		channel = nextcord.utils.get(ctx.guild.text_channel, name='suggestion')
+		channel = await ctx.guild.fetch_channel(config.SUGGESTION_CHANNEL_ID)
 		if channel is None:
 			return
 		suggestionMsg = await channel.fetch_message(id)
@@ -65,7 +66,7 @@ class General(commands.Cog, name="General"):
 	async def deny(self, ctx, id:int=None, *, reason=None):
 		if id is None:
 			return
-		channel = nextcord.utils.get(ctx.guild.text_channel, name='suggestion')
+		channel = await ctx.guild.fetch_channel(config.SUGGESTION_CHANNEL_ID)
 		if channel is None:
 			return
 		suggestionMsg = await channel.fetch_message(id)
