@@ -59,7 +59,7 @@ class General(commands.Cog, name="General"):
 		if channel is None:
 			return
 		suggestionMsg = await channel.fetch_message(id)
-		embed =nextcord.Embed(tittle=f'Suggestion has been approved', description=f' the suggestion id of "{suggestionMsg.id}" has been approved by {ctx.author.name} | reson: {reason}')
+		embed =nextcord.Embed(title=f'Suggestion has been approved', description=f' the suggestion id of `{suggestionMsg.id}` has been approved by {ctx.author.name} | reson: {reason}')
 		await channel.send(embed=embed)
 
 	@commands.command(name="deny")
@@ -70,7 +70,7 @@ class General(commands.Cog, name="General"):
 		if channel is None:
 			return
 		suggestionMsg = await channel.fetch_message(id)
-		embed =nextcord.Embed(tittle=f'Suggestion has been denied', description=f' the suggestion id of "{suggestionMsg.id}" has been denied by {ctx.author.name} | reson: {reason}')
+		embed =nextcord.Embed(title=f'Suggestion has been denied', description=f' the suggestion id of `{suggestionMsg.id}` has been denied by {ctx.author.name} | reson: {reason}')
 		await channel.send(embed=embed)
 
 def setup(bot: commands.Bot):
