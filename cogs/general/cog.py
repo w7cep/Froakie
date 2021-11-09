@@ -46,7 +46,6 @@ class General(commands.Cog, name="General"):
 		await ctx.channel.purge(limit=1) # purge
 		channel = await ctx.guild.fetch_channel(config.SUGGESTION_CHANNEL_ID)
 		suggest = nextcord.Embed(title='New Suggestion!', description=f'{ctx.author.name} has suggested `{suggestion}`.')
-		suggest.add_field(name="Comment", value="_")
 		sugg = await channel.send(embed=suggest)
 		await channel.send(f'^^ Suggestion ID: {sugg.id}')
 		await sugg.add_reaction('✅')
@@ -59,11 +58,11 @@ class General(commands.Cog, name="General"):
 		channel = await ctx.guild.fetch_channel(config.SUGGESTION_CHANNEL_ID)
 		if channel is None:
 			return
-		suggestionMsg = await channel.fetch_message(id)
-		embed =nextcord.Embed(title=f'Suggestion has been approved', description=f' the suggestion id of `{suggestionMsg.id}` has been approved by {ctx.author.name} | reson: {reason}')
-
+		suggestionMsg = await nextcord.fetch_message(id)
+		embed =nextcord.Embed(title=f'Suggestion `{suggestionMsg.id}` has been approved', description=f'Suggestion `{suggestionMsg.id}` has been approved by {ctx.author.name} | reason: {reason}')
 		await channel.send(embed=embed)
-
+		await embed.add_reaction('✅')
+  
 	@commands.command(name="deny")
 	async def deny(self, ctx, id:int=None, *, reason=None):
 		if id is None:
@@ -71,19 +70,11 @@ class General(commands.Cog, name="General"):
 		channel = await ctx.guild.fetch_channel(config.SUGGESTION_CHANNEL_ID)
 		if channel is None:
 			return
-		suggestionMsg = await channel.fetch_message(id)
+		suggestionMsg = await nextcord.fetch_message(id)
 		embed =nextcord.Embed(title=f'Suggestion has been denied', description=f' the suggestion id of `{suggestionMsg.id}` has been denied by {ctx.author.name} | reson: {reason}')
 		await channel.send(embed=embed)
+		await embed.add_reaction('❌')
 
-	@commands.command()
-	async def comment(ctx, message, *, args):
-		embed = message.embeds[0]
-		embed_dict = embed.to_dict()
-		for field in embed_dict["fields"]:
-			if field["name"] == "Comment":
-				field["value"] += f"{args}"
-			embed = nextcord.Embed.from_dict(embed_dict)
-			await message.edit(embed=embed)
 
 def setup(bot: commands.Bot):
 	bot.add_cog(General(bot))
