@@ -33,7 +33,7 @@ def main():
 		print(f"Python version: {platform.python_version()}")
 		print(f"Running on: {platform.system()} {platform.release()} ({os.name})")
 		channel = bot.get_channel(907496711872729128) #  Gets channel from internal cache
-		await channel.send(f"{bot.user.name} is connected to {len(bot.guilds)} guilds:\n{guild_string}") #  Sends message to channel
+		await channel.send(f"{bot.user.name} is connected to {len(bot.guilds)} guilds:\n{guild_string}\nnextcord API version: {nextcord.__version__}\nPython version: {platform.python_version()}\n Running on: {platform.system()} {platform.release()} ({os.name})") #  Sends message to channel
 	# load all cogs
 	for folder in os.listdir("cogs"):
 		if os.path.exists(os.path.join("cogs", folder, "cog.py")):
