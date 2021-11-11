@@ -51,7 +51,7 @@ class General(commands.Cog, name="General"):
 		await sugg.add_reaction('✅')
 		await sugg.add_reaction('❌')
 		suggest2 = nextcord.Embed(title='New Suggestion!', description=f'{ctx.author.name} has suggested `{suggestion}`.')
-		suggest2.add_field(name=f'Msg ID: {sugg.id}')
+		suggest2.add_field(name='Msg ID:', value=f'{sugg.id}', inline=False)
 		await sugg.edit(embed=suggest2)
   
 	@commands.command(name="approve")
