@@ -37,7 +37,7 @@ async def mute(ctx, user, reason):
 	await ctx.send(f"{user.mention} has been muted for {reason}")
 
 class General(commands.Cog, name="General"):
-	"""Moderation commands"""
+	"""Testing Commands"""
 	def __init__(self, bot: commands.Bot):
 		self.bot = bot
 
@@ -47,7 +47,6 @@ class General(commands.Cog, name="General"):
 		channel = await ctx.guild.fetch_channel(config.SUGGESTION_CHANNEL_ID)
 		suggest = nextcord.Embed(title='New Suggestion!', description=f'{ctx.author.name} has suggested `{suggestion}`.')
 		sugg = await channel.send(embed=suggest)
-		#await channel.send(f'^^ Suggestion ID: {sugg.id}')
 		await sugg.add_reaction('✅')
 		await sugg.add_reaction('❌')
 		suggest2 = nextcord.Embed(title='New Suggestion!', description=f'{ctx.author.name} has suggested `{suggestion}`.')
@@ -63,7 +62,7 @@ class General(commands.Cog, name="General"):
 		if channel is None:
 			return
 		suggestionMsg = await channel.fetch_message(id)
-		embed =nextcord.Embed(title=f'Suggestion `{suggestionMsg.id}` has been approved', description=f'Suggestion `{suggestionMsg.id}` has been approved by {ctx.author.name} | reason: {reason}')
+		embed =nextcord.Embed(title=f'Suggestion has been approved', description=f'Suggestion `{suggestionMsg.id}` has been approved by {ctx.author.name} | reason: {reason}')
 		Msg = await channel.send(embed=embed)
 		await Msg.add_reaction('✅')
   
