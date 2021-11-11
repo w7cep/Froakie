@@ -47,9 +47,12 @@ class General(commands.Cog, name="General"):
 		channel = await ctx.guild.fetch_channel(config.SUGGESTION_CHANNEL_ID)
 		suggest = nextcord.Embed(title='New Suggestion!', description=f'{ctx.author.name} has suggested `{suggestion}`.')
 		sugg = await channel.send(embed=suggest)
-		await channel.send(f'^^ Suggestion ID: {sugg.id}')
+		#await channel.send(f'^^ Suggestion ID: {sugg.id}')
 		await sugg.add_reaction('✅')
 		await sugg.add_reaction('❌')
+		suggest2 = nextcord.Embed(title='New Suggestion!', description=f'{ctx.author.name} has suggested `{suggestion}`.')
+		suggest2.add_field(name=f'Msg ID: {sugg.id}')
+		await sugg.edit(embed=suggest2)
   
 	@commands.command(name="approve")
 	async def approve(self, ctx, id:int=None, *, reason=None):
@@ -71,7 +74,7 @@ class General(commands.Cog, name="General"):
 		if channel is None:
 			return
 		suggestionMsg = await channel.fetch_message(id)
-		embed =nextcord.Embed(title=f'Suggestion has been denied', description=f' the suggestion id of `{suggestionMsg.id}` has been denied by {ctx.author.name} | reason: {reason}')
+		embed =nextcord.Embed(title=f'Suggestion has been denied', description=f'Suggestion `{suggestionMsg.id}` has been denied by {ctx.author.name} | reason: {reason}')
 		await channel.send(embed=embed)
 		await embed.add_reaction('❌')
 
