@@ -56,6 +56,7 @@ class General(commands.Cog, name="General"):
   
 	@commands.command(name="approve")
 	async def approve(self, ctx, id:int=None, *, reason=None):
+		await ctx.channel.purge(limit=1)
 		if id is None:
 			return
 		channel = await ctx.guild.fetch_channel(config.SUGGESTION_CHANNEL_ID)
@@ -63,11 +64,12 @@ class General(commands.Cog, name="General"):
 			return
 		suggestionMsg = await channel.fetch_message(id)
 		embed =nextcord.Embed(title=f'Suggestion `{suggestionMsg.id}` has been approved', description=f'Suggestion `{suggestionMsg.id}` has been approved by {ctx.author.name} | reason: {reason}')
-		await channel.send(embed=embed)
-		await embed.add_reaction('✅')
+		Msg = await channel.send(embed=embed)
+		await Msg.add_reaction('✅')
   
 	@commands.command(name="deny")
 	async def deny(self, ctx, id:int=None, *, reason=None):
+		await ctx.channel.purge(limit=1)
 		if id is None:
 			return
 		channel = await ctx.guild.fetch_channel(config.SUGGESTION_CHANNEL_ID)
@@ -75,8 +77,8 @@ class General(commands.Cog, name="General"):
 			return
 		suggestionMsg = await channel.fetch_message(id)
 		embed =nextcord.Embed(title=f'Suggestion has been denied', description=f'Suggestion `{suggestionMsg.id}` has been denied by {ctx.author.name} | reason: {reason}')
-		await channel.send(embed=embed)
-		await embed.add_reaction('❌')
+		Msg = await channel.send(embed=embed)
+		await Msg.add_reaction('❌')
 
 
 def setup(bot: commands.Bot):
