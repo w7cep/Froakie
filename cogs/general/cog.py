@@ -76,7 +76,8 @@ class General(commands.Cog, name="General"):
 		if channel is None:
 			return
 		suggestionMsg = await channel.fetch_message(id)
-		embed =nextcord.Embed(title=f'Suggestion has been denied', description=f'Suggestion `{suggestionMsg.id}` has been denied by {ctx.author.name} | reason: {reason}')
+		embed =nextcord.Embed(title=f'Suggestion has been denied', description=f'Suggestion `{suggestionMsg.id}` has been denied by {ctx.author.name}')
+		embed.add_field(name='reason:', value=f'{reason}')
 		Msg = await channel.send(embed=embed)
 		await Msg.add_reaction('❌')
 
