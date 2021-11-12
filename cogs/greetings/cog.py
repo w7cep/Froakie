@@ -12,7 +12,7 @@ class GreetingsCog(commands.Cog, name="Greetings"):
 	def __init__(self, bot: commands.Bot):
 		self.bot = bot
 		self._last_member = None
-		self.bot_reminder.start()
+		'''self.bot_reminder.start()
 
 	@tasks.loop(hours=8)  # you can even use hours and minutes
 	async def bot_reminder(self):
@@ -50,7 +50,7 @@ class GreetingsCog(commands.Cog, name="Greetings"):
 		outro_channel = guild.get_channel(config.OUTRO_CHANNEL_ID)
 		if member.bot or guild != member.guild:
 			return
-		await outro_channel.send(f"Peace! :middle_finger: {member.mention}")
+		await outro_channel.send(f"Peace! :middle_finger: {member.mention}")'''
 
 	@command(name="hello", aliases=["hi"])
 	async def say_hello(self, ctx):
