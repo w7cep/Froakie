@@ -1,18 +1,13 @@
 from typing import List
 import nextcord
-from nextcord import Embed
 from nextcord.ext import commands
 import asyncio
-import pokepy
-from aiohttp import request
-import pokebase as pb
+import config
 class RandD(commands.Cog, name="R&D"):
 	"""Test commands"""
 	def __init__(self, bot: commands.Bot):
 		self.bot = bot
 
-	dex = pokepy.V2Client()
- 
 	@commands.command(name="say")
 	@commands.is_owner()
 	async def say(self, ctx, channel:nextcord.TextChannel, *, message):
@@ -63,23 +58,6 @@ class RandD(commands.Cog, name="R&D"):
 			await ctx.channel.trigger_typing()
 			await ctx.send("Cancelling", delete_after=10)
 
-	@commands.command(name="pkm")
-	@commands.guild_only()
-	async def pkm(self, ctx, Name=None):
-		if Name is None:
-			await ctx.send("please specify a pokemon name")
-		else:
-			pkm = pb.APIResource('pokemon', f'{Name}')
-			await ctx.send(f"Name:{pkm.name}\nWeight:")
-
-	'''@commands.command(name="pkm")
-	async def pkm(self, ctx, pokemon: int):
-		""""""
-		pkm = pokepy.V2Client().get_pokemon({pokemon})
-
-		embed = nextcord.Embed(title=f"{pkm.name}")
-		
-		await ctx.send(embed=embed)'''
 
 
 def setup(bot: commands.Bot):
