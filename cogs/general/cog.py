@@ -41,6 +41,19 @@ class General(commands.Cog, name="General"):
 	def __init__(self, bot: commands.Bot):
 		self.bot = bot
 
+	@commands.command()
+	@commands.has_permissions(manage_messages=True)
+	async def mute(ctx, member: nextcord.Member,time):
+		muted_role=nextcord.utils.get(ctx.guild.roles, name="Muted")
+		time_convert = {"s":1, "m":60, "h":3600,"d":86400}
+		tempmute= int(time[0]) * time_convert[time[-1]]
+		await ctx.message.delete()
+		await member.add_roles(muted_role)
+		embed = nextcord.Embed(description= f"✅ **{member.display_name}#{member.discriminator} muted successfuly**", color=nextcord.Color.green())
+		await ctx.send(embed=embed, delete_after=5)
+		await asyncio.sleep(tempmute)
+		await member.remove_roles(muted_role) 
+
 	@commands.command(name="suggest")
 	async def suggest(self, ctx, *, suggestion):
 		await ctx.channel.purge(limit=1) # purge
