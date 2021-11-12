@@ -53,7 +53,8 @@ class General(commands.Cog, name="General"):
 		await ctx.send(embed=embed, delete_after=5)
 		await asyncio.sleep(tempmute)
 		await user.remove_roles(muted_role) 
-
+		await ctx.send(f"{user.display_name}${user.discriminator} has be unmuted!")
+  
 	@commands.command(name="suggest")
 	async def suggest(self, ctx, *, suggestion):
 		await ctx.channel.purge(limit=1) # purge
