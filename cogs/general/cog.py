@@ -41,7 +41,7 @@ class General(commands.Cog, name="General"):
 	def __init__(self, bot: commands.Bot):
 		self.bot = bot
 
-	@commands.command()
+	@commands.command(name="tmp_mute")
 	@commands.has_permissions(manage_messages=True)
 	async def mute(ctx, member: nextcord.Member,time):
 		muted_role=nextcord.utils.get(ctx.guild.roles, name="Muted")
