@@ -41,9 +41,9 @@ class General(commands.Cog, name="General"):
 	def __init__(self, bot: commands.Bot):
 		self.bot = bot
 
-	@commands.command(name="tmp_mute")
+	@commands.command(name="temp_mute")
 	@commands.has_permissions(manage_messages=True)
-	async def tmp_mute(self, ctx, user: nextcord.Member, time):
+	async def temp_mute(self, ctx, user: nextcord.Member, time):
 		muted_role=nextcord.utils.get(ctx.guild.roles, name="Muted")
 		time_convert = {"s":1, "m":60, "h":3600,"d":86400}
 		tempmute= int(time[0]) * time_convert[time[-1]]
@@ -53,7 +53,7 @@ class General(commands.Cog, name="General"):
 		await ctx.send(embed=embed, delete_after=5)
 		await asyncio.sleep(tempmute)
 		await user.remove_roles(muted_role) 
-		await ctx.send(f"{user.display_name}${user.discriminator} has be unmuted!")
+		await ctx.send(f"{user.display_name}#{user.discriminator} has be unmuted!")
   
 	@commands.command(name="suggest")
 	async def suggest(self, ctx, *, suggestion):

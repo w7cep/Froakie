@@ -145,6 +145,8 @@ class Moderation(commands.Cog, name="Moderation"):
 		await ctx.channel.trigger_typing()# removes muted role
 		await ctx.send(f"{user.mention} has been unmuted")
 	
+
+
 	@member.command(name="block")
 	@commands.has_role(829942684947841024) 
 	async def block(self, ctx, user: Sinner=None, channel: nextcord.TextChannel = None, reason = None):
